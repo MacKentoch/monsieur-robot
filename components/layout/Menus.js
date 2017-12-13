@@ -12,6 +12,7 @@ import {
   ListItemText
 }                             from 'material-ui/List';
 import InfoIcon               from 'material-ui-icons/Info';
+import PeopleIcon             from 'material-ui-icons/People';
 import HomeIcon               from 'material-ui-icons/Home';
 import LockIcon               from 'material-ui-icons/Lock';
 // #endregion
@@ -45,17 +46,17 @@ class Menus extends PureComponent<Props, State> {
         </Link>
         <Link
           prefetch
-          href={'/protected'}
+          href={'/community'}
           passHref
         >
           <ListItem
             button
           >
             <ListItemIcon>
-              <LockIcon />
+              <PeopleIcon />
             </ListItemIcon>
             <ListItemText
-              primary={'Protected'}
+              primary={'Community'}
             />
           </ListItem>
         </Link>

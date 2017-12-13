@@ -20,8 +20,6 @@ import Typography             from 'material-ui/Typography';
 import IconButton             from 'material-ui/IconButton';
 // import Hidden                 from 'material-ui/Hidden';
 import Divider                from 'material-ui/Divider';
-import Menu, { MenuItem }     from 'material-ui/Menu';
-import AccountCircle          from 'material-ui-icons/AccountCircle';
 import Search                 from 'material-ui-icons/Search';
 import MenuIcon               from 'material-ui-icons/Menu';
 import Menus                  from './Menus';
@@ -35,12 +33,6 @@ import * as userAuthActions   from '../../redux/modules/userAuth';
 // #region flow types
 type Props = {
   children: ReactNode,
-
-  // userAuth:
-  isAuthenticated: boolean,
-  isFetching: boolean,
-  isLogging: boolean,
-  disconnectUser: () => string,
 
   // withStyle injected
   classes: any,
@@ -75,9 +67,7 @@ class Layout extends PureComponent<Props, State> {
       classes,
       theme,
       // children:
-      children,
-      // userAuth
-      isAuthenticated
+      children
     } = this.props;
 
     const {
@@ -205,23 +195,6 @@ class Layout extends PureComponent<Props, State> {
   handleRequestClose = () => {
     this.setState({ anchorEl: null });
   };
-  // #endregion
-
-  // #region on disconnect click
-  HandlesDisconnectUser = (
-    event?: SyntheticEvent<>
-  ) => {
-    if (event) {
-      event.preventDefault();
-    }
-
-    const {
-      disconnectUser
-    } = this.props;
-
-    disconnectUser();
-    Router.replace('/');
-  }
   // #endregion
 }
 
