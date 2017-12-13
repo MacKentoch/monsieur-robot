@@ -231,11 +231,7 @@ class Layout extends PureComponent<Props, State> {
             className={classes.tabs}
             value={currentTab}
             onChange={this.handleChange}
-
-            indicatorColor="primary"
-            textColor="primary"
-            inkBarStyle="primary"
-            fullWidth
+            fullWidth={false}
           >
             {
               tabMenu.map(
