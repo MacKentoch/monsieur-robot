@@ -21,13 +21,30 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       width: 'calc(100%)'
     },
+    backgroundColor: theme.palette.primary[600],
+  },
+  tabs: {
+    zIndex: 1000,
+    position: 'absolute',
+    marginTop: 56,
+    width: 'calc(100%)',
+    backgroundColor: theme.palette.primary[600],
+    [theme.breakpoints.up('md')]: {
+      width: 'calc(100%)',
+      paddingLeft: drawerWidth,
+      marginTop: 64,
+    },
+    boxShadow: theme.shadows[1],
   },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
-  drawerHeader: theme.mixins.toolbar,
+  drawerHeader: {
+    ...theme.mixins.toolbar,
+    marginTop: 64,
+  },
   drawerPaper: {
     zIndex: 1,
     width: 250,

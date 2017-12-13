@@ -14,6 +14,7 @@ import Router                 from 'next/router';
 import { withStyles }         from 'material-ui/styles';
 import Drawer                 from 'material-ui/Drawer';
 import AppBar                 from 'material-ui/AppBar';
+import Tabs, { Tab }          from 'material-ui/Tabs';
 import Toolbar                from 'material-ui/Toolbar';
 import Typography             from 'material-ui/Typography';
 import IconButton             from 'material-ui/IconButton';
@@ -24,6 +25,8 @@ import AccountCircle          from 'material-ui-icons/AccountCircle';
 import MenuIcon               from 'material-ui-icons/Menu';
 import Menus                  from './Menus';
 import styles                 from './styles';
+import appConfig              from '../../config/appConfig';
+import TabContainer           from './TabContainer';
 // import BackToTop              from '../backToTop/BackToTop';
 import * as userAuthActions   from '../../redux/modules/userAuth';
 // #endregion
@@ -38,7 +41,6 @@ type Props = {
   isLogging: boolean,
   disconnectUser: () => string,
 
-
   // withStyle injected
   classes: any,
   theme: any,
@@ -46,8 +48,13 @@ type Props = {
 
 type State = {
   mobileOpen: boolean,
-  anchorEl: any
+  anchorEl: any,
+  currentTab: string
 };
+// #endregion
+
+// #region constants
+const { tabMenu, defautTabMenuId } = appConfig.navigation;
 // #endregion
 
 
@@ -56,6 +63,7 @@ class Layout extends PureComponent<Props, State> {
   state = {
     mobileOpen: false,
     anchorEl: null,
+    currentTab: defautTabMenuId
   };
   // #endregion
 
@@ -68,12 +76,12 @@ class Layout extends PureComponent<Props, State> {
       // children:
       children,
       // userAuth
-      isAuthenticated,
-      disconnectUser
+      isAuthenticated
     } = this.props;
 
     const {
-      anchorEl
+      anchorEl,
+      currentTab
     } = this.state;
 
     const drawer = (
@@ -219,12 +227,36 @@ class Layout extends PureComponent<Props, State> {
               {drawer}
             </Drawer>
           </Hidden>
-          <main
-            className={classes.content}
-          >
-            { children }
+          <Tabs
+            className={classes.tabs}
+            value={currentTab}
+            onChange={this.handleChange}
 
-          </main>
+            indicatorColor="primary"
+            textColor="primary"
+            inkBarStyle="primary"
+            fullWidth
+          >
+            {
+              tabMenu.map(
+                ({ id, label }, menuIdx: number) => (
+                  <Tab
+                    key={`tab-menu-${id}-${menuIdx}`}
+                    value={id}
+                    label={label}
+                  />
+                )
+              )
+            }
+          </Tabs>
+          <TabContainer>
+            <main
+              className={classes.content}
+            >
+              { children }
+
+            </main>
+          </TabContainer>
         </div>
       </div>
     );

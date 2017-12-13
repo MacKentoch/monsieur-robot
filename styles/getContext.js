@@ -22,6 +22,9 @@ const theme = createMuiTheme({
   palette: {
     primary,
     secondary: accent
+  },
+  MuiTab: {
+    backgroundColor: teal[600]
   }
 });
 // #endregion
