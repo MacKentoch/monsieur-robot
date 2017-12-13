@@ -10,6 +10,7 @@ import {
 }                             from 'redux';
 import { connect }            from 'react-redux';
 import Link                   from 'next/link';
+import Router                 from 'next/router';
 import { withStyles }         from 'material-ui/styles';
 import Drawer                 from 'material-ui/Drawer';
 import AppBar                 from 'material-ui/AppBar';
@@ -155,7 +156,7 @@ class Layout extends PureComponent<Props, State> {
                           My account
                         </MenuItem>
                         <MenuItem
-                          onClick={disconnectUser}
+                          onClick={this.HandlesDisconnectUser}
                         >
                           Disconnect
                         </MenuItem>
@@ -244,6 +245,23 @@ class Layout extends PureComponent<Props, State> {
   handleRequestClose = () => {
     this.setState({ anchorEl: null });
   };
+  // #endregion
+
+  // #region on disconnect click
+  HandlesDisconnectUser = (
+    event?: SyntheticEvent<>
+  ) => {
+    if (event) {
+      event.preventDefault();
+    }
+
+    const {
+      disconnectUser
+    } = this.props;
+
+    disconnectUser();
+    Router.replace('/');
+  }
   // #endregion
 }
 

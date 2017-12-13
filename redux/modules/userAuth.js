@@ -147,18 +147,9 @@ export default function (
  * @param {string} [fromPath='/'] path from where disconnection
  * @returns {action} action
  */
-export function disconnectUser(
-  fromPath?: string = '/'
-) {
+export function disconnectUser() {
   auth.clearUserInfo();
   auth.clearToken();
-  // route to login, return to fromPath when authenticated back
-  const RoutePayload = {
-    pathname: '/login',
-    query: { from: fromPath }
-  };
-  Router.replace(RoutePayload);
-
   return { type: DISCONNECT_USER };
 }
 
