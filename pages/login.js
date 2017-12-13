@@ -272,7 +272,6 @@ class Login extends PureComponent<Props, State> {
                   className="pull-right"
                 >
                   <Button
-                    bsStyle="warning"
                     onClick={this.goHome}
                   >
                     back to home

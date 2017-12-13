@@ -1,7 +1,9 @@
 // @flow
 
 // #region imports
-import { PureComponent }  from 'react';
+import React, {
+  PureComponent
+}                         from 'react';
 import Router             from 'next/router';
 import auth               from '../../services/auth';
 // #endregion
@@ -9,17 +11,24 @@ import auth               from '../../services/auth';
 // #region flow types
 type Props = {
   fromPath: string,
-  children: ReactNode
+  children: React$Node
 }
 
-type State = any;
+type State = {
+  checkDone: boolean
+};
 // #endregion
 
 class Private extends PureComponent<Props, State> {
-  // #region
+  // #region initializations
   static defaultProps = {
     fromPath: '/'
   };
+
+  state = {
+    checkDone: false
+  };
+  // #endregion
 
   // #region component lifecycle methods
   componentDidMount() {
@@ -48,6 +57,11 @@ class Private extends PureComponent<Props, State> {
 
   render() {
     const { children } = this.props;
+    // const { checkDone } = this.state;
+
+    // if (!checkDone) {
+    //   return null;
+    // }
 
     return (
       <div>
@@ -57,19 +71,19 @@ class Private extends PureComponent<Props, State> {
   }
   // #endregion
 
+  // #region set checkDone to unlock ui
+
+  // #endregion
+
   // #region authentication check methods
   isAuthenticated(): boolean {
-    const checkUserHasId  = user => user && user.id;
+    const checkUserHasId  = user => ((user && user.id) || null);
     const user            = auth.getUserInfo() ? auth.getUserInfo() : null;
     const isAuthenticated = auth.getToken() && checkUserHasId(user) ? true : false;
     return isAuthenticated;
   }
 
   isExpired(): boolean {
-    /* eslint-disable no-console */
-    // comment me:
-    console.log('token expires: ', auth.getTokenExpirationDate(auth.getToken()));
-    /* eslint-enable no-console */
     return auth.isExpiredToken(auth.getToken());
   }
   // #endregion

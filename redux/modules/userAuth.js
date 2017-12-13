@@ -2,6 +2,7 @@
 
 // #region imports
 import moment                 from 'moment';
+import Router                 from 'next/router';
 import AppConfig              from '../../config/appConfig';
 import userInfosMockData      from '../../mock/userInfosMock.json';
 import { getLocationOrigin }  from '../../services/fetchTools';
@@ -143,11 +144,21 @@ export default function (
  * set user isAuthenticated to false and clear all app localstorage:
  *
  * @export
+ * @param {string} [fromPath='/'] path from where disconnection
  * @returns {action} action
  */
-export function disconnectUser() {
+export function disconnectUser(
+  fromPath?: string = '/'
+) {
   auth.clearUserInfo();
   auth.clearToken();
+  // route to login, return to fromPath when authenticated back
+  const RoutePayload = {
+    pathname: '/login',
+    query: { from: fromPath }
+  };
+  Router.replace(RoutePayload);
+
   return { type: DISCONNECT_USER };
 }
 
