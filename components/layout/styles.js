@@ -1,7 +1,7 @@
 // @flow
 
-const drawerWidth = 240;
-const tabHeight = 48;
+// const drawerWidth = 240;
+// const tabHeight = 48;
 
 const styles = theme => ({
   root: {
@@ -20,6 +20,7 @@ const styles = theme => ({
   appBar: {
     position: 'absolute',
     width: '100%',
+    backgroundColor: theme.palette.primary[600],
   },
   tabs: {
     zIndex: 1000,
@@ -37,6 +38,9 @@ const styles = theme => ({
   drawerPaper: {
     height: '100%',
     width: 250,
+  },
+  flexible: {
+    flex: 1
   },
   content: {
     backgroundColor: theme.palette.background.default,
