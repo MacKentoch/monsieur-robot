@@ -13,15 +13,13 @@ const AppConfig = {
   navigation: {
     // tab navigation
     tabMenu: [
-      { id: 'home', label: 'Home', link: '/', icon: require('material-ui-icons/Home') },
-      { id: 'protected', label: 'Protected', link: '/protected', icon: require('material-ui-icons/Lock') },
+      { id: 'home', label: 'News', link: '/', icon: require('material-ui-icons/Home') },
       { id: 'about', label: 'About', link: '/about', icon: require('material-ui-icons/Info') }
     ],
     defautTabMenuId: 'home',
 
     sidemenu: [
-      { id: 'home', label: 'Home', link: '/', icon: require('material-ui-icons/Home') },
-      { id: 'protected', label: 'Protected', link: '/protected', icon: require('material-ui-icons/Lock') },
+      { id: 'home', label: 'News', link: '/', icon: require('material-ui-icons/Home') },
       { id: 'about', label: 'About', link: '/about', icon: require('material-ui-icons/Info') }
     ]
   }

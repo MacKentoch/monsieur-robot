@@ -18,10 +18,11 @@ import Tabs, { Tab }          from 'material-ui/Tabs';
 import Toolbar                from 'material-ui/Toolbar';
 import Typography             from 'material-ui/Typography';
 import IconButton             from 'material-ui/IconButton';
-import Hidden                 from 'material-ui/Hidden';
+// import Hidden                 from 'material-ui/Hidden';
 import Divider                from 'material-ui/Divider';
 import Menu, { MenuItem }     from 'material-ui/Menu';
 import AccountCircle          from 'material-ui-icons/AccountCircle';
+import Search                 from 'material-ui-icons/Search';
 import MenuIcon               from 'material-ui-icons/Menu';
 import Menus                  from './Menus';
 import styles                 from './styles';
@@ -126,71 +127,22 @@ class Layout extends PureComponent<Props, State> {
               <div className={classes.flexible} />
 
               { /* right actions */ }
-              {
-                isAuthenticated
-                  ?
-                  (
-                    <div>
-                      <IconButton
-                        aria-owns={open ? 'menu-appbar' : null}
-                        aria-haspopup="true"
-                        onClick={this.handleMenu}
-                        color="contrast"
-                      >
-                        <AccountCircle />
-                      </IconButton>
-                      <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                          vertical: 'top',
-                          horizontal: 'right',
-                        }}
-                        transformOrigin={{
-                          vertical: 'top',
-                          horizontal: 'right',
-                        }}
-                        open={open}
-                        onRequestClose={this.handleRequestClose}
-                      >
-                        <MenuItem
-                          onClick={this.handleRequestClose}
-                        >
-                          Profile
-                        </MenuItem>
-                        <MenuItem
-                          onClick={this.handleRequestClose}
-                        >
-                          My account
-                        </MenuItem>
-                        <MenuItem
-                          onClick={this.HandlesDisconnectUser}
-                        >
-                          Disconnect
-                        </MenuItem>
-                      </Menu>
-                    </div>
-                  )
-                  :
-                  (
-                    <div>
-                      <Link
-                        prefetch
-                        href={'/login'}
-                        passHref
-                      >
-                        <IconButton
-                          aria-owns={open ? 'menu-appbar' : null}
-                          aria-haspopup="true"
-                          onClick={this.handleMenu}
-                          color="contrast"
-                        >
-                          <AccountCircle />
-                        </IconButton>
-                      </Link>
-                    </div>
-                  )
-              }
+              <div>
+                <Link
+                  prefetch
+                  href={'/login'}
+                  passHref
+                >
+                  <IconButton
+                    aria-owns={open ? 'menu-appbar' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleMenu}
+                    color="contrast"
+                  >
+                    <Search />
+                  </IconButton>
+                </Link>
+              </div>
             </Toolbar>
           </AppBar>
           <Drawer
