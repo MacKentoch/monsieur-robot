@@ -108,7 +108,7 @@ class Layout extends PureComponent<Props, State> {
                 color="contrast"
                 aria-label="open drawer"
                 onClick={this.handleDrawerToggle}
-                className={classes.navIconHide}
+                // className={classes.navIconHide}
               >
                 <MenuIcon />
               </IconButton>
@@ -193,40 +193,20 @@ class Layout extends PureComponent<Props, State> {
               }
             </Toolbar>
           </AppBar>
-          {/* sidemenu small screen: */}
-          <Hidden
-            mdUp
+          <Drawer
+            // type="temporary"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            open={this.state.mobileOpen}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            onRequestClose={this.handleDrawerToggle}
+            // ModalProps={{
+            //   keepMounted: true, // Better open performance on mobile.
+            // }}
           >
-            <Drawer
-              type="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-              open={this.state.mobileOpen}
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-              onRequestClose={this.handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
-              }}
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
-          {/* sidemenu medium to large screen: */}
-          <Hidden
-            mdDown
-            implementation="css"
-          >
-            <Drawer
-              type="permanent"
-              open
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-            >
-              {drawer}
-            </Drawer>
-          </Hidden>
+            {drawer}
+          </Drawer>
           <Tabs
             className={classes.tabs}
             value={currentTab}
