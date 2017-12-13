@@ -196,7 +196,7 @@ class Login extends PureComponent<Props, State> {
                         <div className={classes.formButtonContainer}>
                           <Button
                             raised
-                            color="accent"
+                            color="primary"
                             // outline
                             disabled={isLogging}
                             onClick={this.handlesOnLogin}

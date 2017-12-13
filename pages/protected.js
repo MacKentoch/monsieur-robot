@@ -77,7 +77,7 @@ class Protected extends PureComponent<Props, State> {
 
           <Button
             raised
-            color="accent"
+            color="primary"
             onClick={this.handleClick}
           >
               Go back Home

@@ -40,31 +40,6 @@ const styles = {
 };
 // #endregion
 class Index extends PureComponent<Props, State> {
-  // #region props initialization
-  // static async getInitialProps({
-  //   isServer,
-  //   store
-  // }: InitialProps) {
-  //   const SIDE = isServer ? 'SERVER SIDE' : 'FRONT SIDE';
-
-  //   try {
-  //     const response = await store.dispatch(fakeFetchActions.fakeFetchIfNeeded());
-  //     const {
-  //       payload: {
-  //         data
-  //       }
-  //     } = response;
-  //     // NOTE: you will see this log in your server console (where you `npm run dev`):
-  //     /* eslint-disable no-console */
-  //     console.log(`getInitialProps - ${SIDE} - fake fetch result: `, data);
-  //   } catch (error) {
-  //     console.error(`getInitialProps - ${SIDE} - fake fetch failed: `, error);
-  //     /* eslint-enable no-console */
-  //   }
-  // }
-  // #endregion
-
-
   // #region component lifecycle methods
   render() {
     return (
@@ -73,7 +48,7 @@ class Index extends PureComponent<Props, State> {
           type="display1"
           gutterBottom
         >
-          Material-UI
+          Toutes les news ici
         </Typography>
 
         <Typography
@@ -85,7 +60,7 @@ class Index extends PureComponent<Props, State> {
 
         <Button
           raised
-          color="accent"
+          color="primary"
           onClick={this.handleClick}
         >
           Login

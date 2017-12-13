@@ -71,7 +71,7 @@ class About extends PureComponent<Props, State> {
         </Typography>
         <Button
           raised
-          color="accent"
+          color="primary"
           onClick={this.handleClick}
         >
           Go back Home
