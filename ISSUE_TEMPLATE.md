@@ -1,11 +1,11 @@
 ### Version
-1.2.0
+1.0.0
 
 ### Node JS
 v7.x | v8.X | v9.X
 
 ### Browser
-Chrome 64.x | Safari 11.x
+Chrome 64.x | Safari 11.x | edge 
 
 ### OS version
 macOS | windows 10 | linux Ubuntu...

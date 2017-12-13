@@ -5,7 +5,6 @@
 const express               = require('express');
 const chalk                 = require('chalk');
 const next                  = require('next');
-const { createReadStream }  = require('fs');
 // #endregion
 
 // #region variables/constants initialization
@@ -47,7 +46,7 @@ async function prepareNextApplication() {
       /* eslint-disable no-console */
       console.log(`
         =====================================================================================
-        -> Server (${chalk.bgBlue('react-redux-nextjs-material-ui-pwa-starter')}) 🏃 (running) on ${chalk.green(ipAdress)}:${chalk.green(port)}
+        -> Server (${chalk.bgBlue('monsieur robot')}) 🏃 (running) on ${chalk.green(ipAdress)}:${chalk.green(port)}
         =====================================================================================
       `);
       /* eslint-enable no-console */

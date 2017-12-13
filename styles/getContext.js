@@ -8,15 +8,20 @@ import {
 import preset                   from 'jss-preset-default';
 import { createMuiTheme }       from 'material-ui/styles';
 import createGenerateClassName  from 'material-ui/styles/createGenerateClassName';
-import blue                     from 'material-ui/colors/blue';
-import yellow                   from 'material-ui/colors/yellow';
+import teal                     from 'material-ui/colors/teal';
+import cyan                     from 'material-ui/colors/cyan';
+// #endregion
+
+// #region custom color
+const primary = teal[600]; // #00897B
+const accent = cyan[600]; // #00ACC1
 // #endregion
 
 // #region Mui theme configuration:
 const theme = createMuiTheme({
   palette: {
-    primary: blue,
-    secondary: yellow
+    primary,
+    secondary: accent
   }
 });
 // #endregion

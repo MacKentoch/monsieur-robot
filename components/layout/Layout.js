@@ -21,7 +21,7 @@ import MenuIcon               from 'material-ui-icons/Menu';
 import Menus                  from './Menus';
 import styles                 from './styles';
 import configureStore         from '../../redux/store/configureStore';
-import BackToTop              from '../backToTop/BackToTop';
+// import BackToTop              from '../backToTop/BackToTop';
 import * as userAuthActions   from '../../redux/modules/userAuth';
 // #endregion
 
@@ -220,7 +220,7 @@ class Layout extends PureComponent<Props, State> {
             className={classes.content}
           >
             { children }
-            <BackToTop />
+
           </main>
         </div>
       </div>

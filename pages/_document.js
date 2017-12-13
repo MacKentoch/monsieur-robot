@@ -9,7 +9,6 @@ import Document, {
 }                             from 'next/document';
 import JssProvider            from 'react-jss/lib/JssProvider';
 import getContext             from '../styles/getContext';
-import registerServiceWorker  from '../services/registerServiceWorker';
 // #endregion
 
 // #region flow types
@@ -79,11 +78,6 @@ class RootDocument extends Document<Props, State> {
   // #endregion
 
   // #region component lifecycle methods
-  componentDidMount() {
-    // register service worker:
-    registerServiceWorker();
-  }
-
   render() {
     return (
       <html lang="en" dir="ltr">
