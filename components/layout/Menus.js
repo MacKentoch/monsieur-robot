@@ -14,7 +14,7 @@ import {
 import InfoIcon               from 'material-ui-icons/Info';
 import PeopleIcon             from 'material-ui-icons/People';
 import HomeIcon               from 'material-ui-icons/Home';
-import LockIcon               from 'material-ui-icons/Lock';
+import ArticleIcon            from 'material-ui-icons/Subject';
 // #endregion
 
 // #region flow types
@@ -57,6 +57,22 @@ class Menus extends PureComponent<Props, State> {
             </ListItemIcon>
             <ListItemText
               primary={'Community'}
+            />
+          </ListItem>
+        </Link>
+        <Link
+          prefetch
+          href={'/articles'}
+          passHref
+        >
+          <ListItem
+            button
+          >
+            <ListItemIcon>
+              <ArticleIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary={'Articles'}
             />
           </ListItem>
         </Link>

@@ -15,15 +15,10 @@ const AppConfig = {
     tabMenu: [
       { id: 'home', label: 'Home', link: '/' },
       { id: 'community', label: 'Community', link: '/community' },
+      { id: 'article', label: 'Article', link: '/article' },
       { id: 'about', label: 'About', link: '/about' }
     ],
-    defautTabMenuId: 'home',
-
-    sidemenu: [
-      { id: 'home', label: 'Home', link: '/' },
-      { id: 'community', label: 'Community', link: '/community' },
-      { id: 'about', label: 'About', link: '/about' }
-    ]
+    defautTabMenuId: 'home'
   }
 };
 
