@@ -4,8 +4,11 @@
 import React, {
   PureComponent
 }                             from 'react';
-import { bindActionCreators } from 'redux';
-import withRedux              from 'next-redux-wrapper';
+import {
+  compose,
+  bindActionCreators
+}                             from 'redux';
+import { connect }            from 'react-redux';
 import Link                   from 'next/link';
 import { withStyles }         from 'material-ui/styles';
 import Drawer                 from 'material-ui/Drawer';
@@ -20,7 +23,6 @@ import AccountCircle          from 'material-ui-icons/AccountCircle';
 import MenuIcon               from 'material-ui-icons/Menu';
 import Menus                  from './Menus';
 import styles                 from './styles';
-import configureStore         from '../../redux/store/configureStore';
 // import BackToTop              from '../backToTop/BackToTop';
 import * as userAuthActions   from '../../redux/modules/userAuth';
 // #endregion
@@ -269,10 +271,12 @@ const mapDispatchToProps = (
 };
 // #endregion
 
-export default withRedux(
-  configureStore,
-  mapStateToProps,
-  mapDispatchToProps
-)(
-  withStyles(styles, { withTheme: true })(Layout)
-);
+const ComposedLayout = compose(
+  withStyles(styles, { withTheme: true }),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(Layout);
+
+export default ComposedLayout;

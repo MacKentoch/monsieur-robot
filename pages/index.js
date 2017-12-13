@@ -5,11 +5,19 @@ import React, {
   PureComponent
 }                             from 'react';
 import Router                 from 'next/router';
+import {
+  compose,
+  bindActionCreators
+}                             from 'redux';
+import withRedux              from 'next-redux-wrapper';
 import Button                 from 'material-ui/Button';
 import Typography             from 'material-ui/Typography';
 import { withStyles }         from 'material-ui/styles';
 import withRoot               from '../HOC/withRoot';
 import Layout                 from '../components/layout/Layout';
+import configureStore         from '../redux/store/configureStore';
+// import BackToTop              from '../backToTop/BackToTop';
+import * as userAuthActions   from '../redux/modules/userAuth';
 // #endregion
 
 // #region flow types
@@ -98,5 +106,40 @@ class Index extends PureComponent<Props, State> {
   };
 }
 
-export default withRoot(withStyles(styles)(Index));
+// #region redux state and dispatch map to props
+const mapStateToProps = (
+  state: any
+) => ({
+  // userAuth:
+  isAuthenticated: state.userAuth.isAuthenticated,
+  isFetching:      state.userAuth.isFetching,
+  isLogging:       state.userAuth.isLogging
+});
 
+const mapDispatchToProps = (
+  dispatch: (...any) => any
+) => {
+  return {
+    ...bindActionCreators(
+      {
+        // userAuth:
+        ...userAuthActions
+      },
+      dispatch)
+  };
+};
+// #endregion
+
+// #region compose all HOC
+const ComposedIndex = compose(
+  withRoot,
+  withStyles(styles),
+  withRedux(
+    configureStore,
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(Index);
+// #endregion
+
+export default ComposedIndex;

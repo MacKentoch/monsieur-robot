@@ -3,7 +3,10 @@
 
 // #region imports
 import { PureComponent }      from 'react';
-import { bindActionCreators } from 'redux';
+import {
+  compose,
+  bindActionCreators
+}                             from 'redux';
 import withRedux              from 'next-redux-wrapper';
 import debounce               from 'es6-promise-debounce';
 import Router                 from 'next/router';
@@ -409,11 +412,16 @@ const mapDispatchToProps = (
 };
 // #endregion
 
-export default withRedux(
-  configureStore,
-  mapStateToProps,
-  mapDispatchToProps
-)(
-  withRoot(withStyles(styles)(Login))
-);
+// #region compose all HOC
+const ComposedLogin = compose(
+  withRoot,
+  withStyles(styles),
+  withRedux(
+    configureStore,
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(Login);
+// #endregion
 
+export default ComposedLogin;

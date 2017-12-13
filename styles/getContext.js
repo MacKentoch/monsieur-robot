@@ -13,8 +13,8 @@ import cyan                     from 'material-ui/colors/cyan';
 // #endregion
 
 // #region custom color
-const primary = teal[600]; // #00897B
-const accent = cyan[600]; // #00ACC1
+const primary = teal; // teal[600]; // #00897B
+const accent = cyan; // cyan[600]; // #00ACC1
 // #endregion
 
 // #region Mui theme configuration:
