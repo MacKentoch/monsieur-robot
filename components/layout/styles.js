@@ -34,7 +34,7 @@ const styles = theme => ({
       paddingLeft: drawerWidth,
       marginTop: 64,
     },
-    boxShadow: theme.shadows[1],
+    boxShadow: theme.shadows[2],
   },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
@@ -62,7 +62,7 @@ const styles = theme => ({
     marginTop: 104, // 56,
     [theme.breakpoints.up('sm')]: {
       height: 'calc(100% - 64px)',
-      marginTop: 112, //64,
+      marginTop: 112, // 64,
     },
   },
   flexible: {
