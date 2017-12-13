@@ -28,6 +28,7 @@ const styles = theme => ({
     marginTop: 56,
     width: '100%',
     backgroundColor: theme.palette.primary[600],
+    color: '#FFF',
     [theme.breakpoints.up('md')]: {
       width: 'calc(100%)',
       marginTop: 64,
