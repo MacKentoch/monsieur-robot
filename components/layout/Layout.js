@@ -119,7 +119,7 @@ class Layout extends PureComponent<Props, State> {
                 color="inherit"
                 noWrap
               >
-                PWA Next Material UI
+                Monsieur Robot
               </Typography>
 
               {/* a filler */}
