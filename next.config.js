@@ -20,7 +20,7 @@ module.exports = {
         ],
         runtimeCaching: [
           {
-            handler: 'networkFirst',
+            handler: 'fastest', // 'networkFirst',
             urlPattern: /^https?.*/
           }
         ]
