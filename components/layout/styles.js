@@ -69,6 +69,10 @@ const styles = theme => ({
     },
     boxShadow: theme.shadows[2],
   },
+  show: {
+    WebkitTransition: 'opacity 0.5s ease-in',
+    transition: 'opacity 0.5s ease-in',
+  },
   hide: {
     opacity: 0
   },

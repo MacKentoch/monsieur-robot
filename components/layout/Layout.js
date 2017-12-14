@@ -48,7 +48,7 @@ type State = {
   currentTab: string,
 
   // scroll spy (to toggle top nav classes)
-  minScrollY: number,
+  minScrollYToggleNav: number,
   windowScrollY: number, // current window y scroll
   tickingScollObserve: boolean, // performance improvement (let requestAnimation frame reduce onscroll listening)
   toggleTopNavClasses: boolean, // toggle top nav items classes depending scroll
@@ -67,10 +67,12 @@ class Layout extends PureComponent<Props, State> {
     anchorEl: null,
     currentTab: defautTabMenuId,
     // scroll spy (to toggle top nav classes)
-    minScrollY: 155,
+    minScrollYToggleNav: 155,
+    minScrollYHideTitle: 40,
     windowScrollY: 0,
     tickingScollObserve: false,
     toggleTopNavClasses: false,
+    fadeTitleContainer: false,
   };
   // #endregion
 
@@ -100,7 +102,9 @@ class Layout extends PureComponent<Props, State> {
       anchorEl,
       currentTab,
       // scroll spy
-      toggleTopNavClasses
+      toggleTopNavClasses,
+      fadeTitleContainer,
+
     } = this.state;
 
     const drawer = (
@@ -192,7 +196,6 @@ class Layout extends PureComponent<Props, State> {
             className={
               cx({
                 [classes.topTitle]: true,
-                [classes.hide]: toggleTopNavClasses,
               })
             }
           >
@@ -202,6 +205,12 @@ class Layout extends PureComponent<Props, State> {
               color="#FFFFFF"
             >
               <span
+                className={
+                  cx({
+                    [classes.show]: !fadeTitleContainer,
+                    [classes.hide]: fadeTitleContainer,
+                  })
+                }
                 style={{ color: '#FFFFFF' }}
               >
                 View title here
@@ -249,7 +258,8 @@ class Layout extends PureComponent<Props, State> {
   handleWindowScroll = () => {
     if (window) {
       const {
-        minScrollY,
+        minScrollYToggleNav,
+        minScrollYHideTitle,
         windowScrollY,
         tickingScollObserve
       } = this.state;
@@ -262,11 +272,13 @@ class Layout extends PureComponent<Props, State> {
         window.requestAnimationFrame(
           () => {
             if (windowScrollY !== currentWindowScrollY) {
-              const shouldToggleTopNavClasses = currentWindowScrollY >= minScrollY ? true : false;
+              const shouldToggleTopNavClasses = currentWindowScrollY >= minScrollYToggleNav;
+              const shouldHideTitle = currentWindowScrollY >= minScrollYHideTitle;
 
               this.setState({
                 windowScrollY: currentWindowScrollY,
-                toggleTopNavClasses: shouldToggleTopNavClasses
+                toggleTopNavClasses: shouldToggleTopNavClasses,
+                fadeTitleContainer: shouldHideTitle,
               });
             }
             this.setState({ tickingScollObserve: false });
