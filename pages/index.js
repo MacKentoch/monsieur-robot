@@ -12,12 +12,15 @@ import {
 import withRedux              from 'next-redux-wrapper';
 import Button                 from 'material-ui/Button';
 import Typography             from 'material-ui/Typography';
+import Grid                   from 'material-ui/Grid';
 import { withStyles }         from 'material-ui/styles';
 import withRoot               from '../HOC/withRoot';
 import Layout                 from '../components/layout/Layout';
 import configureStore         from '../redux/store/configureStore';
 // import BackToTop              from '../backToTop/BackToTop';
 import * as userAuthActions   from '../redux/modules/userAuth';
+import NewsCard               from '../components/newsCard/NewsCard';
+import mockNews               from '../mock/mockNews.json';
 // #endregion
 
 // #region flow types
@@ -26,7 +29,17 @@ type Props = {
   ...any
 };
 
+type OneNews = {
+  id: number | string,
+  title: string,
+  subtitle?: string,
+  sumUp: string,
+  ...any
+};
+
 type State = {
+  news: Array<OneNews>,
+
   ...any
 };
 // #endregion
@@ -35,36 +48,39 @@ type State = {
 const styles = {
   root: {
     textAlign: 'center',
-    paddingTop: 200
+    paddingTop: 200,
+    flexGrow: 1,
   }
 };
 // #endregion
 class Index extends PureComponent<Props, State> {
+  state = {
+    news: mockNews
+  };
+
   // #region component lifecycle methods
   render() {
+    const { news } = this.state;
+
     return (
       <Layout>
-        <Typography
-          type="display1"
-          gutterBottom
+        <Grid
+          container
+          spacing={24}
         >
-          Toutes les news ici
-        </Typography>
-
-        <Typography
-          type="subheading"
-          gutterBottom
-        >
-          example project
-        </Typography>
-
-        <Button
-          raised
-          color="primary"
-          onClick={this.handleClick}
-        >
-          Login
-        </Button>
+          <Grid item xs={12}>
+            {
+              news.map(
+                (oneNews, newsIdx) => (
+                  <NewsCard
+                    key={`news-${oneNews.id}-${newsIdx}`}
+                    {...oneNews}
+                  />
+                )
+              )
+            }
+          </Grid>
+        </Grid>
       </Layout>
     );
   }

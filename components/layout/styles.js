@@ -116,10 +116,10 @@ const styles = theme => ({
     width: '100%',
     padding: theme.spacing.unit * 3,
     height: 'calc(100% - 56px - 48px)',
-    marginTop: 56 + 48,
-    [theme.breakpoints.up('sm')]: {
+    marginTop: 56 + 200 + 48,
+    [theme.breakpoints.down('sm')]: {
       height: 'calc(100% - 64px - 48px)',
-      marginTop: 64 + 48,
+      marginTop: 64 + 200 + 48,
     },
   },
 });
