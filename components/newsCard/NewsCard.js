@@ -15,6 +15,7 @@ import Card, {
 import Button         from 'material-ui/Button';
 import Typography     from 'material-ui/Typography';
 import classes        from './styles';
+import { Tweet }      from 'react-twitter-widgets';
 // #endregion
 
 // #region flow types
@@ -25,6 +26,7 @@ type Props = {
   title: string,
   subtitle?: string,
   sumUp: string,
+  tweetId: string,
 
   ...any
 }
@@ -39,6 +41,8 @@ class NewsCard extends PureComponent<Props, State> {
       subtitle,
       sumUp
     } = this.props;
+
+    const mockTweetId= '939235471942615040';
 
     return (
       <Card
@@ -65,6 +69,10 @@ class NewsCard extends PureComponent<Props, State> {
           >
             { sumUp }
           </Typography>
+
+          <Tweet
+            tweetId={mockTweetId}
+          />
         </CardContent>
         <CardActions>
           <Button dense color="primary">
