@@ -12,6 +12,7 @@ import Card, {
   CardContent,
   CardActions
 }                     from 'material-ui/Card';
+import Button         from 'material-ui/Button';
 import Typography     from 'material-ui/Typography';
 import classes        from './styles';
 // #endregion
@@ -58,7 +59,21 @@ class NewsCard extends PureComponent<Props, State> {
           >
             { subtitle }
           </Typography>
+
+          <Typography
+            type="body2"
+          >
+            { sumUp }
+          </Typography>
         </CardContent>
+        <CardActions>
+          <Button dense color="primary">
+            Share
+          </Button>
+          <Button dense color="primary">
+            Learn More
+          </Button>
+        </CardActions>
       </Card>
     );
   }

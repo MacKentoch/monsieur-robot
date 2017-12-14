@@ -39,5 +39,23 @@
     "title": "news mock 7",
     "subtitle": "subtitle for news mock 7",
     "sumUp": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+  },
+  {
+    "id": 8,
+    "title": "news mock 8",
+    "subtitle": "subtitle for news mock 8",
+    "sumUp": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+  },
+  {
+    "id": 9,
+    "title": "news mock 9",
+    "subtitle": "subtitle for news mock 9",
+    "sumUp": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+  },
+  {
+    "id": 10,
+    "title": "news mock 10",
+    "subtitle": "subtitle for news mock 10",
+    "sumUp": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
   }
 ]
