@@ -68,21 +68,22 @@ class Index extends PureComponent<Props, State> {
           container
           spacing={24}
         >
-          <Grid
-            item
-            xs={12}
-          >
-            {
-              news.map(
-                (oneNews, newsIdx) => (
+          {
+            news.map(
+              (oneNews, newsIdx) => (
+                <Grid
+                  key={`news-${oneNews.id}-${newsIdx}`}
+                  item
+                  xs={12}
+                >
                   <NewsCard
-                    key={`news-${oneNews.id}-${newsIdx}`}
                     {...oneNews}
                   />
-                )
+                </Grid>
               )
-            }
-          </Grid>
+            )
+          }
+
         </Grid>
       </Layout>
     );
