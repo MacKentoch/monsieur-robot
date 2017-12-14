@@ -15,6 +15,7 @@ import { withStyles }         from 'material-ui/styles';
 import Drawer                 from 'material-ui/Drawer';
 import AppBar                 from 'material-ui/AppBar';
 import Tabs, { Tab }          from 'material-ui/Tabs';
+import Button                 from 'material-ui/Button';
 import Toolbar                from 'material-ui/Toolbar';
 import Typography             from 'material-ui/Typography';
 import IconButton             from 'material-ui/IconButton';
@@ -62,6 +63,18 @@ class Layout extends PureComponent<Props, State> {
   // #endregion
 
   // #region component lifecycle methods
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', this.handleWindowScroll);
+    }
+  }
+
+  componentWillUnmount() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.handleWindowScroll);
+    }
+  }
+
   render() {
     const {
       // withStyle HOC:
@@ -161,6 +174,21 @@ class Layout extends PureComponent<Props, State> {
           >
             {drawer}
           </Drawer>
+          <div
+            className={classes.topTitle}
+          >
+            <Typography
+              type="display3"
+              gutterBottom
+              color="#FFFFFF"
+            >
+              <span
+                style={{ color: '#FFFFFF' }}
+              >
+                View title here
+              </span>
+            </Typography>
+          </div>
           <Tabs
             className={classes.tabs}
             value={currentTab}
@@ -180,6 +208,14 @@ class Layout extends PureComponent<Props, State> {
               )
             }
           </Tabs>
+          {/* <Button
+            fab
+            color="primary"
+            aria-label="search"
+            className={classes.searchFabButton}
+          >
+            <Search />
+          </Button> */}
           <TabContainer>
             <main
               className={classes.content}
@@ -190,6 +226,39 @@ class Layout extends PureComponent<Props, State> {
         </div>
       </div>
     );
+  }
+  // #endregion
+
+  // #region on windows scroll callback
+  handleWindowScroll = () => {
+    if (window) {
+      const {
+        minScrollY,
+        windowScrollY,
+        tickingScollObserve
+      } = this.state;
+
+      /* eslint-disable no-undefined */
+      const currentWindowScrollY = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+      /* eslint-enable no-undefined */
+      // scroll event fires too often, using window.requestAnimationFrame to limit computations
+      if (!tickingScollObserve) {
+        window.requestAnimationFrame(
+          () => {
+            if (windowScrollY !== currentWindowScrollY) {
+              const shouldToggleTopNavClasses = currentWindowScrollY >= minScrollY ? true : false;
+
+              this.setState({
+                windowScrollY: currentWindowScrollY,
+                toggleTopNavClasses: shouldToggleTopNavClasses
+              });
+            }
+            this.setState({ tickingScollObserve: false });
+          }
+        );
+      }
+      this.setState({ tickingScollObserve: true });
+    }
   }
   // #endregion
 

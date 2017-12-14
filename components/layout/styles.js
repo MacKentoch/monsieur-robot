@@ -18,23 +18,74 @@ const styles = theme => ({
     height: '100%',
   },
   appBar: {
-    position: 'absolute',
+    position: 'fixed',
     width: '100%',
     backgroundColor: theme.palette.primary[600],
+  },
+  topTitle: {
+    zIndex: 1001,
+    backgroundColor: theme.palette.primary[600],
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    flex: 1,
+    height: '200px',
+    width: 'calc(100%)',
+    padding: '0 10px',
+    textAlign: 'center',
+    color: '#FFF',
+    marginTop: 56 - 1, // removing 1 px: fixing mobile render delta
+    [theme.breakpoints.up('md')]: {
+      width: 'calc(100%)',
+      marginTop: 64 -1, // removing 1 px: fixing mobile render delta
+      paddingLeft: '70px',
+    },
+
   },
   tabs: {
     zIndex: 1000,
     position: 'absolute',
-    marginTop: 56,
+    marginTop: 56 + 200 - 1, // removing 1 px: fixing mobile render delta
     width: '100%',
     backgroundColor: theme.palette.primary[600],
     color: '#FFF',
     [theme.breakpoints.up('md')]: {
       width: 'calc(100%)',
-      marginTop: 64,
+      marginTop: 64  + 200 -1, // removing 1 px: fixing mobile render delta
     },
     boxShadow: theme.shadows[2],
   },
+  tabsFixed: {
+    zIndex: 1000,
+    position: 'fixed',
+    marginTop: 56 - 1, // removing 1 px: fixing mobile render delta
+    width: '100%',
+    backgroundColor: theme.palette.primary[600],
+    color: '#FFF',
+    [theme.breakpoints.up('md')]: {
+      width: 'calc(100%)',
+      marginTop: 64 -1, // removing 1 px: fixing mobile render delta
+    },
+    boxShadow: theme.shadows[2],
+  },
+  // searchFabButton: {
+  //   position: 'absolute',
+  //   right: '20px',
+  //   top: 56 + 48 - 25,
+  //   [theme.breakpoints.up('md')]: {
+  //     top: 64 + 48 - 25,
+  //   },
+  //   zIndex: 10000
+  // },
+  // searchFabButtonFixed: {
+  //   position: 'fixed',
+  //   right: '20px',
+  //   top: 56 + 48 - 25,
+  //   [theme.breakpoints.up('md')]: {
+  //     top: 64 + 48 - 25,
+  //   },
+  //   zIndex: 1000
+  // },
   drawerHeader: {
     ...theme.mixins.toolbar,
     backgroundColor: theme.palette.primary[600], // '#111',
