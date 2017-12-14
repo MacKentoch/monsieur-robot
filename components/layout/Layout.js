@@ -23,7 +23,7 @@ import Avatar                 from 'material-ui/Avatar';
 import Divider                from 'material-ui/Divider';
 import Search                 from 'material-ui-icons/Search';
 import MenuIcon               from 'material-ui-icons/Menu';
-import Menus                  from './Menus';
+import NavMenus               from './NavMenus';
 import styles                 from './styles';
 import appConfig              from '../../config/appConfig';
 import TabContainer           from './TabContainer';
@@ -91,7 +91,7 @@ class Layout extends PureComponent<Props, State> {
           </div>
         </div>
         <Divider />
-        <Menus />
+        <NavMenus />
         <Divider />
       </div>
     );
@@ -166,6 +166,7 @@ class Layout extends PureComponent<Props, State> {
             value={currentTab}
             onChange={this.handleChange}
             fullWidth={false}
+            indicatorColor="#FFF"
           >
             {
               tabMenu.map(
