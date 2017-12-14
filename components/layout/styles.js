@@ -29,7 +29,7 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     flex: 1,
-    height: '200px',
+    height: '160px',
     width: 'calc(100%)',
     padding: '0 10px',
     textAlign: 'center',
@@ -45,13 +45,13 @@ const styles = theme => ({
   tabs: {
     zIndex: 1000,
     position: 'absolute',
-    marginTop: 56 + 200 - 1, // removing 1 px: fixing mobile render delta
+    marginTop: 56 + 160 - 1, // removing 1 px: fixing mobile render delta
     width: '100%',
     backgroundColor: theme.palette.primary[600],
     color: '#FFF',
     [theme.breakpoints.up('md')]: {
       width: 'calc(100%)',
-      marginTop: 64  + 200 -1, // removing 1 px: fixing mobile render delta
+      marginTop: 64  + 160 -1, // removing 1 px: fixing mobile render delta
     },
     boxShadow: theme.shadows[2],
   },
@@ -116,10 +116,10 @@ const styles = theme => ({
     width: '100%',
     padding: theme.spacing.unit * 3,
     height: 'calc(100% - 56px - 48px)',
-    marginTop: 56 + 200 + 48,
+    marginTop: 56 + 160 + 48,
     [theme.breakpoints.down('sm')]: {
       height: 'calc(100% - 64px - 48px)',
-      marginTop: 64 + 200 + 48,
+      marginTop: 64 + 160 + 48,
     },
   },
 });
