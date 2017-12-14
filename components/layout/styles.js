@@ -35,7 +35,24 @@ const styles = theme => ({
     },
     boxShadow: theme.shadows[2],
   },
-  drawerHeader: theme.mixins.toolbar,
+  drawerHeader: {
+    ...theme.mixins.toolbar,
+    backgroundColor: theme.palette.primary[600], // '#111',
+  },
+  avatarContainer: {
+    display: 'flex',
+    flexBasis: 'auto',
+    flexGrow: 1,
+    flexShrink: 0,
+    height: 'calc(56px + 48px)',
+    [theme.breakpoints.up('sm')]: {
+      height: 'calc(64px + 48px)',
+    },
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    margin: '0 10px',
+  },
   drawerPaper: {
     height: '100%',
     width: 250,

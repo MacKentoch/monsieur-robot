@@ -18,6 +18,7 @@ import Tabs, { Tab }          from 'material-ui/Tabs';
 import Toolbar                from 'material-ui/Toolbar';
 import Typography             from 'material-ui/Typography';
 import IconButton             from 'material-ui/IconButton';
+import Avatar                 from 'material-ui/Avatar';
 // import Hidden                 from 'material-ui/Hidden';
 import Divider                from 'material-ui/Divider';
 import Search                 from 'material-ui-icons/Search';
@@ -77,7 +78,18 @@ class Layout extends PureComponent<Props, State> {
 
     const drawer = (
       <div>
-        <div className={classes.drawerHeader} />
+        <div
+          className={classes.drawerHeader}
+        >
+          <div
+            className={classes.avatarContainer}
+          >
+            <Avatar
+              src="/static/images/fsociety-avatar.jpg"
+              size="40px"
+            />
+          </div>
+        </div>
         <Divider />
         <Menus />
         <Divider />
@@ -172,7 +184,6 @@ class Layout extends PureComponent<Props, State> {
               className={classes.content}
             >
               { children }
-
             </main>
           </TabContainer>
         </div>
