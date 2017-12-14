@@ -24,6 +24,7 @@ const styles = theme => ({
   },
   topTitle: {
     zIndex: 1001,
+    opacity: 1,
     backgroundColor: theme.palette.primary[600],
     position: 'absolute',
     display: 'flex',
@@ -53,7 +54,7 @@ const styles = theme => ({
       width: 'calc(100%)',
       marginTop: 64  + 160 -1, // removing 1 px: fixing mobile render delta
     },
-    boxShadow: theme.shadows[2],
+    boxShadow: theme.shadows[0],
   },
   tabsFixed: {
     zIndex: 1000,
@@ -67,6 +68,9 @@ const styles = theme => ({
       marginTop: 64 -1, // removing 1 px: fixing mobile render delta
     },
     boxShadow: theme.shadows[2],
+  },
+  hide: {
+    opacity: 0
   },
   // searchFabButton: {
   //   position: 'absolute',

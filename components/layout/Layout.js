@@ -10,12 +10,13 @@ import {
 }                             from 'redux';
 import { connect }            from 'react-redux';
 import Link                   from 'next/link';
-import Router                 from 'next/router';
+import cx                     from 'classnames';
+// import Router                 from 'next/router';
 import { withStyles }         from 'material-ui/styles';
 import Drawer                 from 'material-ui/Drawer';
 import AppBar                 from 'material-ui/AppBar';
 import Tabs, { Tab }          from 'material-ui/Tabs';
-import Button                 from 'material-ui/Button';
+// import Button                 from 'material-ui/Button';
 import Toolbar                from 'material-ui/Toolbar';
 import Typography             from 'material-ui/Typography';
 import IconButton             from 'material-ui/IconButton';
@@ -44,7 +45,13 @@ type Props = {
 type State = {
   mobileOpen: boolean,
   anchorEl: any,
-  currentTab: string
+  currentTab: string,
+
+  // scroll spy (to toggle top nav classes)
+  minScrollY: number,
+  windowScrollY: number, // current window y scroll
+  tickingScollObserve: boolean, // performance improvement (let requestAnimation frame reduce onscroll listening)
+  toggleTopNavClasses: boolean, // toggle top nav items classes depending scroll
 };
 // #endregion
 
@@ -58,7 +65,12 @@ class Layout extends PureComponent<Props, State> {
   state = {
     mobileOpen: false,
     anchorEl: null,
-    currentTab: defautTabMenuId
+    currentTab: defautTabMenuId,
+    // scroll spy (to toggle top nav classes)
+    minScrollY: 145,
+    windowScrollY: 0,
+    tickingScollObserve: false,
+    toggleTopNavClasses: false,
   };
   // #endregion
 
@@ -86,7 +98,9 @@ class Layout extends PureComponent<Props, State> {
 
     const {
       anchorEl,
-      currentTab
+      currentTab,
+      // scroll spy
+      toggleTopNavClasses
     } = this.state;
 
     const drawer = (
@@ -175,7 +189,12 @@ class Layout extends PureComponent<Props, State> {
             {drawer}
           </Drawer>
           <div
-            className={classes.topTitle}
+            className={
+              cx({
+                [classes.topTitle]: true,
+                [classes.hide]: toggleTopNavClasses,
+              })
+            }
           >
             <Typography
               type="display3"
@@ -190,7 +209,12 @@ class Layout extends PureComponent<Props, State> {
             </Typography>
           </div>
           <Tabs
-            className={classes.tabs}
+            className={
+              cx({
+                [classes.tabs]: !toggleTopNavClasses,
+                [classes.tabsFixed]: toggleTopNavClasses,
+              })
+            }
             value={currentTab}
             onChange={this.handleChange}
             fullWidth={false}
@@ -208,14 +232,6 @@ class Layout extends PureComponent<Props, State> {
               )
             }
           </Tabs>
-          {/* <Button
-            fab
-            color="primary"
-            aria-label="search"
-            className={classes.searchFabButton}
-          >
-            <Search />
-          </Button> */}
           <TabContainer>
             <main
               className={classes.content}
