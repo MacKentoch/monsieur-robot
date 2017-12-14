@@ -79,6 +79,7 @@ class Layout extends PureComponent<Props, State> {
   // #region component lifecycle methods
   componentDidMount() {
     if (typeof window !== 'undefined') {
+      this.initializeToggleClasses();
       window.addEventListener('scroll', this.handleWindowScroll);
     }
   }
@@ -251,6 +252,28 @@ class Layout extends PureComponent<Props, State> {
         </div>
       </div>
     );
+  }
+  // #endregion
+
+  // #region init classes depending scroll y
+  initializeToggleClasses() {
+    if (window) {
+      const {
+        minScrollYToggleNav,
+        minScrollYHideTitle
+      } = this.state;
+      /* eslint-disable no-undefined */
+      const currentWindowScrollY = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+      /* eslint-enable no-undefined */
+      const shouldToggleTopNavClasses = currentWindowScrollY >= minScrollYToggleNav;
+      const shouldHideTitle = currentWindowScrollY >= minScrollYHideTitle;
+
+      this.setState({
+        windowScrollY: currentWindowScrollY,
+        toggleTopNavClasses: shouldToggleTopNavClasses,
+        fadeTitleContainer: shouldHideTitle,
+      });
+    }
   }
   // #endregion
 
