@@ -72,6 +72,7 @@ const styles = theme => ({
   show: {
     WebkitTransition: 'opacity 0.5s ease-in',
     transition: 'opacity 0.5s ease-in',
+    opacity: 1,
   },
   hide: {
     opacity: 0
