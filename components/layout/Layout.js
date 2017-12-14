@@ -67,7 +67,7 @@ class Layout extends PureComponent<Props, State> {
     anchorEl: null,
     currentTab: defautTabMenuId,
     // scroll spy (to toggle top nav classes)
-    minScrollY: 145,
+    minScrollY: 155,
     windowScrollY: 0,
     tickingScollObserve: false,
     toggleTopNavClasses: false,

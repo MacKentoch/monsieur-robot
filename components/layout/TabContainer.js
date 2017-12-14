@@ -22,7 +22,7 @@ class TabContainer extends PureComponent<Props, State> {
     return (
       <div
         style={{
-          padding: 8 * 3,
+          // padding: 8 * 3,
           display: 'flex',
           flex: 1
         }}

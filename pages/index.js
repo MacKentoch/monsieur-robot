@@ -68,7 +68,10 @@ class Index extends PureComponent<Props, State> {
           container
           spacing={24}
         >
-          <Grid item xs={12}>
+          <Grid
+            item
+            xs={12}
+          >
             {
               news.map(
                 (oneNews, newsIdx) => (
