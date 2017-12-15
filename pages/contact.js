@@ -31,11 +31,11 @@ type State = {
 
 // #region styles
 const styles = theme => ({
-  // to add 
+  // to add
 });
 // #endregion
 
-class About extends PureComponent<Props, State> {
+class Contact extends PureComponent<Props, State> {
   // #region component lifecycle methods
   render() {
     return (
@@ -44,14 +44,14 @@ class About extends PureComponent<Props, State> {
           type="display1"
           gutterBottom
         >
-          About
+          Contact
         </Typography>
 
         <Typography
           type="subheading"
           gutterBottom
         >
-          example project
+          to add more content
         </Typography>
         <Button
           raised
@@ -100,7 +100,7 @@ const ComposedAbout = compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(About);
+)(Contact);
 // #endregion
 
 export default ComposedAbout;
