@@ -14,9 +14,12 @@ const AppConfig = {
     // tab navigation
     tabMenu: [
       { id: 'home', label: 'Home', link: '/' },
-      { id: 'community', label: 'Community', link: '/community' },
+      { id: 'about', label: 'About Tides', link: '/about' },
+      { id: 'blog', label: 'Blog', link: '/blog' },
       { id: 'article', label: 'Article', link: '/article' },
-      { id: 'about', label: 'About', link: '/about' }
+      { id: 'newsletter', label: 'Newsletter', link: '/newsletter' },
+      { id: 'press', label: 'Press', link: '/press' },
+      { id: 'contact', label: 'Contact', link: '/contact' },
     ],
     defautTabMenuId: 'home'
   }
