@@ -12,9 +12,11 @@ import {
   ListItemText
 }                             from 'material-ui/List';
 import InfoIcon               from 'material-ui-icons/Info';
-import PeopleIcon             from 'material-ui-icons/People';
+import MailOutlineIcon        from 'material-ui-icons/MailOutline';
 import HomeIcon               from 'material-ui-icons/Home';
 import ArticleIcon            from 'material-ui-icons/Subject';
+import PressIcon              from 'material-ui-icons/LocalSee';
+import ContactIcon            from 'material-ui-icons/PermContactCalendar';
 // #endregion
 
 // #region flow types
@@ -55,7 +57,7 @@ class Menus extends PureComponent<Props, State> {
             button
           >
             <ListItemIcon>
-              <PeopleIcon />
+              <InfoIcon />
             </ListItemIcon>
             <ListItemText
               primary={'About Fides'}
@@ -89,7 +91,7 @@ class Menus extends PureComponent<Props, State> {
             button
           >
             <ListItemIcon>
-              <InfoIcon />
+              <MailOutlineIcon />
             </ListItemIcon>
 
             <ListItemText
@@ -107,7 +109,7 @@ class Menus extends PureComponent<Props, State> {
             button
           >
             <ListItemIcon>
-              <InfoIcon />
+              <PressIcon />
             </ListItemIcon>
 
             <ListItemText
@@ -125,7 +127,7 @@ class Menus extends PureComponent<Props, State> {
             button
           >
             <ListItemIcon>
-              <InfoIcon />
+              <ContactIcon />
             </ListItemIcon>
 
             <ListItemText

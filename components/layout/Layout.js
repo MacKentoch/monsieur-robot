@@ -229,6 +229,8 @@ class Layout extends PureComponent<Props, State> {
             onChange={this.handleChange}
             fullWidth={false}
             indicatorColor="#FFF"
+            scrollable
+            scrollButtons="auto"
           >
             {
               tabMenu.map(
