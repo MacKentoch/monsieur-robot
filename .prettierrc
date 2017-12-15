@@ -5,7 +5,7 @@
   "jsxBracketSameLine": false,
   "singleQuote": true,
   "overrides": [],
-  "printWidth": 80,
+  "printWidth": 120,
   "useTabs": false,
   "tabWidth": 2,
   "parser": "babylon"

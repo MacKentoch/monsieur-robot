@@ -70,9 +70,9 @@ class NewsCard extends PureComponent<Props, State> {
             { sumUp }
           </Typography>
 
-          <Tweet
+          {/* <Tweet
             tweetId={mockTweetId}
-          />
+          /> */}
         </CardContent>
         <CardActions>
           <Button dense color="primary">
