@@ -27,6 +27,7 @@ class Menus extends PureComponent<Props, State> {
   render() {
     return (
       <div>
+        {/* Home */}
         <Link
           prefetch
           href={'/'}
@@ -44,9 +45,10 @@ class Menus extends PureComponent<Props, State> {
             />
           </ListItem>
         </Link>
+        {/* About  */}
         <Link
           prefetch
-          href={'/community'}
+          href={'/about'}
           passHref
         >
           <ListItem
@@ -56,13 +58,14 @@ class Menus extends PureComponent<Props, State> {
               <PeopleIcon />
             </ListItemIcon>
             <ListItemText
-              primary={'Community'}
+              primary={'About Fides'}
             />
           </ListItem>
         </Link>
+        {/* Blog */}
         <Link
           prefetch
-          href={'/articles'}
+          href={'/blog'}
           passHref
         >
           <ListItem
@@ -72,13 +75,14 @@ class Menus extends PureComponent<Props, State> {
               <ArticleIcon />
             </ListItemIcon>
             <ListItemText
-              primary={'Articles'}
+              primary={'Blog'}
             />
           </ListItem>
         </Link>
+        {/* NewsLetter */}
         <Link
           prefetch
-          href={'/about'}
+          href={'/newsletter'}
           passHref
         >
           <ListItem
@@ -89,7 +93,43 @@ class Menus extends PureComponent<Props, State> {
             </ListItemIcon>
 
             <ListItemText
-              primary={'About'}
+              primary={'Newsletter'}
+            />
+          </ListItem>
+        </Link>
+        {/* Press */}
+        <Link
+          prefetch
+          href={'/press'}
+          passHref
+        >
+          <ListItem
+            button
+          >
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+
+            <ListItemText
+              primary={'Press'}
+            />
+          </ListItem>
+        </Link>
+        {/* Contact */}
+        <Link
+          prefetch
+          href={'/contact'}
+          passHref
+        >
+          <ListItem
+            button
+          >
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+
+            <ListItemText
+              primary={'Contact'}
             />
           </ListItem>
         </Link>
