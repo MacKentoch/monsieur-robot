@@ -33,7 +33,22 @@ import auth                   from '../services/auth';
 // #endregion
 
 // #region flow types
+type InitialProps = {
+  req: any,
+  res: any,
+  pathname: string,
+  query: any,
+  asPath: string,
+  isServer: boolean,
+  store?: any,
+  ...any
+};
+
 type Props = {
+  // withStyle HOC
+  classes: any,
+  // initialProps
+  pathname: string,
   // next/route:
   url: {
     // query.from sent by Private component when user auth failed
@@ -81,6 +96,14 @@ const styles = theme => ({
 // #endregion
 
 class Login extends PureComponent<Props, State> {
+  // #region next initialProps
+  static getInitialProps(
+    { pathname }: InitialProps
+  ) {
+    return { pathname };
+  }
+  // #endregion
+  
   // #region default PropTypes
   static defaultProps = {
     isFetching:      false,
@@ -120,11 +143,14 @@ class Login extends PureComponent<Props, State> {
 
     const {
       isLogging,
-      classes
+      classes,
+      pathname
     } = this.props;
 
     return (
-      <Layout>
+      <Layout
+        pathname={pathname}
+      >
         <div className="content">
           <Grid
             container

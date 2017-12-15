@@ -19,8 +19,23 @@ import configureStore         from '../redux/store/configureStore';
 // #endregion
 
 // #region flow types
+type InitialProps = {
+  req: any,
+  res: any,
+  pathname: string,
+  query: any,
+  asPath: string,
+  isServer: boolean,
+  store?: any,
+  ...any
+};
+
 type Props = {
+  // withStyle HOC
   classes: any,
+  // initialProps
+  pathname: string,
+
   ...any
 };
 
@@ -36,10 +51,24 @@ const styles = theme => ({
 // #endregion
 
 class About extends PureComponent<Props, State> {
+  // #region next initialProps
+  static getInitialProps(
+    { pathname }: InitialProps
+  ) {
+    return { pathname };
+  }
+  // #endregion
+  
   // #region component lifecycle methods
   render() {
+    const {
+      pathname
+    } = this.props;
+
     return (
-      <Layout>
+      <Layout
+        pathname={pathname}
+      >
         <Typography
           type="display1"
           gutterBottom
