@@ -13,14 +13,14 @@ const AppConfig = {
   navigation: {
     // tab navigation
     tabMenu: [
-      { id: '/', label: 'Home', link: '/' },
-      { id: '/about', label: 'About Fides', link: '/about' },
-      { id: '/blog', label: 'Blog', link: '/blog' }, // index is blog
-      { id: '/newsletter', label: 'Newsletter', link: '/newsletter' },
-      { id: '/press', label: 'Press', link: '/press' },
-      { id: '/contact', label: 'Contact', link: '/contact' },
+      { id: '/', label: 'Home', link: '/', pageTitle: 'The Fides Project' },
+      { id: '/about', label: 'About Fides', link: '/about', pageTitle: 'About Fides Project'  },
+      { id: '/blog', label: 'Blog', link: '/blog', pageTitle: 'Blog'  }, // index is blog
+      { id: '/newsletter', label: 'Newsletter', link: '/newsletter', pageTitle: 'Newsletter'  },
+      { id: '/press', label: 'Press', link: '/press', pageTitle: 'Press'  },
+      { id: '/contact', label: 'Contact', link: '/contact', pageTitle: 'Contact'  },
     ],
-    defautTabMenuId: '/'
+    defautTabMenuId: ''
   }
 };
 

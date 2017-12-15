@@ -47,7 +47,10 @@ type Props = {
 type State = {
   mobileOpen: boolean,
   anchorEl: any,
+  // from parent
   currentTab: string,
+  // deduced from currentTab
+  pageTitle: string,
 
   // scroll spy (to toggle top nav classes)
   minScrollYToggleNav: number,
@@ -68,6 +71,7 @@ class Layout extends PureComponent<Props, State> {
     mobileOpen: false,
     anchorEl: null,
     currentTab: defautTabMenuId,
+    pageTitle: '',
     // scroll spy (to toggle top nav classes)
     minScrollYToggleNav: 155,
     minScrollYHideTitle: 40,
@@ -85,7 +89,7 @@ class Layout extends PureComponent<Props, State> {
       window.addEventListener('scroll', this.handleWindowScroll);
     }
     const { pathname } = this.props;
-    this.initizeTabsState(pathname);
+    this.initizeTabsStateAndTitle(pathname);
   }
 
   componentWillUnmount() {
@@ -106,6 +110,7 @@ class Layout extends PureComponent<Props, State> {
     const {
       anchorEl,
       currentTab,
+      pageTitle,
       // scroll spy
       toggleTopNavClasses,
       fadeTitleContainer,
@@ -217,7 +222,7 @@ class Layout extends PureComponent<Props, State> {
                 }
                 style={{ color: '#FFFFFF' }}
               >
-                View title here
+                { pageTitle }
               </span>
             </Typography>
           </div>
@@ -283,9 +288,13 @@ class Layout extends PureComponent<Props, State> {
   // #endregion
 
   // #region initialize tab state (next js won't persist state accross navigation)
-  initizeTabsState(pathname: string) {
-    console.log('will init current tab to: ', pathname);
-    this.setState({ currentTab: pathname });
+  initizeTabsStateAndTitle(pathname: string) {
+    const currentPage = tabMenu.find(tab => tab.id === pathname);
+    const pageTitle = currentPage ? currentPage.pageTitle : '';
+    this.setState({ 
+      currentTab: pathname ,
+      pageTitle
+    });
   }
   // #endregion
 
