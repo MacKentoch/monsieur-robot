@@ -10,6 +10,7 @@ import {
 }                             from 'redux';
 import { connect }            from 'react-redux';
 import Link                   from 'next/link';
+import Router                 from 'next/router';
 import cx                     from 'classnames';
 // import Router                 from 'next/router';
 import { withStyles }         from 'material-ui/styles';
@@ -34,6 +35,17 @@ import * as userAuthActions   from '../../redux/modules/userAuth';
 // #endregion
 
 // #region flow types
+type InitialProps = {
+  req: any,
+  res: any,
+  pathname: string,
+  query: any,
+  asPath: string,
+  isServer: boolean,
+  store?: any,
+  ...any
+};
+
 type Props = {
   children: ReactNode,
 
@@ -61,6 +73,14 @@ const { tabMenu, defautTabMenuId } = appConfig.navigation;
 
 
 class Layout extends PureComponent<Props, State> {
+  // #region next initialProps
+  static getInitialProps(
+    { query: { id }, pathname }: InitialProps
+  ) {
+    return { id, pathname };
+  }
+  // #endregion
+
   // #region state initialization
   state = {
     mobileOpen: false,
@@ -80,6 +100,7 @@ class Layout extends PureComponent<Props, State> {
   componentDidMount() {
     if (typeof window !== 'undefined') {
       this.initializeToggleClasses();
+      this.initizeTabsState();
       window.addEventListener('scroll', this.handleWindowScroll);
     }
   }
@@ -105,7 +126,6 @@ class Layout extends PureComponent<Props, State> {
       // scroll spy
       toggleTopNavClasses,
       fadeTitleContainer,
-
     } = this.state;
 
     const drawer = (
@@ -170,7 +190,7 @@ class Layout extends PureComponent<Props, State> {
                   <IconButton
                     aria-owns={open ? 'menu-appbar' : null}
                     aria-haspopup="true"
-                    onClick={this.handleMenu}
+                    onClick={this.handleOnSearch}
                     color="contrast"
                   >
                     <Search />
@@ -226,7 +246,7 @@ class Layout extends PureComponent<Props, State> {
               })
             }
             value={currentTab}
-            onChange={this.handleChange}
+            onChange={this.handleOnTabChange}
             fullWidth={false}
             indicatorColor="#FFF"
             scrollable
@@ -279,6 +299,10 @@ class Layout extends PureComponent<Props, State> {
   }
   // #endregion
 
+  // #region initialize tab state (next js won't persist state accross navigation)
+  initizeTabsState = (pathname: string) => (this.setState({ currentTab: pathname }));
+  // #endregion
+
   // #region on windows scroll callback
   handleWindowScroll = () => {
     if (window) {
@@ -315,6 +339,17 @@ class Layout extends PureComponent<Props, State> {
   }
   // #endregion
 
+  // #region on tab click event
+  handleOnTabChange = (
+    event: SyntheticEvent<>, 
+    value: any
+  ) => {
+    const selectedTab = tabMenu.find(tab => tab.id === value);
+    this.setState({ currentTab: selectedTab.id });
+    Router.push(selectedTab.link);
+  }
+  // #endregion
+
   // #region drawer management
   handleDrawerToggle = () => this.setState(
     ({mobileOpen: prevMobileOpen}: State) => ({ mobileOpen: !prevMobileOpen })
@@ -322,12 +357,13 @@ class Layout extends PureComponent<Props, State> {
   // #endregion
 
   // #region appBar action menu
-  handleMenu = (event: SyntheticEvent<>) => {
-    this.setState({ anchorEl: event.currentTarget });
-  };
-
-  handleRequestClose = () => {
-    this.setState({ anchorEl: null });
+  handleOnSearch = (
+    event: SyntheticEvent<>
+  ) => {
+    if (event) {
+      event.preventDefault();
+    }
+    console.log('TODO: on search event to implement');
   };
   // #endregion
 }
@@ -338,8 +374,8 @@ const mapStateToProps = (
 ) => ({
   // userAuth:
   isAuthenticated: state.userAuth.isAuthenticated,
-  isFetching:      state.userAuth.isFetching,
-  isLogging:       state.userAuth.isLogging
+  isFetching: state.userAuth.isFetching,
+  isLogging: state.userAuth.isLogging
 });
 
 const mapDispatchToProps = (
