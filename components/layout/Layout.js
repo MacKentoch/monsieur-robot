@@ -31,7 +31,6 @@ import styles                 from './styles';
 import appConfig              from '../../config/appConfig';
 import TabContainer           from './TabContainer';
 // import BackToTop              from '../backToTop/BackToTop';
-import * as userAuthActions   from '../../redux/modules/userAuth';
 // #endregion
 
 // #region flow types
@@ -254,11 +253,16 @@ class Layout extends PureComponent<Props, State> {
           </Tabs>
           <TabContainer>
             <main
+              id="appContainer"
               className={classes.content}
             >
               { children }
             </main>
           </TabContainer>
+          {/* <BackToTop 
+            minScrollY={40}
+            scrollTo={'appContainer'}
+          /> */}
         </div>
       </div>
     );
@@ -292,7 +296,7 @@ class Layout extends PureComponent<Props, State> {
     const currentPage = tabMenu.find(tab => tab.id === pathname);
     const pageTitle = currentPage ? currentPage.pageTitle : '';
     this.setState({ 
-      currentTab: pathname ,
+      currentTab: pathname,
       pageTitle
     });
   }
@@ -340,7 +344,7 @@ class Layout extends PureComponent<Props, State> {
     value: any
   ) => {
     const selectedTab = tabMenu.find(tab => tab.id === value);
-    this.setState({ currentTab: selectedTab.id });{}
+    this.setState({ currentTab: selectedTab.id });
     Router.push(selectedTab.link);
   }
   // #endregion
@@ -367,10 +371,7 @@ class Layout extends PureComponent<Props, State> {
 const mapStateToProps = (
   state: any
 ) => ({
-  // userAuth:
-  isAuthenticated: state.userAuth.isAuthenticated,
-  isFetching: state.userAuth.isFetching,
-  isLogging: state.userAuth.isLogging
+  // to add if needed
 });
 
 const mapDispatchToProps = (
@@ -379,8 +380,7 @@ const mapDispatchToProps = (
   return {
     ...bindActionCreators(
       {
-        // userAuth:
-        ...userAuthActions
+        // to add if needed
       },
       dispatch)
   };
