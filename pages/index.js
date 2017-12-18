@@ -2,22 +2,24 @@
 
 // #region imports
 import React, {
-  PureComponent
+  PureComponent, SyntheticEvent
 }                             from 'react';
 import {
   compose,
   bindActionCreators
 }                             from 'redux';
 import withRedux              from 'next-redux-wrapper';
+import Router                 from 'next/router';
 import Grid                   from 'material-ui/Grid';
 import { withStyles }         from 'material-ui/styles';
 import Paper                  from 'material-ui/Paper';
+import Button                 from 'material-ui/Button';
 import Typography             from 'material-ui/Typography';
 import withRoot               from '../HOC/withRoot';
 import Layout                 from '../components/layout/Layout';
-import configureStore         from '../redux/store/configureStore';
 import NewsCard               from '../components/newsCard/NewsCard';
 import mockNews               from '../mock/mockNews.json';
+import configureStore         from '../redux/store/configureStore';
 import { Tweet }              from 'react-twitter-widgets';
 // #endregion
 
@@ -126,6 +128,12 @@ class Index extends PureComponent<Props, State> {
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </Typography>
+                <Button 
+                  raised 
+                  onClick={this.routeTo('/about')}
+                >
+                  learn more about the fides project
+                </Button>
               </Grid>
               {/* why does provacy matters */}
               <Grid
@@ -145,6 +153,12 @@ class Index extends PureComponent<Props, State> {
                 >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </Typography>
+                <Button 
+                  raised 
+                  onClick={this.routeTo('/getInvolved')}
+                >
+                  get involved with the fides project
+                </Button>
               </Grid>
             </Grid>
           </Grid>
@@ -154,25 +168,89 @@ class Index extends PureComponent<Props, State> {
             sm={4}
             xs={4}
           >
-            {
-              [1, 2, 3, 4, 5,  6, 7].map(
-                (_, newsIdx) => (
-                
-                  <div
-                    key={`tweet-${newsIdx}`}
-                  >
-                    <Tweet
-                      tweetId="939235471942615040"
-                    /> 
-                  </div>
-                )
-              )
-            }
+            {/* Recent blog */}
+            <Grid
+              container
+              spacing={24}
+            >
+              <Grid
+                item
+                xs={12}
+              >
+                <Typography 
+                  type="title" 
+                  gutterBottom
+                >
+                Recent blog
+                </Typography> 
+                {
+                  news.slice(0, 3).map(
+                    (oneNews, newsIdx) => (
+                      <div
+                        key={`news-${oneNews.id}-${newsIdx}`}
+                        style={{marginBottom: '20px'}}
+                      >
+                        <NewsCard
+                          key={`news-${oneNews.id}-${newsIdx}`}
+                          {...oneNews}
+                        />
+                      </div>
+                    )
+                  )
+                }
+              </Grid>
+            </Grid>
+
+            {/* Recent tweets */}
+            <Grid
+              container
+              spacing={24}
+            >
+              <Grid
+                item
+                xs={12}
+              >
+                <Typography 
+                  type="title" 
+                  gutterBottom
+                >
+                Recent tweets
+                </Typography> 
+                {
+                  [1, 2, 3, 4].map(
+                    (_, newsIdx) => (
+
+                      <div
+                        key={`tweet-${newsIdx}`}
+                      >
+                        <Tweet
+                          tweetId="939235471942615040"
+                        /> 
+                      </div>
+                    )
+                  )
+                }
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Layout>
     );
   }
+  // #endregion
+
+  // #region click events to route to specific pathname
+  routeTo = (
+    pathname: string
+  ) => (
+    event: SyntheticEvent<>
+  ): void => {
+    if (event) {
+      event.preventDefault();
+    }
+    Router.push({ pathname });
+  }
+
   // #endregion
 }
 
