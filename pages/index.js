@@ -64,6 +64,9 @@ const styles = {
     textAlign: 'center',
     paddingTop: 200,
     flexGrow: 1,
+  },
+  ourProjectContainer: {
+    marginTop: '70px'
   }
 };
 // #endregion
@@ -129,7 +132,7 @@ class Index extends PureComponent<Props, State> {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </Typography>
                 <Button 
-                  raised 
+                  // raised
                   onClick={this.routeTo('/about')}
                 >
                   learn more about the fides project
@@ -154,13 +157,44 @@ class Index extends PureComponent<Props, State> {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </Typography>
                 <Button 
-                  raised 
+                  // raised 
                   onClick={this.routeTo('/getInvolved')}
                 >
                   get involved with the fides project
                 </Button>
               </Grid>
             </Grid>
+            {/* our projects */}
+            <div
+              className={styles.ourProjectContainer}
+            >
+              <Grid
+                container
+                spacing={24}
+              >
+                <Grid
+                  item
+                  xs={12}
+                >
+                  <Typography 
+                    type="title" 
+                    gutterBottom
+                  >
+                  Our projects
+                  </Typography> 
+                  <div>
+                    <Typography
+                      type="body1" 
+                      gutterBottom
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam facilisis nisl sed justo egestas, at fringilla sem accumsan. Etiam bibendum viverra tristique. Fusce id vehicula sapien. Nullam porta, justo a interdum tincidunt, est nisl hendrerit metus, vitae pharetra lorem tellus eu elit. Vivamus imperdiet rutrum nibh, sit amet semper nisl maximus eget. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed lobortis purus nec condimentum consequat. Phasellus in nibh sed odio pellentesque blandit accumsan ac nisl. Donec at nulla elementum, tempus turpis ut, congue nisl.
+
+                      Etiam aliquam, arcu at posuere malesuada, sem est lacinia eros, vitae blandit justo elit non arcu. Ut nec pretium risus. Aliquam fermentum pulvinar maximus. Fusce ipsum leo, ornare in leo vel, dapibus sollicitudin massa. Ut consectetur justo id pretium consequat. Suspendisse ipsum augue, faucibus lobortis felis vel, vestibulum malesuada neque. Phasellus justo mi, efficitur id libero eu, hendrerit tempus nulla. Morbi lacus turpis, feugiat vel tellus eu, dapibus vehicula ex. Ut nec dui lectus. Nunc in dignissim neque.
+                    </Typography>
+                  </div>
+                </Grid>
+              </Grid>
+            </div>
           </Grid>
 
           <Grid
@@ -218,7 +252,7 @@ class Index extends PureComponent<Props, State> {
                 Recent tweets
                 </Typography> 
                 {
-                  [1, 2, 3, 4].map(
+                  [1, 2, 3].map(
                     (_, newsIdx) => (
 
                       <div
