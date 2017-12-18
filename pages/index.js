@@ -4,22 +4,18 @@
 import React, {
   PureComponent
 }                             from 'react';
-import Router                 from 'next/router';
 import {
   compose,
   bindActionCreators
 }                             from 'redux';
 import withRedux              from 'next-redux-wrapper';
-import Button                 from 'material-ui/Button';
-import Typography             from 'material-ui/Typography';
 import Grid                   from 'material-ui/Grid';
-import Paper                  from 'material-ui/Paper';
 import { withStyles }         from 'material-ui/styles';
+import Paper                  from 'material-ui/Paper';
+import Typography             from 'material-ui/Typography';
 import withRoot               from '../HOC/withRoot';
 import Layout                 from '../components/layout/Layout';
 import configureStore         from '../redux/store/configureStore';
-// import BackToTop              from '../backToTop/BackToTop';
-import * as userAuthActions   from '../redux/modules/userAuth';
 import NewsCard               from '../components/newsCard/NewsCard';
 import mockNews               from '../mock/mockNews.json';
 import { Tweet }              from 'react-twitter-widgets';
@@ -102,29 +98,57 @@ class Index extends PureComponent<Props, State> {
           container
           spacing={24}
         >
+          {/* left content */}
           <Grid
-            // key={`news-${.id}-${newsIdx}`}
             item
             sm={8}
             xs={8}
           >
-            <div style={{height: '10px'}} />
-            {
-              news.map(
-                (oneNews, newsIdx) => (
-                  <div
-                    key={`news-${oneNews.id}-${newsIdx}`}
-                    style={{marginBottom: '20px'}}
-                  >
-                    <NewsCard
-                      key={`news-${oneNews.id}-${newsIdx}`}
-                      {...oneNews}
-                    />
-                  </div>
-                )
-              )
-            }
+            <Grid
+              container
+              spacing={24}
+            >
+              {/* what is the fides project */}
+              <Grid
+                item
+                xs={6}
+              >
+                <Typography 
+                  type="title" 
+                  gutterBottom
+                >
+                What is the Fides Project
+                </Typography>
+                <Typography 
+                  type="body1" 
+                  gutterBottom 
+                  align="left"
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </Typography>
+              </Grid>
+              {/* why does provacy matters */}
+              <Grid
+                item
+                xs={6}
+              >
+                <Typography 
+                  type="title" 
+                  gutterBottom
+                >
+                Why does privacy matters
+                </Typography>
+                <Typography 
+                  type="body1" 
+                  gutterBottom 
+                  align="left"
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </Typography>
+              </Grid>
+            </Grid>
           </Grid>
+
           <Grid
             item
             sm={4}
@@ -150,26 +174,13 @@ class Index extends PureComponent<Props, State> {
     );
   }
   // #endregion
-
-  handleRequestClose = () => {
-    this.setState({
-      open: false
-    });
-  };
-
-  handleClick = () => {
-    Router.push('/login');
-  };
 }
 
 // #region redux state and dispatch map to props
 const mapStateToProps = (
   state: any
 ) => ({
-  // userAuth:
-  isAuthenticated: state.userAuth.isAuthenticated,
-  isFetching:      state.userAuth.isFetching,
-  isLogging:       state.userAuth.isLogging
+  // to add
 });
 
 const mapDispatchToProps = (
@@ -178,8 +189,7 @@ const mapDispatchToProps = (
   return {
     ...bindActionCreators(
       {
-        // userAuth:
-        ...userAuthActions
+        // to add
       },
       dispatch)
   };
