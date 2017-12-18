@@ -192,6 +192,7 @@ class Index extends PureComponent<Props, State> {
                       >
                         <NewsCard
                           key={`news-${oneNews.id}-${newsIdx}`}
+                          showSumUp={false}
                           {...oneNews}
                         />
                       </div>

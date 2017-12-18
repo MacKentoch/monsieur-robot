@@ -28,18 +28,25 @@ type Props = {
   sumUp: string,
   tweetId: string,
 
+  showSumUp: boolean,
+
   ...any
 }
 // #endregion
 
 class NewsCard extends PureComponent<Props, State> {
+  static defaultProps = {
+    showSumUp: true
+  };
+
   // #region lifecycle
   render() {
     const {
       id,
       title,
       subtitle,
-      sumUp
+      sumUp,
+      showSumUp
     } = this.props;
 
     const mockTweetId= '939235471942615040';
@@ -64,11 +71,14 @@ class NewsCard extends PureComponent<Props, State> {
             { subtitle }
           </Typography>
 
-          <Typography
-            type="body2"
-          >
-            { sumUp }
-          </Typography>
+          {
+            showSumUp &&
+            <Typography
+              type="body2"
+            >
+              { sumUp }
+            </Typography>
+          }
 
           {/* <Tweet
             tweetId={mockTweetId}
