@@ -1,14 +1,9 @@
 // @flow
 
 // #region imports
-import React, {
-  PureComponent,
-} from 'react';
+import React, { PureComponent } from 'react';
 import Router from 'next/router';
-import {
-  compose,
-  bindActionCreators,
-} from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import withRedux from 'next-redux-wrapper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
@@ -50,14 +45,9 @@ const styles = theme => ({
 });
 // #endregion
 
-class About extends PureComponent<
-  Props,
-  State,
-> {
+class About extends PureComponent<Props, State> {
   // #region next initialProps
-  static getInitialProps({
-    pathname,
-  }: InitialProps) {
+  static getInitialProps({ pathname }: InitialProps) {
     return { pathname };
   }
   // #endregion
@@ -68,24 +58,14 @@ class About extends PureComponent<
 
     return (
       <Layout pathname={pathname}>
-        <Typography
-          type="display1"
-          gutterBottom
-        >
+        <Typography type="display1" gutterBottom>
           About
         </Typography>
 
-        <Typography
-          type="subheading"
-          gutterBottom
-        >
+        <Typography type="subheading" gutterBottom>
           example project
         </Typography>
-        <Button
-          raised
-          color="primary"
-          onClick={this.handleClick}
-        >
+        <Button raised color="primary" onClick={this.handleClick}>
           Go back Home
         </Button>
       </Layout>
@@ -99,15 +79,11 @@ class About extends PureComponent<
 }
 
 // #region redux state and dispatch map to props
-const mapStateToProps = (
-  state: any,
-) => ({
+const mapStateToProps = (state: any) => ({
   // to define
 });
 
-const mapDispatchToProps = (
-  dispatch: (...any) => any,
-) => {
+const mapDispatchToProps = (dispatch: (...any) => any) => {
   return {
     ...bindActionCreators(
       {
@@ -123,11 +99,7 @@ const mapDispatchToProps = (
 const ComposedAbout = compose(
   withRoot,
   withStyles(styles),
-  withRedux(
-    configureStore,
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  withRedux(configureStore, mapStateToProps, mapDispatchToProps),
 )(About);
 // #endregion
 
