@@ -12,6 +12,7 @@ export function getLocationOrigin(): string {
   }
 
   if (!window.location.origin) {
+    // prettier-ignore
     window.location.origin = `${window.location.protocol}//${window.location.hostname}${window.location.port ? ':' + window.location.port : ''}`;
   }
 

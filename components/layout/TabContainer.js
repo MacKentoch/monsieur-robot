@@ -1,17 +1,15 @@
 // @flow
 
 // #region imports
-import React, {
-  PureComponent
-}                     from 'react';
+import React, { PureComponent } from 'react';
 // #endregion
 
 // #region flow types
 type State = any;
 
 type Props = {
-  ...any
-}
+  ...any,
+};
 // #endregion
 
 class TabContainer extends PureComponent<Props, State> {
@@ -24,10 +22,10 @@ class TabContainer extends PureComponent<Props, State> {
         style={{
           // padding: 8 * 3,
           display: 'flex',
-          flex: 1
+          flex: 1,
         }}
       >
-        { children }
+        {children}
       </div>
     );
   }

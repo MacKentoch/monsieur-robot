@@ -3,19 +3,17 @@
 // @flow
 
 // #region imports
-import React, {
-  PureComponent
-}                     from 'react';
+import React, { PureComponent } from 'react';
 import Card, {
   CardHeader,
   CardMedia,
   CardContent,
-  CardActions
-}                     from 'material-ui/Card';
-import Button         from 'material-ui/Button';
-import Typography     from 'material-ui/Typography';
-import classes        from './styles';
-import { Tweet }      from 'react-twitter-widgets';
+  CardActions,
+} from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
+import classes from './styles';
+import { Tweet } from 'react-twitter-widgets';
 // #endregion
 
 // #region flow types
@@ -30,55 +28,31 @@ type Props = {
 
   showSumUp: boolean,
 
-  ...any
-}
+  ...any,
+};
 // #endregion
 
 class NewsCard extends PureComponent<Props, State> {
   static defaultProps = {
-    showSumUp: true
+    showSumUp: true,
   };
 
   // #region lifecycle
   render() {
-    const {
-      id,
-      title,
-      subtitle,
-      sumUp,
-      showSumUp
-    } = this.props;
+    const { id, title, subtitle, sumUp, showSumUp } = this.props;
 
-    const mockTweetId= '939235471942615040';
+    const mockTweetId = '939235471942615040';
 
     return (
-      <Card
-        className={classes.cardContainer}
-      >
-        <CardContent
-          className={classes.content}
-        >
-          <Typography
-            type="headline"
-          >
-            { title }
+      <Card className={classes.cardContainer}>
+        <CardContent className={classes.content}>
+          <Typography type="headline">{title}</Typography>
+
+          <Typography type="subheading" color="secondary">
+            {subtitle}
           </Typography>
 
-          <Typography
-            type="subheading"
-            color="secondary"
-          >
-            { subtitle }
-          </Typography>
-
-          {
-            showSumUp &&
-            <Typography
-              type="body2"
-            >
-              { sumUp }
-            </Typography>
-          }
+          {showSumUp && <Typography type="body2">{sumUp}</Typography>}
 
           {/* <Tweet
             tweetId={mockTweetId}

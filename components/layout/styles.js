@@ -38,10 +38,9 @@ const styles = theme => ({
     marginTop: 56 - 1, // removing 1 px: fixing mobile render delta
     [theme.breakpoints.up('md')]: {
       width: 'calc(100%)',
-      marginTop: 64 -1, // removing 1 px: fixing mobile render delta
+      marginTop: 64 - 1, // removing 1 px: fixing mobile render delta
       paddingLeft: '70px',
     },
-
   },
   tabs: {
     zIndex: 1000,
@@ -52,7 +51,7 @@ const styles = theme => ({
     color: '#FFF',
     [theme.breakpoints.up('md')]: {
       width: 'calc(100%)',
-      marginTop: 64  + 160 -1, // removing 1 px: fixing mobile render delta
+      marginTop: 64 + 160 - 1, // removing 1 px: fixing mobile render delta
     },
     boxShadow: theme.shadows[0],
   },
@@ -65,7 +64,7 @@ const styles = theme => ({
     color: '#FFF',
     [theme.breakpoints.up('md')]: {
       width: 'calc(100%)',
-      marginTop: 64 -1, // removing 1 px: fixing mobile render delta
+      marginTop: 64 - 1, // removing 1 px: fixing mobile render delta
     },
     boxShadow: theme.shadows[2],
   },
@@ -75,7 +74,7 @@ const styles = theme => ({
     opacity: 1,
   },
   hide: {
-    opacity: 0
+    opacity: 0,
   },
   // searchFabButton: {
   //   position: 'absolute',
@@ -118,7 +117,7 @@ const styles = theme => ({
     width: 250,
   },
   flexible: {
-    flex: 1
+    flex: 1,
   },
   content: {
     backgroundColor: theme.palette.background.default,

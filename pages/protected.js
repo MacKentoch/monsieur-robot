@@ -1,22 +1,17 @@
 // @flow
 
 // #region imports
-import React, {
-  PureComponent
-}                             from 'react';
-import Router                 from 'next/router';
-import {
-  compose,
-  bindActionCreators
-}                             from 'redux';
-import withRedux              from 'next-redux-wrapper';
-import Button                 from 'material-ui/Button';
-import Typography             from 'material-ui/Typography';
-import { withStyles }         from 'material-ui/styles';
-import withRoot               from '../HOC/withRoot';
-import Layout                 from '../components/layout/Layout';
-import configureStore         from '../redux/store/configureStore';
-import PrivateRoute           from '../components/privateRoute/PrivateRoute';
+import React, { PureComponent } from 'react';
+import Router from 'next/router';
+import { compose, bindActionCreators } from 'redux';
+import withRedux from 'next-redux-wrapper';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
+import withRoot from '../HOC/withRoot';
+import Layout from '../components/layout/Layout';
+import configureStore from '../redux/store/configureStore';
+import PrivateRoute from '../components/privateRoute/PrivateRoute';
 // #endregion
 
 // #region flow types
@@ -28,7 +23,7 @@ type InitialProps = {
   asPath: string,
   isServer: boolean,
   store?: any,
-  ...any
+  ...any,
 };
 
 type Props = {
@@ -36,11 +31,11 @@ type Props = {
   classes: any,
   // initialProps
   pathname: string,
-  ...any
+  ...any,
 };
 
 type State = {
-  ...any
+  ...any,
 };
 // #endregion
 
@@ -68,49 +63,27 @@ const styles = theme => ({
 
 class Protected extends PureComponent<Props, State> {
   // #region next initialProps
-  static getInitialProps(
-    { pathname }: InitialProps
-  ) {
+  static getInitialProps({ pathname }: InitialProps) {
     return { pathname };
   }
   // #endregion
-  
+
   // #region component lifecycle methods
   render() {
-    const {
-      pathname
-    } = this.props;
+    const { pathname } = this.props;
 
     return (
-      <PrivateRoute
-        fromPath="/protected"
-      >
-        <Layout
-          pathname={pathname}
-        >
+      <PrivateRoute fromPath="/protected">
+        <Layout pathname={pathname}>
+          <Typography type="display1">Protected</Typography>
 
-          <Typography
-            type="display1"
-            gutterBottom
-          >
-              Protected
+          <Typography type="subheading" gutterBottom>
+            example project
           </Typography>
 
-          <Typography
-            type="subheading"
-            gutterBottom
-          >
-              example project
-          </Typography>
-
-          <Button
-            raised
-            color="primary"
-            onClick={this.handleClick}
-          >
-              Go back Home
+          <Button raised color="primary" onClick={this.handleClick}>
+            Go back Home
           </Button>
-
         </Layout>
       </PrivateRoute>
     );
@@ -119,7 +92,7 @@ class Protected extends PureComponent<Props, State> {
 
   handleRequestClose = () => {
     this.setState({
-      open: false
+      open: false,
     });
   };
 
@@ -128,23 +101,19 @@ class Protected extends PureComponent<Props, State> {
   };
 }
 
-
 // #region redux state and dispatch map to props
-const mapStateToProps = (
-  state: any
-) => ({
+const mapStateToProps = (state: any) => ({
   // to define
 });
 
-const mapDispatchToProps = (
-  dispatch: (...any) => any
-) => {
+const mapDispatchToProps = (dispatch: (...any) => any) => {
   return {
     ...bindActionCreators(
       {
         // to define
       },
-      dispatch)
+      dispatch,
+    ),
   };
 };
 // #endregion
@@ -153,11 +122,7 @@ const mapDispatchToProps = (
 const ComposedProtected = compose(
   withRoot,
   withStyles(styles),
-  withRedux(
-    configureStore,
-    mapStateToProps,
-    mapDispatchToProps
-  )
+  withRedux(configureStore, mapStateToProps, mapDispatchToProps),
 )(Protected);
 // #endregion
 

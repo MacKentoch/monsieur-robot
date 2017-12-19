@@ -1,17 +1,12 @@
 // @flow
 
 // #region imports
-import React, {
-  Component
-}                                   from 'react';
-import {
-  withStyles,
-  MuiThemeProvider
-}                                   from 'material-ui/styles';
-import wrapDisplayName              from 'recompose/wrapDisplayName';
-import getContext                   from '../styles/getContext';
-import registerServiceWorker        from '../services/registerServiceWorker';
-import registerBeforeinstallprompt  from '../services/registerBeforeinstallprompt';
+import React, { Component } from 'react';
+import { withStyles, MuiThemeProvider } from 'material-ui/styles';
+import wrapDisplayName from 'recompose/wrapDisplayName';
+import getContext from '../styles/getContext';
+import registerServiceWorker from '../services/registerServiceWorker';
+import registerBeforeinstallprompt from '../services/registerBeforeinstallprompt';
 // #endregion
 
 // #region Apply some style reset
@@ -20,12 +15,12 @@ const styles = theme => ({
     html: {
       background: theme.palette.background.default,
       WebkitFontSmoothing: 'antialiased', // Antialiasing.
-      MozOsxFontSmoothing: 'grayscale'    // Antialiasing.
+      MozOsxFontSmoothing: 'grayscale', // Antialiasing.
     },
     body: {
-      margin: 0
-    }
-  }
+      margin: 0,
+    },
+  },
 });
 // #endregion
 
@@ -53,8 +48,8 @@ type InitialProps = {
   asPath: string,
   isServer: boolean,
   store?: any,
-  ...any
-}
+  ...any,
+};
 // #endregion
 
 // #region withRoot HOC

@@ -1,35 +1,30 @@
 // @flow
 
 // #region imports
-import React, {
-  PureComponent
-}                             from 'react';
-import {
-  compose,
-  bindActionCreators
-}                             from 'redux';
-import { connect }            from 'react-redux';
-import Link                   from 'next/link';
-import Router                 from 'next/router';
-import cx                     from 'classnames';
+import React, { PureComponent } from 'react';
+import { compose, bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Link from 'next/link';
+import Router from 'next/router';
+import cx from 'classnames';
 // import Router                 from 'next/router';
-import { withStyles }         from 'material-ui/styles';
-import Drawer                 from 'material-ui/Drawer';
-import AppBar                 from 'material-ui/AppBar';
-import Tabs, { Tab }          from 'material-ui/Tabs';
+import { withStyles } from 'material-ui/styles';
+import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
+import Tabs, { Tab } from 'material-ui/Tabs';
 // import Button                 from 'material-ui/Button';
-import Toolbar                from 'material-ui/Toolbar';
-import Typography             from 'material-ui/Typography';
-import IconButton             from 'material-ui/IconButton';
-import Avatar                 from 'material-ui/Avatar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
+import Avatar from 'material-ui/Avatar';
 // import Hidden                 from 'material-ui/Hidden';
-import Divider                from 'material-ui/Divider';
-import Search                 from 'material-ui-icons/Search';
-import MenuIcon               from 'material-ui-icons/Menu';
-import NavMenus               from './NavMenus';
-import styles                 from './styles';
-import appConfig              from '../../config/appConfig';
-import TabContainer           from './TabContainer';
+import Divider from 'material-ui/Divider';
+import Search from 'material-ui-icons/Search';
+import MenuIcon from 'material-ui-icons/Menu';
+import NavMenus from './NavMenus';
+import styles from './styles';
+import appConfig from '../../config/appConfig';
+import TabContainer from './TabContainer';
 // import BackToTop              from '../backToTop/BackToTop';
 // #endregion
 
@@ -41,7 +36,7 @@ type Props = {
   // withStyle injected
   classes: any,
   theme: any,
-}
+};
 
 type State = {
   mobileOpen: boolean,
@@ -62,7 +57,6 @@ type State = {
 // #region constants
 const { tabMenu, defautTabMenuId } = appConfig.navigation;
 // #endregion
-
 
 class Layout extends PureComponent<Props, State> {
   // #region state initialization
@@ -103,7 +97,7 @@ class Layout extends PureComponent<Props, State> {
       classes,
       theme,
       // children:
-      children
+      children,
     } = this.props;
 
     const {
@@ -117,16 +111,9 @@ class Layout extends PureComponent<Props, State> {
 
     const drawer = (
       <div>
-        <div
-          className={classes.drawerHeader}
-        >
-          <div
-            className={classes.avatarContainer}
-          >
-            <Avatar
-              src="/static/images/fsociety-avatar.jpg"
-              size="40px"
-            />
+        <div className={classes.drawerHeader}>
+          <div className={classes.avatarContainer}>
+            <Avatar src="/static/images/fsociety-avatar.jpg" size="40px" />
           </div>
         </div>
         <Divider />
@@ -140,10 +127,7 @@ class Layout extends PureComponent<Props, State> {
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <AppBar
-            className={classes.appBar}
-            elevation={0}
-          >
+          <AppBar className={classes.appBar} elevation={0}>
             <Toolbar>
               {/* burger menu */}
               <IconButton
@@ -156,24 +140,16 @@ class Layout extends PureComponent<Props, State> {
               </IconButton>
 
               {/* title */}
-              <Typography
-                type="title"
-                color="inherit"
-                noWrap
-              >
+              <Typography type="title" color="inherit" noWrap>
                 Monsieur Robot
               </Typography>
 
               {/* a filler */}
               <div className={classes.flexible} />
 
-              { /* right actions */ }
+              {/* right actions */}
               <div>
-                <Link
-                  prefetch
-                  href={'/login'}
-                  passHref
-                >
+                <Link prefetch href={'/login'} passHref>
                   <IconButton
                     aria-owns={open ? 'menu-appbar' : null}
                     aria-haspopup="true"
@@ -201,37 +177,27 @@ class Layout extends PureComponent<Props, State> {
             {drawer}
           </Drawer>
           <div
-            className={
-              cx({
-                [classes.topTitle]: true,
-              })
-            }
+            className={cx({
+              [classes.topTitle]: true,
+            })}
           >
-            <Typography
-              type="display3"
-              gutterBottom
-              color="#FFFFFF"
-            >
+            <Typography type="display3" gutterBottom color="#FFFFFF">
               <span
-                className={
-                  cx({
-                    [classes.show]: !fadeTitleContainer,
-                    [classes.hide]: fadeTitleContainer,
-                  })
-                }
+                className={cx({
+                  [classes.show]: !fadeTitleContainer,
+                  [classes.hide]: fadeTitleContainer,
+                })}
                 style={{ color: '#FFFFFF' }}
               >
-                { pageTitle }
+                {pageTitle}
               </span>
             </Typography>
           </div>
           <Tabs
-            className={
-              cx({
-                [classes.tabs]: !toggleTopNavClasses,
-                [classes.tabsFixed]: toggleTopNavClasses,
-              })
-            }
+            className={cx({
+              [classes.tabs]: !toggleTopNavClasses,
+              [classes.tabsFixed]: toggleTopNavClasses,
+            })}
             value={currentTab}
             onChange={this.handleOnTabChange}
             fullWidth={false}
@@ -239,27 +205,16 @@ class Layout extends PureComponent<Props, State> {
             scrollable
             scrollButtons="auto"
           >
-            {
-              tabMenu.map(
-                ({ id, label }, menuIdx: number) => (
-                  <Tab
-                    key={`tab-menu-${id}-${menuIdx}`}
-                    value={id}
-                    label={label}
-                  />
-                )
-              )
-            }
+            {tabMenu.map(({ id, label }, menuIdx: number) => (
+              <Tab key={`tab-menu-${id}-${menuIdx}`} value={id} label={label} />
+            ))}
           </Tabs>
           <TabContainer>
-            <main
-              id="appContainer"
-              className={classes.content}
-            >
-              { children }
+            <main id="appContainer" className={classes.content}>
+              {children}
             </main>
           </TabContainer>
-          {/* <BackToTop 
+          {/* <BackToTop
             minScrollY={40}
             scrollTo={'appContainer'}
           /> */}
@@ -272,14 +227,19 @@ class Layout extends PureComponent<Props, State> {
   // #region init classes depending scroll y
   initializeToggleClasses() {
     if (window) {
-      const {
-        minScrollYToggleNav,
-        minScrollYHideTitle
-      } = this.state;
+      const { minScrollYToggleNav, minScrollYHideTitle } = this.state;
       /* eslint-disable no-undefined */
-      const currentWindowScrollY = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+      const currentWindowScrollY =
+        window.pageYOffset !== undefined
+          ? window.pageYOffset
+          : (
+              document.documentElement ||
+              document.body.parentNode ||
+              document.body
+            ).scrollTop;
       /* eslint-enable no-undefined */
-      const shouldToggleTopNavClasses = currentWindowScrollY >= minScrollYToggleNav;
+      const shouldToggleTopNavClasses =
+        currentWindowScrollY >= minScrollYToggleNav;
       const shouldHideTitle = currentWindowScrollY >= minScrollYHideTitle;
 
       this.setState({
@@ -295,9 +255,9 @@ class Layout extends PureComponent<Props, State> {
   initizeTabsStateAndTitle(pathname: string) {
     const currentPage = tabMenu.find(tab => tab.id === pathname);
     const pageTitle = currentPage ? currentPage.pageTitle : '';
-    this.setState({ 
+    this.setState({
       currentTab: pathname,
-      pageTitle
+      pageTitle,
     });
   }
   // #endregion
@@ -309,56 +269,58 @@ class Layout extends PureComponent<Props, State> {
         minScrollYToggleNav,
         minScrollYHideTitle,
         windowScrollY,
-        tickingScollObserve
+        tickingScollObserve,
       } = this.state;
 
       /* eslint-disable no-undefined */
-      const currentWindowScrollY = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+      const currentWindowScrollY =
+        window.pageYOffset !== undefined
+          ? window.pageYOffset
+          : (
+              document.documentElement ||
+              document.body.parentNode ||
+              document.body
+            ).scrollTop;
       /* eslint-enable no-undefined */
       // scroll event fires too often, using window.requestAnimationFrame to limit computations
       if (!tickingScollObserve) {
-        window.requestAnimationFrame(
-          () => {
-            if (windowScrollY !== currentWindowScrollY) {
-              const shouldToggleTopNavClasses = currentWindowScrollY >= minScrollYToggleNav;
-              const shouldHideTitle = currentWindowScrollY >= minScrollYHideTitle;
+        window.requestAnimationFrame(() => {
+          if (windowScrollY !== currentWindowScrollY) {
+            const shouldToggleTopNavClasses =
+              currentWindowScrollY >= minScrollYToggleNav;
+            const shouldHideTitle = currentWindowScrollY >= minScrollYHideTitle;
 
-              this.setState({
-                windowScrollY: currentWindowScrollY,
-                toggleTopNavClasses: shouldToggleTopNavClasses,
-                fadeTitleContainer: shouldHideTitle,
-              });
-            }
-            this.setState({ tickingScollObserve: false });
+            this.setState({
+              windowScrollY: currentWindowScrollY,
+              toggleTopNavClasses: shouldToggleTopNavClasses,
+              fadeTitleContainer: shouldHideTitle,
+            });
           }
-        );
+          this.setState({ tickingScollObserve: false });
+        });
       }
       this.setState({ tickingScollObserve: true });
     }
-  }
+  };
   // #endregion
 
   // #region on tab click event
-  handleOnTabChange = (
-    event: SyntheticEvent<>, 
-    value: any
-  ) => {
+  handleOnTabChange = (event: SyntheticEvent<>, value: any) => {
     const selectedTab = tabMenu.find(tab => tab.id === value);
     this.setState({ currentTab: selectedTab.id });
     Router.push(selectedTab.link);
-  }
+  };
   // #endregion
 
   // #region drawer management
-  handleDrawerToggle = () => this.setState(
-    ({mobileOpen: prevMobileOpen}: State) => ({ mobileOpen: !prevMobileOpen })
-  );
+  handleDrawerToggle = () =>
+    this.setState(({ mobileOpen: prevMobileOpen }: State) => ({
+      mobileOpen: !prevMobileOpen,
+    }));
   // #endregion
 
   // #region appBar action menu
-  handleOnSearch = (
-    event: SyntheticEvent<>
-  ) => {
+  handleOnSearch = (event: SyntheticEvent<>) => {
     if (event) {
       event.preventDefault();
     }
@@ -368,31 +330,25 @@ class Layout extends PureComponent<Props, State> {
 }
 
 // #region redux state and dispatch map to props
-const mapStateToProps = (
-  state: any
-) => ({
+const mapStateToProps = (state: any) => ({
   // to add if needed
 });
 
-const mapDispatchToProps = (
-  dispatch: (...any) => any
-) => {
+const mapDispatchToProps = (dispatch: (...any) => any) => {
   return {
     ...bindActionCreators(
       {
         // to add if needed
       },
-      dispatch)
+      dispatch,
+    ),
   };
 };
 // #endregion
 
 const ComposedLayout = compose(
   withStyles(styles, { withTheme: true }),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
+  connect(mapStateToProps, mapDispatchToProps),
 )(Layout);
 
 export default ComposedLayout;

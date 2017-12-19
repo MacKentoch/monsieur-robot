@@ -4,10 +4,7 @@
 
 if (process.env.NODE_ENV === 'production') {
   module.exports = async () => {
-    if (
-      typeof window !== 'undefined' &&
-      'serviceWorker' in navigator
-    ) {
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
       try {
         // $FlowIgnore
         await navigator.serviceWorker.register('/sw.js');

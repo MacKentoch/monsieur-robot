@@ -1,28 +1,26 @@
 // @flow
 
 // #region imports
-import React, {
-  PureComponent
-}                 from 'react';
-import cx         from 'classnames';
+import React, { PureComponent } from 'react';
+import cx from 'classnames';
 // #endregion
 
 // #region configutation constants
 const defaultBackGroundColor = '#111';
-const sideOffset     = '20px';
-const bottomOffset   = '8px';
-const defaultWidth   = '50px';
-const defaultZindex  = 10;
+const sideOffset = '20px';
+const bottomOffset = '8px';
+const defaultWidth = '50px';
+const defaultZindex = 10;
 const defaultOpacity = 0.7;
-const defaultStyle   = {
+const defaultStyle = {
   position: 'fixed',
-  right:    sideOffset,
-  left:     '',
-  bottom:   bottomOffset,
-  width:    defaultWidth,
-  zIndex:   defaultZindex,
-  opacity:  defaultOpacity,
-  backgroundColor: defaultBackGroundColor
+  right: sideOffset,
+  left: '',
+  bottom: bottomOffset,
+  width: defaultWidth,
+  zIndex: defaultZindex,
+  opacity: defaultOpacity,
+  backgroundColor: defaultBackGroundColor,
 };
 // #endregion
 
@@ -35,14 +33,14 @@ type ComponentStyle = {
   width: string,
   zIndex: number,
   opacity: number,
-  backgroundColor: string
+  backgroundColor: string,
 };
 
 type Position = 'bottom-left' | 'bottom-right';
 
 type MotionStyle = {
   transform: string,
-  WebkitTransform: string
+  WebkitTransform: string,
 };
 
 type Props = {
@@ -50,50 +48,44 @@ type Props = {
   onClick: () => any,
   children: any,
   motionStyle: MotionStyle,
-  ...any
+  ...any,
 };
 
 type State = any;
 // #endregion
 
-
 class BackToTopButton extends PureComponent<Props, State> {
   static defaultProps = {
-    position: 'bottom-right'
+    position: 'bottom-right',
   };
 
   // #region lifecycle
   render() {
-    const {
-      onClick,
-      position,
-      children,
-      motionStyle
-    } = this.props;
+    const { onClick, position, children, motionStyle } = this.props;
 
-    const buttonStyle = this.setPosition(position, {...motionStyle, ...defaultStyle});
+    const buttonStyle = this.setPosition(position, {
+      ...motionStyle,
+      ...defaultStyle,
+    });
 
     return (
       <button
         style={buttonStyle}
         className={cx({
-          'btn': true
+          btn: true,
         })}
-        onClick={onClick}>
-        {
-          !children &&
-            <div style={{marginRight: '0px'}}>
-              <i
-                style={{color: '#F1F1F1'}}
-                className="fa fa-arrow-up"
-                aria-hidden="true"
-              />
-            </div>
-        }
-        {
-          !!children &&
-            children
-        }
+        onClick={onClick}
+      >
+        {!children && (
+          <div style={{ marginRight: '0px' }}>
+            <i
+              style={{ color: '#F1F1F1' }}
+              className="fa fa-arrow-up"
+              aria-hidden="true"
+            />
+          </div>
+        )}
+        {!!children && children}
       </button>
     );
   }
@@ -102,23 +94,23 @@ class BackToTopButton extends PureComponent<Props, State> {
   // #region compute button style depending parametized position prop
   setPosition(
     position: Position = 'bottom-right',
-    refStyle: ComponentStyle = defaultStyle
+    refStyle: ComponentStyle = defaultStyle,
   ): ComponentStyle {
-    const style = {...refStyle};
+    const style = { ...refStyle };
 
     switch (position) {
-    case 'bottom-right':
-      style.right = sideOffset;
-      style.left  = '';
-      return style;
+      case 'bottom-right':
+        style.right = sideOffset;
+        style.left = '';
+        return style;
 
-    case 'bottom-left':
-      style.right = '';
-      style.left  = sideOffset;
-      return style;
+      case 'bottom-left':
+        style.right = '';
+        style.left = sideOffset;
+        return style;
 
-    default:
-      return refStyle;
+      default:
+        return refStyle;
     }
   }
   // #endregion

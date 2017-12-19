@@ -2,20 +2,20 @@
 
 // #region imports
 import React, {
-  PureComponent
-}                             from 'react';
-import Router                 from 'next/router';
+  PureComponent,
+} from 'react';
+import Router from 'next/router';
 import {
   compose,
-  bindActionCreators
-}                             from 'redux';
-import withRedux              from 'next-redux-wrapper';
-import Button                 from 'material-ui/Button';
-import Typography             from 'material-ui/Typography';
-import { withStyles }         from 'material-ui/styles';
-import withRoot               from '../HOC/withRoot';
-import Layout                 from '../components/layout/Layout';
-import configureStore         from '../redux/store/configureStore';
+  bindActionCreators,
+} from 'redux';
+import withRedux from 'next-redux-wrapper';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
+import withRoot from '../HOC/withRoot';
+import Layout from '../components/layout/Layout';
+import configureStore from '../redux/store/configureStore';
 // #endregion
 
 // #region flow types
@@ -27,7 +27,7 @@ type InitialProps = {
   asPath: string,
   isServer: boolean,
   store?: any,
-  ...any
+  ...any,
 };
 
 type Props = {
@@ -36,39 +36,38 @@ type Props = {
   // initialProps
   pathname: string,
 
-  ...any
+  ...any,
 };
 
 type State = {
-  ...any
+  ...any,
 };
 // #endregion
 
 // #region styles
 const styles = theme => ({
-  // to add 
+  // to add
 });
 // #endregion
 
-class About extends PureComponent<Props, State> {
+class About extends PureComponent<
+  Props,
+  State,
+> {
   // #region next initialProps
-  static getInitialProps(
-    { pathname }: InitialProps
-  ) {
+  static getInitialProps({
+    pathname,
+  }: InitialProps) {
     return { pathname };
   }
   // #endregion
-  
+
   // #region component lifecycle methods
   render() {
-    const {
-      pathname
-    } = this.props;
+    const { pathname } = this.props;
 
     return (
-      <Layout
-        pathname={pathname}
-      >
+      <Layout pathname={pathname}>
         <Typography
           type="display1"
           gutterBottom
@@ -99,23 +98,23 @@ class About extends PureComponent<Props, State> {
   };
 }
 
-
 // #region redux state and dispatch map to props
 const mapStateToProps = (
-  state: any
+  state: any,
 ) => ({
   // to define
 });
 
 const mapDispatchToProps = (
-  dispatch: (...any) => any
+  dispatch: (...any) => any,
 ) => {
   return {
     ...bindActionCreators(
       {
         // to define
       },
-      dispatch)
+      dispatch,
+    ),
   };
 };
 // #endregion
@@ -127,8 +126,8 @@ const ComposedAbout = compose(
   withRedux(
     configureStore,
     mapStateToProps,
-    mapDispatchToProps
-  )
+    mapDispatchToProps,
+  ),
 )(About);
 // #endregion
 

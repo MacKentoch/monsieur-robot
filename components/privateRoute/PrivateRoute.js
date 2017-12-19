@@ -1,47 +1,43 @@
 // @flow
 
 // #region imports
-import React, {
-  PureComponent
-}                         from 'react';
-import Router             from 'next/router';
-import auth               from '../../services/auth';
+import React, { PureComponent } from 'react';
+import Router from 'next/router';
+import auth from '../../services/auth';
 // #endregion
 
 // #region flow types
 type Props = {
   fromPath: string,
-  children: React$Node
-}
+  children: React$Node,
+};
 
 type State = {
-  checkDone: boolean
+  checkDone: boolean,
 };
 // #endregion
 
 class Private extends PureComponent<Props, State> {
   // #region initializations
   static defaultProps = {
-    fromPath: '/'
+    fromPath: '/',
   };
 
   state = {
-    checkDone: false
+    checkDone: false,
   };
   // #endregion
 
   // #region component lifecycle methods
   componentDidMount() {
-    const {
-      fromPath
-    } = this.props;
+    const { fromPath } = this.props;
 
     const userIsAuthenticated = this.isAuthenticated();
-    const userTokenExpired =this.isExpired();
+    const userTokenExpired = this.isExpired();
 
     const RoutePayload = {
       pathname: '/login',
-      query: { from: fromPath }
+      query: { from: fromPath },
     };
 
     if (!userIsAuthenticated) {
@@ -63,11 +59,7 @@ class Private extends PureComponent<Props, State> {
     //   return null;
     // }
 
-    return (
-      <div>
-        {children}
-      </div>
-    );
+    return <div>{children}</div>;
   }
   // #endregion
 
@@ -77,9 +69,10 @@ class Private extends PureComponent<Props, State> {
 
   // #region authentication check methods
   isAuthenticated(): boolean {
-    const checkUserHasId  = user => ((user && user.id) || null);
-    const user            = auth.getUserInfo() ? auth.getUserInfo() : null;
-    const isAuthenticated = auth.getToken() && checkUserHasId(user) ? true : false;
+    const checkUserHasId = user => (user && user.id) || null;
+    const user = auth.getUserInfo() ? auth.getUserInfo() : null;
+    const isAuthenticated =
+      auth.getToken() && checkUserHasId(user) ? true : false;
     return isAuthenticated;
   }
 

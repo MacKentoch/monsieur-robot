@@ -1,6 +1,5 @@
 // @flow
 
-
 const styles = theme => ({
   cardContainer: {
     display: 'flex',

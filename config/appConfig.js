@@ -6,7 +6,7 @@ const AppConfig = {
 
   // API
   api: {
-    fakeEndPoint: 'api/somewhere'
+    fakeEndPoint: 'api/somewhere',
   },
 
   // navigation
@@ -14,14 +14,29 @@ const AppConfig = {
     // tab navigation
     tabMenu: [
       { id: '/', label: 'Home', link: '/', pageTitle: 'The Fides Project' },
-      { id: '/about', label: 'About Fides', link: '/about', pageTitle: 'About Fides Project'  },
-      { id: '/blog', label: 'Blog', link: '/blog', pageTitle: 'Blog'  }, // index is blog
-      { id: '/newsletter', label: 'Newsletter', link: '/newsletter', pageTitle: 'Newsletter'  },
-      { id: '/press', label: 'Press', link: '/press', pageTitle: 'Press'  },
-      { id: '/contact', label: 'Contact', link: '/contact', pageTitle: 'Contact'  },
+      {
+        id: '/about',
+        label: 'About Fides',
+        link: '/about',
+        pageTitle: 'About Fides Project',
+      },
+      { id: '/blog', label: 'Blog', link: '/blog', pageTitle: 'Blog' }, // index is blog
+      {
+        id: '/newsletter',
+        label: 'Newsletter',
+        link: '/newsletter',
+        pageTitle: 'Newsletter',
+      },
+      { id: '/press', label: 'Press', link: '/press', pageTitle: 'Press' },
+      {
+        id: '/contact',
+        label: 'Contact',
+        link: '/contact',
+        pageTitle: 'Contact',
+      },
     ],
-    defautTabMenuId: ''
-  }
+    defautTabMenuId: '',
+  },
 };
 
 export default AppConfig;

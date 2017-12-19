@@ -1,22 +1,22 @@
 // @flow
 
 // #region imports
-import React                  from 'react';
+import React from 'react';
 import Document, {
   Head,
   Main,
-  NextScript
-}                             from 'next/document';
-import JssProvider            from 'react-jss/lib/JssProvider';
-import getContext             from '../styles/getContext';
+  NextScript,
+} from 'next/document';
+import JssProvider from 'react-jss/lib/JssProvider';
+import getContext from '../styles/getContext';
 // #endregion
 
 // #region flow types
 type Props = {
-  ...any
+  ...any,
 };
 
-type State = any
+type State = any;
 
 type InitialProps = {
   req: any,
@@ -26,13 +26,18 @@ type InitialProps = {
   asPath: string,
   isServer: boolean,
   store?: any,
-  ...any
-}
+  ...any,
+};
 // #endregion
 
-class RootDocument extends Document<Props, State> {
+class RootDocument extends Document<
+  Props,
+  State,
+> {
   // #region props initialization
-  static async getInitialProps(initProps: InitialProps) {
+  static async getInitialProps(
+    initProps: InitialProps,
+  ) {
     // Resolution order
     //
     // On the server:
@@ -52,15 +57,17 @@ class RootDocument extends Document<Props, State> {
 
     // Get the context to collected side effects.
     const context = getContext();
-    const page    = initProps.renderPage(
+    const page = initProps.renderPage(
       Component => props => (
         <JssProvider
-          registry={context.sheetsRegistry}
+          registry={
+            context.sheetsRegistry
+          }
           jss={context.jss}
         >
           <Component {...props} />
         </JssProvider>
-      )
+      ),
     );
 
     return {
@@ -70,9 +77,11 @@ class RootDocument extends Document<Props, State> {
         <style
           id="jss-server-side"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: context.sheetsRegistry.toString() }}
+          dangerouslySetInnerHTML={{
+            __html: context.sheetsRegistry.toString(),
+          }}
         />
-      )
+      ),
     };
   }
   // #endregion
@@ -83,26 +92,74 @@ class RootDocument extends Document<Props, State> {
       <html lang="en" dir="ltr">
         <Head>
           <title>Monsieur Robot</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+          />
           <meta charSet="utf-8" />
 
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+          />
 
-          <meta name="application-name" content="monsieur-robot" />
-          <link rel="manifest" href="static/manifest.json" />
+          <meta
+            name="application-name"
+            content="monsieur-robot"
+          />
+          <link
+            rel="manifest"
+            href="static/manifest.json"
+          />
 
-          <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png" />
-          <meta name="theme-color" content="#00897b" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="static/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="static/favicon-16x16.png"
+          />
+          <meta
+            name="theme-color"
+            content="#00897b"
+          />
 
-          <link rel="mask-icon" href="static/safari-pinned-tab.svg" color="#00897b" />
-          <meta name="apple-mobile-web-app-title" content="M. robot" />
-          <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png" />
-          <link rel="apple-touch-startup-image" href="static/apple-touch-icon.png" />
-          <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="apple-mobile-web-app-title" content="M. robot" />
+          <link
+            rel="mask-icon"
+            href="static/safari-pinned-tab.svg"
+            color="#00897b"
+          />
+          <meta
+            name="apple-mobile-web-app-title"
+            content="M. robot"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="static/apple-touch-icon.png"
+          />
+          <link
+            rel="apple-touch-startup-image"
+            href="static/apple-touch-icon.png"
+          />
+          <meta
+            name="apple-mobile-web-app-capable"
+            content="yes"
+          />
+          <meta
+            name="apple-mobile-web-app-title"
+            content="M. robot"
+          />
           {/* <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> */}
-          <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black"
+          />
           <style>{`
             {/* next js fix for div surrounding #__next */}
             html,

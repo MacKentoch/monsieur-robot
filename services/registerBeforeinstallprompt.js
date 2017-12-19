@@ -8,12 +8,12 @@
 if (process.env.NODE_ENV === 'production') {
   module.exports = async () => {
     if (typeof window !== 'undefined') {
-      window.addEventListener('beforeinstallprompt', async (e) => {
+      window.addEventListener('beforeinstallprompt', async e => {
         // beforeinstallprompt Event fired
         try {
           // e.userChoice will return a Promise.
           const choiceResult = await e.userChoice;
-          if(choiceResult.outcome === 'dismissed') {
+          if (choiceResult.outcome === 'dismissed') {
             /* eslint-disable no-console */
             console.log('User cancelled home screen install');
             /* eslint-enable no-console */
@@ -24,7 +24,10 @@ if (process.env.NODE_ENV === 'production') {
           }
         } catch (error) {
           /* eslint-disable no-console */
-          console.error('user choice prompt promise failed to resolve, error: ', error);
+          console.error(
+            'user choice prompt promise failed to resolve, error: ',
+            error,
+          );
           /* eslint-enable no-console */
         }
       });
