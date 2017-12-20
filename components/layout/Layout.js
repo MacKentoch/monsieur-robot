@@ -7,17 +7,14 @@ import { connect } from 'react-redux';
 import Link from 'next/link';
 import Router from 'next/router';
 import cx from 'classnames';
-// import Router                 from 'next/router';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
-// import Button                 from 'material-ui/Button';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Avatar from 'material-ui/Avatar';
-// import Hidden                 from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import Search from 'material-ui-icons/Search';
 import MenuIcon from 'material-ui-icons/Menu';
@@ -25,7 +22,7 @@ import NavMenus from '../navigationMenu/NavigationMenu';
 import styles from './styles';
 import appConfig from '../../config/appConfig';
 import TabContainer from './TabContainer';
-// import BackToTop              from '../backToTop/BackToTop';
+// import BackToTop from '../backToTop/BackToTop';
 // #endregion
 
 // #region flow types
