@@ -55,7 +55,7 @@ const styles = theme => ({
     boxShadow: theme.shadows[0],
   },
   tabsFixed: {
-    zIndex: 1000,
+    zIndex: 1400,
     position: 'fixed',
     marginTop: 56 - 1, // removing 1 px: fixing mobile render delta
     width: '100%',
@@ -81,11 +81,16 @@ const styles = theme => ({
     },
   },
   drawer: {
+    height: '100%',
+    backgroundColor: 'transparent',
     marginTop: 56 + 160 + 48 + 10,
     [theme.breakpoints.down('sm')]: {
       height: 'calc(100% - 64px - 48px)',
       marginTop: 64 + 160 + 48 + 10,
     },
+  },
+  drawerMenu: {
+    backgroundColor: 'transparent',
   },
   avatarContainer: {
     display: 'flex',

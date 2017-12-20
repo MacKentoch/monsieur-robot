@@ -11,6 +11,7 @@ import HomeIcon from 'material-ui-icons/Home';
 import ArticleIcon from 'material-ui-icons/Subject';
 import PressIcon from 'material-ui-icons/LocalSee';
 import ContactIcon from 'material-ui-icons/PermContactCalendar';
+import classes from './styles';
 // #endregion
 
 // #region flow types
