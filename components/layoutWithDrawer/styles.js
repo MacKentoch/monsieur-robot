@@ -89,9 +89,6 @@ const styles = theme => ({
       marginTop: 64 + 160 + 48 + 20,
     },
   },
-  drawerMenu: {
-    backgroundColor: 'transparent',
-  },
   avatarContainer: {
     display: 'flex',
     flexBasis: 'auto',
@@ -107,6 +104,8 @@ const styles = theme => ({
     margin: '0 10px',
   },
   drawerPaper: {
+    backgroundColor: 'transparent',
+    borderRight: 'none',
     width: 250,
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
