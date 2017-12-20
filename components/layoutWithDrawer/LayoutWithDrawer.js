@@ -59,7 +59,7 @@ type State = {
 const { tabMenu, defautTabMenuId } = appConfig.navigation;
 // #endregion
 
-class Layout extends PureComponent<Props, State> {
+class LayoutWithDrawer extends PureComponent<Props, State> {
   // #region state initialization
   state = {
     mobileOpen: false,
@@ -303,9 +303,9 @@ const mapDispatchToProps = (dispatch: (...any) => any) => {
 };
 // #endregion
 
-const ComposedLayout = compose(
+const ComposedLayoutWithDrawer = compose(
   withStyles(styles, { withTheme: true }),
   connect(mapStateToProps, mapDispatchToProps),
-)(Layout);
+)(LayoutWithDrawer);
 
-export default ComposedLayout;
+export default ComposedLayoutWithDrawer;

@@ -9,7 +9,7 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../HOC/withRoot';
-import Layout from '../components/layout/Layout';
+import Layout from '../components/layoutWithDrawer/LayoutWithDrawer';
 import configureStore from '../redux/store/configureStore';
 // #endregion
 
