@@ -103,6 +103,11 @@ const styles = theme => ({
     justifyContent: 'flex-start',
     margin: '0 10px',
   },
+  drawerMenuTitle: {
+    paddingLeft: '16px',
+    paddingRight: '16px',
+    fontWeight: '500',
+  },
   drawerPaper: {
     backgroundColor: 'transparent',
     borderRight: 'none',

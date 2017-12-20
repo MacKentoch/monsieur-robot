@@ -112,7 +112,13 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
 
     const drawer = (
       <div className={classes.drawer}>
-        <Divider />
+        <Typography
+          className={classes.drawerMenuTitle}
+          type="subheading"
+          gutterBottom
+        >
+          Main menu
+        </Typography>
         <NavMenus />
         <Divider />
       </div>
