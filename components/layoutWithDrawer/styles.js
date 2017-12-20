@@ -81,12 +81,12 @@ const styles = theme => ({
     },
   },
   drawer: {
-    height: '100%',
+    height: '100vh',
     backgroundColor: 'transparent',
-    marginTop: 56 + 160 + 48 + 10,
+    marginTop: 56 + 160 + 48 + 20,
     [theme.breakpoints.down('sm')]: {
       height: 'calc(100% - 64px - 48px)',
-      marginTop: 64 + 160 + 48 + 10,
+      marginTop: 64 + 160 + 48 + 20,
     },
   },
   drawerMenu: {
