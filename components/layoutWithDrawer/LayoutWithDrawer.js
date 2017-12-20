@@ -128,19 +128,39 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <AppBar className={classes.appBar}>
+          <AppBar className={classes.appBar} elevation={0}>
             <Toolbar>
+              {/* burger menu */}
               <IconButton
                 color="contrast"
                 aria-label="open drawer"
                 onClick={this.handleDrawerToggle}
-                className={classes.navIconHide}
+                // className={classes.navIconHide}
               >
                 <MenuIcon />
               </IconButton>
+
+              {/* title */}
               <Typography type="title" color="inherit" noWrap>
-                Responsive drawer
+                Monsieur Robot
               </Typography>
+
+              {/* a filler */}
+              <div className={classes.flexible} />
+
+              {/* right actions */}
+              <div>
+                <Link prefetch href={'/login'} passHref>
+                  <IconButton
+                    aria-owns={open ? 'menu-appbar' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleOnSearch}
+                    color="contrast"
+                  >
+                    <Search />
+                  </IconButton>
+                </Link>
+              </div>
             </Toolbar>
           </AppBar>
           <Hidden mdUp>
@@ -170,11 +190,48 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
               {drawer}
             </Drawer>
           </Hidden>
-          <main className={classes.content}>
-            <Typography noWrap>
-              {'You think water moves fast? You should see ice.'}
+          <div
+            className={cx({
+              [classes.topTitle]: true,
+            })}
+          >
+            <Typography type="display3" gutterBottom color="#FFFFFF">
+              <span
+                className={cx({
+                  [classes.show]: !fadeTitleContainer,
+                  [classes.hide]: fadeTitleContainer,
+                })}
+                style={{ color: '#FFFFFF' }}
+              >
+                {pageTitle}
+              </span>
             </Typography>
-          </main>
+          </div>
+          <Tabs
+            className={cx({
+              [classes.tabs]: !toggleTopNavClasses,
+              [classes.tabsFixed]: toggleTopNavClasses,
+            })}
+            value={currentTab}
+            onChange={this.handleOnTabChange}
+            fullWidth={false}
+            indicatorColor="#FFF"
+            scrollable
+            scrollButtons="auto"
+          >
+            {tabMenu.map(({ id, label }, menuIdx: number) => (
+              <Tab key={`tab-menu-${id}-${menuIdx}`} value={id} label={label} />
+            ))}
+          </Tabs>
+          <TabContainer>
+            <main id="appContainer" className={classes.content}>
+              {children}
+            </main>
+          </TabContainer>
+          {/* <BackToTop
+            minScrollY={40}
+            scrollTo={'appContainer'}
+          /> */}
         </div>
       </div>
     );
