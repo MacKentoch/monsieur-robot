@@ -111,12 +111,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
     } = this.state;
 
     const drawer = (
-      <div>
-        <div className={classes.drawerHeader}>
-          <div className={classes.avatarContainer}>
-            <Avatar src="/static/images/fsociety-avatar.jpg" size="40px" />
-          </div>
-        </div>
+      <div className={classes.drawer}>
         <Divider />
         <NavMenus />
         <Divider />

@@ -16,20 +16,13 @@ const styles = theme => ({
     height: '100%',
   },
   appBar: {
-    // position: 'absolute',
-    // marginLeft: drawerWidth,
-    // [theme.breakpoints.up('md')]: {
-    //   width: `calc(100% - ${drawerWidth}px)`,
-    // },
+    zIndex: 1500,
     position: 'fixed',
     width: '100%',
     backgroundColor: theme.palette.primary[600],
-    [theme.breakpoints.up('md')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-    },
   },
   topTitle: {
-    zIndex: 1001,
+    zIndex: 1400,
     opacity: 1,
     backgroundColor: theme.palette.primary[600],
     position: 'absolute',
@@ -49,7 +42,7 @@ const styles = theme => ({
     },
   },
   tabs: {
-    zIndex: 1000,
+    zIndex: 1400,
     position: 'absolute',
     marginTop: 56 + 160 - 1, // removing 1 px: fixing mobile render delta
     width: '100%',
@@ -87,9 +80,12 @@ const styles = theme => ({
       display: 'none',
     },
   },
-  drawerHeader: {
-    ...theme.mixins.toolbar,
-    backgroundColor: theme.palette.primary[600], // '#111',
+  drawer: {
+    marginTop: 56 + 160 + 48 + 10,
+    [theme.breakpoints.down('sm')]: {
+      height: 'calc(100% - 64px - 48px)',
+      marginTop: 64 + 160 + 48 + 10,
+    },
   },
   avatarContainer: {
     display: 'flex',
