@@ -23,7 +23,7 @@ type State = {
 };
 // #endregion
 
-class Menus extends PureComponent<Props, State> {
+class NavigationMenu extends PureComponent<Props, State> {
   render() {
     return (
       <div>
@@ -88,4 +88,4 @@ class Menus extends PureComponent<Props, State> {
   }
 }
 
-export default Menus;
+export default NavigationMenu;
