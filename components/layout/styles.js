@@ -116,6 +116,12 @@ const styles = theme => ({
     height: '100%',
     width: 250,
   },
+  drawerMenuTitle: {
+    marginTop: '20px',
+    paddingLeft: '16px',
+    paddingRight: '16px',
+    fontWeight: '500',
+  },
   flexible: {
     flex: 1,
   },

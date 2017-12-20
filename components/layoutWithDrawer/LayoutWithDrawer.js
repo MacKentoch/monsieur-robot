@@ -112,6 +112,13 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
 
     const drawer = (
       <div className={classes.drawer}>
+        <Hidden mdUp>
+          <div className={classes.drawerHeader}>
+            <div className={classes.avatarContainer}>
+              <Avatar src="/static/images/fsociety-avatar.jpg" size="40px" />
+            </div>
+          </div>
+        </Hidden>
         <Typography
           className={classes.drawerMenuTitle}
           type="subheading"

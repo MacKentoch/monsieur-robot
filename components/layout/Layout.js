@@ -116,7 +116,13 @@ class Layout extends PureComponent<Props, State> {
             <Avatar src="/static/images/fsociety-avatar.jpg" size="40px" />
           </div>
         </div>
-        <Divider />
+        <Typography
+          className={classes.drawerMenuTitle}
+          type="subheading"
+          gutterBottom
+        >
+          Main menu
+        </Typography>
         <NavMenus />
         <Divider />
       </div>

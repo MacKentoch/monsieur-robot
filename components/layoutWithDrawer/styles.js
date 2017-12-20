@@ -83,11 +83,18 @@ const styles = theme => ({
   drawer: {
     height: '100vh',
     backgroundColor: 'transparent',
-    marginTop: 56 + 160 + 48 + 20,
+    [theme.breakpoints.up('sm')]: {
+      height: 'calc(100% - 64px - 48px)',
+      marginTop: 56 + 160 + 48 + 20,
+    },
     [theme.breakpoints.down('sm')]: {
       height: 'calc(100% - 64px - 48px)',
-      marginTop: 64 + 160 + 48 + 20,
+      // marginTop: 64 + 160 + 48,
     },
+  },
+  drawerHeader: {
+    ...theme.mixins.toolbar,
+    backgroundColor: theme.palette.primary[600], // '#111',
   },
   avatarContainer: {
     display: 'flex',
@@ -104,18 +111,19 @@ const styles = theme => ({
     margin: '0 10px',
   },
   drawerMenuTitle: {
+    marginTop: '20px',
     paddingLeft: '16px',
     paddingRight: '16px',
     fontWeight: '500',
   },
   drawerPaper: {
-    backgroundColor: 'transparent',
     borderRight: 'none',
     width: 250,
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       position: 'relative',
       height: '100%',
+      backgroundColor: 'transparent',
     },
   },
   content: {
