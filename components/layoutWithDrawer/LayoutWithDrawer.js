@@ -11,6 +11,7 @@ import cx from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
+import Hidden from 'material-ui/Hidden';
 import Tabs, { Tab } from 'material-ui/Tabs';
 // import Button                 from 'material-ui/Button';
 import Toolbar from 'material-ui/Toolbar';
@@ -26,7 +27,6 @@ import styles from './styles';
 import appConfig from '../../config/appConfig';
 import TabContainer from './TabContainer';
 // import BackToTop              from '../backToTop/BackToTop';
-import * as userAuthActions from '../../redux/modules/userAuth';
 // #endregion
 
 // #region flow types
@@ -128,91 +128,53 @@ class Layout extends PureComponent<Props, State> {
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <AppBar className={classes.appBar} elevation={0}>
+          <AppBar className={classes.appBar}>
             <Toolbar>
-              {/* burger menu */}
               <IconButton
                 color="contrast"
                 aria-label="open drawer"
                 onClick={this.handleDrawerToggle}
-                // className={classes.navIconHide}
+                className={classes.navIconHide}
               >
                 <MenuIcon />
               </IconButton>
-
-              {/* title */}
               <Typography type="title" color="inherit" noWrap>
-                Monsieur Robot
+                Responsive drawer
               </Typography>
-
-              {/* a filler */}
-              <div className={classes.flexible} />
-
-              {/* right actions */}
-              <div>
-                <Link prefetch href={'/login'} passHref>
-                  <IconButton
-                    aria-owns={open ? 'menu-appbar' : null}
-                    aria-haspopup="true"
-                    onClick={this.handleOnSearch}
-                    color="contrast"
-                  >
-                    <Search />
-                  </IconButton>
-                </Link>
-              </div>
             </Toolbar>
           </AppBar>
-          <Drawer
-            // type="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={this.state.mobileOpen}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            onRequestClose={this.handleDrawerToggle}
-            // ModalProps={{
-            //   keepMounted: true, // Better open performance on mobile.
-            // }}
-          >
-            {drawer}
-          </Drawer>
-          <div
-            className={cx({
-              [classes.topTitle]: true,
-            })}
-          >
-            <Typography type="display3" gutterBottom color="#FFFFFF">
-              <span
-                className={cx({
-                  [classes.show]: !fadeTitleContainer,
-                  [classes.hide]: fadeTitleContainer,
-                })}
-                style={{ color: '#FFFFFF' }}
-              >
-                {pageTitle}
-              </span>
+          <Hidden mdUp>
+            <Drawer
+              type="temporary"
+              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+              open={this.state.mobileOpen}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              onClose={this.handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+          <Hidden mdDown implementation="css">
+            <Drawer
+              type="permanent"
+              open
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+          <main className={classes.content}>
+            <Typography noWrap>
+              {'You think water moves fast? You should see ice.'}
             </Typography>
-          </div>
-          <Tabs
-            className={cx({
-              [classes.tabs]: !toggleTopNavClasses,
-              [classes.tabsFixed]: toggleTopNavClasses,
-            })}
-            value={currentTab}
-            onChange={this.handleOnTabChange}
-            fullWidth={false}
-            indicatorColor="#FFF"
-            scrollable
-            scrollButtons="auto"
-          >
-            {tabMenu.map(({ id, label }, menuIdx: number) => (
-              <Tab key={`tab-menu-${id}-${menuIdx}`} value={id} label={label} />
-            ))}
-          </Tabs>
-          <TabContainer>
-            <main className={classes.content}>{children}</main>
-          </TabContainer>
+          </main>
         </div>
       </div>
     );
@@ -303,8 +265,6 @@ class Layout extends PureComponent<Props, State> {
   handleOnTabChange = (event: SyntheticEvent<>, value: any) => {
     const selectedTab = tabMenu.find(tab => tab.id === value);
     this.setState({ currentTab: selectedTab.id });
-    {
-    }
     Router.push(selectedTab.link);
   };
   // #endregion
@@ -328,18 +288,14 @@ class Layout extends PureComponent<Props, State> {
 
 // #region redux state and dispatch map to props
 const mapStateToProps = (state: any) => ({
-  // userAuth:
-  isAuthenticated: state.userAuth.isAuthenticated,
-  isFetching: state.userAuth.isFetching,
-  isLogging: state.userAuth.isLogging,
+  // to add if needed
 });
 
 const mapDispatchToProps = (dispatch: (...any) => any) => {
   return {
     ...bindActionCreators(
       {
-        // userAuth:
-        ...userAuthActions,
+        // to add if needed
       },
       dispatch,
     ),
