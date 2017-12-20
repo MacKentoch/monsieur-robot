@@ -21,7 +21,7 @@ import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import Search from 'material-ui-icons/Search';
 import MenuIcon from 'material-ui-icons/Menu';
-import NavMenus from './NavMenus';
+import NavMenus from '../navigationMenu/NavigationMenu';
 import styles from './styles';
 import appConfig from '../../config/appConfig';
 import TabContainer from './TabContainer';

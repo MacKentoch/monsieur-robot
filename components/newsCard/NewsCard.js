@@ -10,9 +10,10 @@ import Card, {
   CardContent,
   CardActions,
 } from 'material-ui/Card';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import classes from './styles';
+import styles from './styles';
 import { Tweet } from 'react-twitter-widgets';
 // #endregion
 
@@ -39,12 +40,12 @@ class NewsCard extends PureComponent<Props, State> {
 
   // #region lifecycle
   render() {
-    const { id, title, subtitle, sumUp, showSumUp } = this.props;
+    const { id, title, subtitle, sumUp, showSumUp, classes } = this.props;
 
     const mockTweetId = '939235471942615040';
 
     return (
-      <Card className={classes.cardContainer}>
+      <Card>
         <CardContent className={classes.content}>
           <Typography type="headline">{title}</Typography>
 
@@ -71,4 +72,4 @@ class NewsCard extends PureComponent<Props, State> {
   }
 }
 
-export default NewsCard;
+export default withStyles(styles, { withTheme: true })(NewsCard);
