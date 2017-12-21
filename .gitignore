@@ -16,6 +16,7 @@ Desktop.ini
 node_modules
 *.log
 *.gz
+package-lock.json
 
 # intelliJ
 .idea/
@@ -25,3 +26,6 @@ coverage
 
 # next
 .next/
+
+#server private
+server/config/private*

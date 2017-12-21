@@ -35,7 +35,7 @@ class AboutMenus extends PureComponent<Props, State> {
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary={'Home'} />
+            <ListItemText primary={'About menu 1'} />
           </ListItem>
         </Link>
         {/* About  */}
@@ -44,7 +44,7 @@ class AboutMenus extends PureComponent<Props, State> {
             <ListItemIcon>
               <InfoIcon />
             </ListItemIcon>
-            <ListItemText primary={'About Fides'} />
+            <ListItemText primary={'About menu 2'} />
           </ListItem>
         </Link>
         {/* Blog */}
@@ -62,8 +62,7 @@ class AboutMenus extends PureComponent<Props, State> {
             <ListItemIcon>
               <MailOutlineIcon />
             </ListItemIcon>
-
-            <ListItemText primary={'Newsletter'} />
+            <ListItemText primary={'About menu 3'} />
           </ListItem>
         </Link>
         {/* Press */}
@@ -72,8 +71,7 @@ class AboutMenus extends PureComponent<Props, State> {
             <ListItemIcon>
               <PressIcon />
             </ListItemIcon>
-
-            <ListItemText primary={'Press'} />
+            <ListItemText primary={'About menu 4'} />
           </ListItem>
         </Link>
         {/* Contact */}
@@ -82,7 +80,7 @@ class AboutMenus extends PureComponent<Props, State> {
             <ListItemIcon>
               <ContactIcon />
             </ListItemIcon>
-            <ListItemText primary={'Contact'} />
+            <ListItemText primary={'About menu 5'} />
           </ListItem>
         </Link>
       </div>
