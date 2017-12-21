@@ -116,6 +116,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
 
     const drawer = (
       <div className={classes.drawer}>
+        {/* drawer header (visible only on smaller screen) */}
         <Hidden mdUp>
           <div className={classes.drawerHeader}>
             <div className={classes.avatarContainer}>
@@ -123,27 +124,20 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
             </div>
           </div>
         </Hidden>
-        <Typography
-          className={classes.drawerMenuTitle}
-          type="subheading"
-          gutterBottom
-        >
-          Main menu
-        </Typography>
-        <NavMenus />
-        <Divider />
-        {
-          sceneSubMenus &&
+        {/* navigation menu (visible only on smaller screen) */}
+        <Hidden mdUp>
           <Typography
             className={classes.drawerMenuTitle}
             type="subheading"
             gutterBottom
           >
-            Main menu
+            Navigation
           </Typography>
           <NavMenus />
           <Divider />
-        }
+        </Hidden>
+        {/* specific scene menu (always visible) */}
+        {sceneSubMenus}
       </div>
     );
 

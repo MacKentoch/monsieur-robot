@@ -9,8 +9,10 @@ import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import InfoIcon from 'material-ui-icons/Info';
 import MailOutlineIcon from 'material-ui-icons/MailOutline';
 import HomeIcon from 'material-ui-icons/Home';
+import Typography from 'material-ui/Typography';
 import ArticleIcon from 'material-ui-icons/Subject';
 import PressIcon from 'material-ui-icons/LocalSee';
+import Divider from 'material-ui/Divider';
 import ContactIcon from 'material-ui-icons/PermContactCalendar';
 import styles from './styles';
 // #endregion
@@ -27,8 +29,17 @@ type State = {
 
 class AboutMenus extends PureComponent<Props, State> {
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
+        <Typography
+          className={classes.menuTitle}
+          type="subheading"
+          gutterBottom
+        >
+          Main menu (About)
+        </Typography>
         {/* Home */}
         <Link prefetch href={'/'} passHref>
           <ListItem button>
@@ -83,6 +94,7 @@ class AboutMenus extends PureComponent<Props, State> {
             <ListItemText primary={'About menu 5'} />
           </ListItem>
         </Link>
+        <Divider />
       </div>
     );
   }

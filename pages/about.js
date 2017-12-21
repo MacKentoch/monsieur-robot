@@ -9,7 +9,8 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../HOC/withRoot';
-import Layout from '../components/layoutWithDrawer/LayoutWithDrawer';
+import LayoutWithDrawer from '../components/layoutWithDrawer/LayoutWithDrawer';
+import AboutMenu from '../components/aboutMenu/AboutMenu';
 import configureStore from '../redux/store/configureStore';
 // #endregion
 
@@ -57,7 +58,7 @@ class About extends PureComponent<Props, State> {
     const { pathname } = this.props;
 
     return (
-      <Layout pathname={pathname}>
+      <LayoutWithDrawer pathname={pathname} sceneSubMenus={<AboutMenu />}>
         <Typography type="display1" gutterBottom>
           About
         </Typography>
@@ -68,7 +69,7 @@ class About extends PureComponent<Props, State> {
         <Button raised color="primary" onClick={this.handleClick}>
           Go back Home
         </Button>
-      </Layout>
+      </LayoutWithDrawer>
     );
   }
   // #endregion
