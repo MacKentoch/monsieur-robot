@@ -10,6 +10,7 @@ import withRoot from '../HOC/withRoot';
 import Layout from '../components/layout/Layout';
 import configureStore from '../redux/store/configureStore';
 import NewsCard from '../components/newsCard/NewsCard';
+import NavMenus from '../components/navigationMenu/NavigationMenu';
 import mockNews from '../mock/mockNews.json';
 import { Tweet } from 'react-twitter-widgets';
 // #endregion
@@ -79,12 +80,13 @@ class Blog extends PureComponent<Props, State> {
     const { pathname } = this.props;
 
     return (
-      <Layout pathname={pathname}>
+      <Layout pathname={pathname} navigationMenus={<NavMenus />}>
         <Grid container spacing={24}>
           <Grid
-            // key={`news-${.id}-${newsIdx}`}
             item
-            sm={8}
+            sm={
+              8 // key={`news-${.id}-${newsIdx}`}
+            }
             xs={8}
           >
             <div style={{ height: '10px' }} />

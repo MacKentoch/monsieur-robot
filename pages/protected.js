@@ -10,6 +10,7 @@ import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../HOC/withRoot';
 import Layout from '../components/layout/Layout';
+import NavMenus from '../components/navigationMenu/NavigationMenu';
 import configureStore from '../redux/store/configureStore';
 import PrivateRoute from '../components/privateRoute/PrivateRoute';
 // #endregion
@@ -74,7 +75,7 @@ class Protected extends PureComponent<Props, State> {
 
     return (
       <PrivateRoute fromPath="/protected">
-        <Layout pathname={pathname}>
+        <Layout pathname={pathname} navigationMenus={<NavMenus />}>
           <Typography type="display1">Protected</Typography>
 
           <Typography type="subheading" gutterBottom>

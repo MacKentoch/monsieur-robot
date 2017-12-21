@@ -13,6 +13,7 @@ import Typography from 'material-ui/Typography';
 import withRoot from '../HOC/withRoot';
 import Layout from '../components/layout/Layout';
 import NewsCard from '../components/newsCard/NewsCard';
+import NavMenus from '../components/navigationMenu/NavigationMenu';
 import mockNews from '../mock/mockNews.json';
 import configureStore from '../redux/store/configureStore';
 import { Tweet } from 'react-twitter-widgets';
@@ -85,7 +86,7 @@ class Index extends PureComponent<Props, State> {
     const { pathname } = this.props;
 
     return (
-      <Layout pathname={pathname}>
+      <Layout pathname={pathname} navigationMenus={<NavMenus />}>
         <Grid container spacing={24}>
           {/* left content */}
           <Grid item sm={8} xs={8}>
@@ -105,8 +106,7 @@ class Index extends PureComponent<Props, State> {
                   cupidatat non proident, sunt in culpa qui officia deserunt
                   mollit anim id est laborum.
                 </Typography>
-                <Button
-                  // raised
+                <Button // raised
                   onClick={this.routeTo('/about')}
                 >
                   learn more about the fides project
@@ -127,8 +127,7 @@ class Index extends PureComponent<Props, State> {
                   cupidatat non proident, sunt in culpa qui officia deserunt
                   mollit anim id est laborum.
                 </Typography>
-                <Button
-                  // raised
+                <Button // raised
                   onClick={this.routeTo('/getInvolved')}
                 >
                   get involved with the fides project

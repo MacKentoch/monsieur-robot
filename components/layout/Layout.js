@@ -30,6 +30,7 @@ type Props = {
   // parent:
   children: ReactNode,
   pathname: string,
+  navigationMenus: any, // navigation menus instanciated component
   // withStyle injected
   classes: any,
   theme: any,
@@ -56,6 +57,10 @@ const { tabMenu, defautTabMenuId } = appConfig.navigation;
 // #endregion
 
 class Layout extends PureComponent<Props, State> {
+  static defaultProps = {
+    navigationMenus: null,
+  };
+
   // #region state initialization
   state = {
     mobileOpen: false,
@@ -90,6 +95,8 @@ class Layout extends PureComponent<Props, State> {
 
   render() {
     const {
+      // parent:
+      navigationMenus,
       // withStyle HOC:
       classes,
       theme,
@@ -113,15 +120,7 @@ class Layout extends PureComponent<Props, State> {
             <Avatar src="/static/images/fsociety-avatar.jpg" size="40px" />
           </div>
         </div>
-        <Typography
-          className={classes.drawerMenuTitle}
-          type="subheading"
-          gutterBottom
-        >
-          Main menu
-        </Typography>
-        <NavMenus />
-        <Divider />
+        {navigationMenus}
       </div>
     );
 
