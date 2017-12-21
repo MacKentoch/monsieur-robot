@@ -128,18 +128,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
           </div>
         </Hidden>
         {/* navigation menu (visible only on smaller screen) */}
-        <Hidden mdUp>
-          {navigationMenus}
-          <Typography
-            className={classes.drawerMenuTitle}
-            type="subheading"
-            gutterBottom
-          >
-            Navigation
-          </Typography>
-          <NavMenus />
-          <Divider />
-        </Hidden>
+        <Hidden mdUp>{navigationMenus}</Hidden>
         {/* specific scene menu (always visible) */}
         {sceneSubMenus}
       </div>
