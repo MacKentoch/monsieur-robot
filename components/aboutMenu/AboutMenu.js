@@ -19,6 +19,9 @@ import styles from './styles';
 
 // #region flow types
 type Props = {
+  // from withStyle HOC:
+  classes: any,
+
   ...any,
 };
 

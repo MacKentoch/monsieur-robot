@@ -10,6 +10,7 @@ import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../HOC/withRoot';
 import LayoutWithDrawer from '../components/layoutWithDrawer/LayoutWithDrawer';
+import NavigationMenu from '../components/navigationMenu/NavigationMenu';
 import AboutMenu from '../components/aboutMenu/AboutMenu';
 import configureStore from '../redux/store/configureStore';
 // #endregion
@@ -58,7 +59,11 @@ class About extends PureComponent<Props, State> {
     const { pathname } = this.props;
 
     return (
-      <LayoutWithDrawer pathname={pathname} sceneSubMenus={<AboutMenu />}>
+      <LayoutWithDrawer
+        pathname={pathname}
+        sceneSubMenus={<AboutMenu />}
+        navigationMenus={<NavigationMenu />}
+      >
         <Typography type="display1" gutterBottom>
           About
         </Typography>

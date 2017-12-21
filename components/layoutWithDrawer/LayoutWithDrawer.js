@@ -31,7 +31,8 @@ type Props = {
   // parent:
   children: ReactNode,
   pathname: string,
-  sceneSubMenus: any,
+  navigationMenus: any, // navigation menus instanciated component
+  sceneSubMenus: any, // scene specific menus instanciated component
   // withStyle injected
   classes: any,
   theme: any,
@@ -60,6 +61,7 @@ const { tabMenu, defautTabMenuId } = appConfig.navigation;
 class LayoutWithDrawer extends PureComponent<Props, State> {
   static defaultProps = {
     sceneSubMenus: null,
+    navigationMenus: null,
   };
 
   // #region state initialization
@@ -98,6 +100,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
     const {
       // parent:
       sceneSubMenus,
+      navigationMenus,
       // withStyle HOC:
       classes,
       theme,
@@ -126,6 +129,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
         </Hidden>
         {/* navigation menu (visible only on smaller screen) */}
         <Hidden mdUp>
+          {navigationMenus}
           <Typography
             className={classes.drawerMenuTitle}
             type="subheading"

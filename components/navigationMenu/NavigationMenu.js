@@ -10,13 +10,18 @@ import InfoIcon from 'material-ui-icons/Info';
 import MailOutlineIcon from 'material-ui-icons/MailOutline';
 import HomeIcon from 'material-ui-icons/Home';
 import ArticleIcon from 'material-ui-icons/Subject';
+import Typography from 'material-ui/Typography';
 import PressIcon from 'material-ui-icons/LocalSee';
+import Divider from 'material-ui/Divider';
 import ContactIcon from 'material-ui-icons/PermContactCalendar';
 import styles from './styles';
 // #endregion
 
 // #region flow types
 type Props = {
+  // from withStyle HOC:
+  classes: any,
+
   ...any,
 };
 
@@ -27,8 +32,17 @@ type State = {
 
 class NavigationMenu extends PureComponent<Props, State> {
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
+        <Typography
+          className={classes.menuTitle}
+          type="subheading"
+          gutterBottom
+        >
+          Navigation
+        </Typography>
         {/* Home */}
         <Link prefetch href={'/'} passHref>
           <ListItem button>
@@ -85,6 +99,7 @@ class NavigationMenu extends PureComponent<Props, State> {
             <ListItemText primary={'Contact'} />
           </ListItem>
         </Link>
+        <Divider />
       </div>
     );
   }
