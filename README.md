@@ -53,7 +53,7 @@ npm install
   Clone this repository, then install dependencies:
 
   ```bash
-  npm run start
+  npm run dev
   ```
 
 </details>
