@@ -15,10 +15,9 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Avatar from 'material-ui/Avatar';
-import Divider from 'material-ui/Divider';
+import Hidden from 'material-ui/Hidden';
 import Search from 'material-ui-icons/Search';
 import MenuIcon from 'material-ui-icons/Menu';
-import NavMenus from '../navigationMenu/NavigationMenu';
 import styles from './styles';
 import appConfig from '../../config/appConfig';
 import TabContainer from './TabContainer';
@@ -132,14 +131,16 @@ class Layout extends PureComponent<Props, State> {
           <AppBar className={classes.appBar} elevation={0}>
             <Toolbar>
               {/* burger menu */}
-              <IconButton
-                color="contrast"
-                aria-label="open drawer"
-                onClick={this.handleDrawerToggle}
-                // className={classes.navIconHide}
-              >
-                <MenuIcon />
-              </IconButton>
+              <Hidden mdUp>
+                <IconButton
+                  color="contrast"
+                  aria-label="open drawer"
+                  onClick={this.handleDrawerToggle}
+                  // className={classes.navIconHide}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Hidden>
 
               {/* title */}
               <Typography type="title" color="inherit" noWrap>

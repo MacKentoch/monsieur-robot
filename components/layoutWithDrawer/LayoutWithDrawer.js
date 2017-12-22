@@ -142,14 +142,16 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
           <AppBar className={classes.appBar} elevation={0}>
             <Toolbar>
               {/* burger menu */}
-              <IconButton
-                color="contrast"
-                aria-label="open drawer"
-                onClick={this.handleDrawerToggle}
-                // className={classes.navIconHide}
-              >
-                <MenuIcon />
-              </IconButton>
+              <Hidden mdUp>
+                <IconButton
+                  color="contrast"
+                  aria-label="open drawer"
+                  onClick={this.handleDrawerToggle}
+                  // className={classes.navIconHide}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Hidden>
 
               {/* title */}
               <Typography type="title" color="inherit" noWrap>
@@ -193,7 +195,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
           <Hidden mdDown implementation="css">
             <Drawer
               type="permanent"
-              open
+              open={this.state.mobileOpen}
               classes={{
                 paper: classes.drawerPaper,
               }}
