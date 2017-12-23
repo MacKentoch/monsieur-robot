@@ -2,11 +2,17 @@
 
 const styles = theme => ({
   root: {},
-  menuTitle: {
-    marginTop: '20px',
-    paddingLeft: '16px',
-    paddingRight: '16px',
-    fontWeight: '500',
+  breadcrumbContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  pathContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
 });
 

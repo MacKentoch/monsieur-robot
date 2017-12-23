@@ -8,12 +8,13 @@ import withRedux from 'next-redux-wrapper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import Breadcrumb from 'react-breadcrumb';
 import withRoot from '../HOC/withRoot';
 import LayoutWithDrawer from '../components/layoutWithDrawer/LayoutWithDrawer';
 import NavigationMenu from '../components/navigationMenu/NavigationMenu';
 import AboutMenu from '../components/aboutMenu/AboutMenu';
 import configureStore from '../redux/store/configureStore';
+import appConfig from '../config/appConfig';
+import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 // #endregion
 
 // #region flow types
@@ -58,6 +59,7 @@ class About extends PureComponent<Props, State> {
   // #region component lifecycle methods
   render() {
     const { pathname } = this.props;
+    const { root, sub: paths } = appConfig.navigation.about;
 
     return (
       <LayoutWithDrawer
@@ -65,6 +67,7 @@ class About extends PureComponent<Props, State> {
         sceneSubMenus={<AboutMenu />}
         navigationMenus={<NavigationMenu />}
       >
+        <Breadcrumb root={root} paths={paths} />
         <Typography type="display1" gutterBottom>
           About
         </Typography>

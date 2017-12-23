@@ -11,6 +11,16 @@ const AppConfig = {
 
   // navigation
   navigation: {
+    // about sub navigation
+    about: {
+      root: { label: 'about 1', link: '/about' },
+      sub: [
+        { label: 'about 1', link: '/about' },
+        { label: 'about 2', link: '/about' },
+        { label: 'about 3', link: '/about' },
+      ],
+    },
+
     // tab navigation
     tabMenu: [
       { id: '/', label: 'Home', link: '/', pageTitle: 'The Fides Project' },
