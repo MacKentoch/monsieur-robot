@@ -8,6 +8,7 @@ import withRedux from 'next-redux-wrapper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
+import Breadcrumb from 'react-breadcrumb';
 import withRoot from '../HOC/withRoot';
 import LayoutWithDrawer from '../components/layoutWithDrawer/LayoutWithDrawer';
 import NavigationMenu from '../components/navigationMenu/NavigationMenu';
@@ -67,7 +68,6 @@ class About extends PureComponent<Props, State> {
         <Typography type="display1" gutterBottom>
           About
         </Typography>
-
         <Typography type="subheading" gutterBottom>
           example project
         </Typography>
