@@ -7,6 +7,7 @@ import React, { PureComponent } from 'react';
 import Link from 'next/link';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
+import PlayArrow from 'material-ui-icons/PlayArrow';
 import styles from './styles';
 import Button from 'material-ui/Button';
 // #endregion
@@ -48,7 +49,8 @@ class Breadcrumb extends PureComponent<Props, State> {
         {/* sub navigation */}
         {paths.map(({ label, link }, pathIdx) => (
           <div key={`path-${pathIdx}`} className={classes.pathContainer}>
-            <Typography type="body1"> {`/ `}</Typography>
+            {/* <Typography type="body1"> {`/ `}</Typography> */}
+            <PlayArrow />
             <Button key={`path-${pathIdx}`}>
               <Link href={link}>
                 <Typography type="body1"> {label}</Typography>

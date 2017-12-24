@@ -8,6 +8,7 @@ import withRedux from 'next-redux-wrapper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
+import Divider from 'material-ui/Divider';
 import withRoot from '../HOC/withRoot';
 import LayoutWithDrawer from '../components/layoutWithDrawer/LayoutWithDrawer';
 import NavigationMenu from '../components/navigationMenu/NavigationMenu';
@@ -68,6 +69,7 @@ class About extends PureComponent<Props, State> {
         navigationMenus={<NavigationMenu />}
       >
         <Breadcrumb root={root} paths={paths} />
+
         <Typography type="display1" gutterBottom>
           About
         </Typography>

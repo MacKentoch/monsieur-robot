@@ -7,6 +7,7 @@ const styles = theme => ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    overflowX: 'scroll',
   },
   pathContainer: {
     display: 'flex',
