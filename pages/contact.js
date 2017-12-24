@@ -9,8 +9,9 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../HOC/withRoot';
-import NavMenus from '../components/navigationMenu/NavigationMenu';
-import Layout from '../components/layout/Layout';
+import NavigationMenu from '../components/navigationMenu/NavigationMenu';
+import ContactMenu from '../components/contactMenu/ContactMenu';
+import LayoutWithDrawer from '../components/layoutWithDrawer/LayoutWithDrawer';
 import configureStore from '../redux/store/configureStore';
 // #endregion
 
@@ -57,7 +58,11 @@ class Contact extends PureComponent<Props, State> {
     const { pathname } = this.props;
 
     return (
-      <Layout pathname={pathname} navigationMenus={<NavMenus />}>
+      <LayoutWithDrawer
+        pathname={pathname}
+        sceneSubMenus={<ContactMenu />}
+        navigationMenus={<NavigationMenu />}
+      >
         <Typography type="display1" gutterBottom>
           Contact
         </Typography>
@@ -68,7 +73,7 @@ class Contact extends PureComponent<Props, State> {
         <Button raised color="primary" onClick={this.handleClick}>
           Go back Home
         </Button>
-      </Layout>
+      </LayoutWithDrawer>
     );
   }
   // #endregion

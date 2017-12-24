@@ -8,7 +8,6 @@ import withRedux from 'next-redux-wrapper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-import Divider from 'material-ui/Divider';
 import withRoot from '../HOC/withRoot';
 import LayoutWithDrawer from '../components/layoutWithDrawer/LayoutWithDrawer';
 import NavigationMenu from '../components/navigationMenu/NavigationMenu';
