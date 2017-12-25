@@ -1,7 +1,7 @@
 // @flow
 
 // #region imports
-import React, { PureComponent } from 'react';
+import React, { PureComponent, SyntheticEvent } from 'react';
 // import Router                from 'next/router';
 import Link from 'next/link';
 import { withStyles } from 'material-ui/styles';
@@ -44,60 +44,54 @@ class ContactMenus extends PureComponent<Props, State> {
         >
           Main menu (Contact)
         </Typography>
+
         {/* Contact */}
-        <Link prefetch href={'/contact'} passHref>
-          <ListItem button>
-            <ListItemIcon>
-              <ContactIcon />
-            </ListItemIcon>
-            <ListItemText primary={'Contact'} />
-          </ListItem>
-        </Link>
+        <ListItem button onclick={this.scrollTo('#contactTop')}>
+          <ListItemIcon>
+            <ContactIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Contact'} />
+        </ListItem>
+
         {/* Contact  */}
-        <Link prefetch href={'/contact'} passHref>
-          <ListItem button>
-            <ListItemIcon>
-              <InfoIcon />
-            </ListItemIcon>
-            <ListItemText primary={'Contact menu 2'} />
-          </ListItem>
-        </Link>
+        <ListItem button>
+          <ListItemIcon>
+            <InfoIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Contact menu 2'} />
+        </ListItem>
+
         {/* Blog */}
-        <Link prefetch href={'/blog'} passHref>
-          <ListItem button>
-            <ListItemIcon>
-              <ArticleIcon />
-            </ListItemIcon>
-            <ListItemText primary={'Blog'} />
-          </ListItem>
-        </Link>
+        <ListItem button>
+          <ListItemIcon>
+            <ArticleIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Blog'} />
+        </ListItem>
+
         {/* NewsLetter */}
-        <Link prefetch href={'/newsletter'} passHref>
-          <ListItem button>
-            <ListItemIcon>
-              <MailOutlineIcon />
-            </ListItemIcon>
-            <ListItemText primary={'Contact menu 3'} />
-          </ListItem>
-        </Link>
+        <ListItem button>
+          <ListItemIcon>
+            <MailOutlineIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Contact menu 3'} />
+        </ListItem>
+
         {/* Press */}
-        <Link prefetch href={'/press'} passHref>
-          <ListItem button>
-            <ListItemIcon>
-              <PressIcon />
-            </ListItemIcon>
-            <ListItemText primary={'Contact menu 4'} />
-          </ListItem>
-        </Link>
+        <ListItem button>
+          <ListItemIcon>
+            <PressIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Contact menu 4'} />
+        </ListItem>
+
         {/* Contact */}
-        <Link prefetch href={'/contact'} passHref>
-          <ListItem button>
-            <ListItemIcon>
-              <ContactIcon />
-            </ListItemIcon>
-            <ListItemText primary={'Contact menu 5'} />
-          </ListItem>
-        </Link>
+        <ListItem button>
+          <ListItemIcon>
+            <ContactIcon />
+          </ListItemIcon>
+          <ListItemText primary={'Contact menu 5'} />
+        </ListItem>
         <Divider />
       </div>
     );
@@ -105,7 +99,22 @@ class ContactMenus extends PureComponent<Props, State> {
   // #endregion
 
   // #region on menu clicl : scroll to
-
+  scrollTo = (toElementId: string = null) => (event: SyntheticEvent<>) => {
+    if (event) {
+      event.preventDefault();
+    }
+    if (!toElementId) {
+      return;
+    }
+    if (!toElementId.length > 0) {
+    }
+    const startsWithSharp = toElementId.slice(0, 1) === '#';
+    const queryEl = startsWithSharp ? toElementId : `#${toElementId}`;
+    // using here "smooth scroll polyfill"
+    document.querySelector(queryEl).scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
   // #endregion
 }
 
