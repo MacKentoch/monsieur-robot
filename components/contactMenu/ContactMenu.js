@@ -6,9 +6,7 @@ import React, { PureComponent, SyntheticEvent } from 'react';
 import Link from 'next/link';
 import { withStyles } from 'material-ui/styles';
 import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import InfoIcon from 'material-ui-icons/Info';
 import MailOutlineIcon from 'material-ui-icons/MailOutline';
-import HomeIcon from 'material-ui-icons/Home';
 import Typography from 'material-ui/Typography';
 import ArticleIcon from 'material-ui-icons/Subject';
 import PressIcon from 'material-ui-icons/LocalSee';
@@ -46,51 +44,35 @@ class ContactMenus extends PureComponent<Props, State> {
         </Typography>
 
         {/* Contact */}
-        <ListItem button onclick={this.scrollTo('#contactTop')}>
+        <ListItem button onClick={this.scrollTo('')}>
           <ListItemIcon>
             <ContactIcon />
           </ListItemIcon>
           <ListItemText primary={'Contact'} />
         </ListItem>
 
-        {/* Contact  */}
-        <ListItem button>
-          <ListItemIcon>
-            <InfoIcon />
-          </ListItemIcon>
-          <ListItemText primary={'Contact menu 2'} />
-        </ListItem>
-
-        {/* Blog */}
-        <ListItem button>
+        {/* Blog (blogSection) */}
+        <ListItem button onClick={this.scrollTo('#blogSection')}>
           <ListItemIcon>
             <ArticleIcon />
           </ListItemIcon>
           <ListItemText primary={'Blog'} />
         </ListItem>
 
-        {/* NewsLetter */}
-        <ListItem button>
+        {/* NewsLetter (newsletterSection) */}
+        <ListItem button onClick={this.scrollTo('#newsletterSection')}>
           <ListItemIcon>
             <MailOutlineIcon />
           </ListItemIcon>
-          <ListItemText primary={'Contact menu 3'} />
+          <ListItemText primary={'NewsLetter'} />
         </ListItem>
 
-        {/* Press */}
-        <ListItem button>
+        {/* Press (pressSection) */}
+        <ListItem button onClick={this.scrollTo('#pressSection')}>
           <ListItemIcon>
             <PressIcon />
           </ListItemIcon>
-          <ListItemText primary={'Contact menu 4'} />
-        </ListItem>
-
-        {/* Contact */}
-        <ListItem button>
-          <ListItemIcon>
-            <ContactIcon />
-          </ListItemIcon>
-          <ListItemText primary={'Contact menu 5'} />
+          <ListItemText primary={'Press'} />
         </ListItem>
         <Divider />
       </div>
@@ -106,8 +88,11 @@ class ContactMenus extends PureComponent<Props, State> {
     if (!toElementId) {
       return;
     }
+    // no target element = go top page
     if (!toElementId.length > 0) {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     }
+    // otherwise smooth scroll to target element
     const startsWithSharp = toElementId.slice(0, 1) === '#';
     const queryEl = startsWithSharp ? toElementId : `#${toElementId}`;
     // using here "smooth scroll polyfill"

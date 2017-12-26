@@ -8,6 +8,9 @@ import withRedux from 'next-redux-wrapper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
+import FolderIcon from 'material-ui-icons/Folder';
 import withRoot from '../HOC/withRoot';
 import NavigationMenu from '../components/navigationMenu/NavigationMenu';
 import ContactMenu from '../components/contactMenu/ContactMenu';
@@ -63,9 +66,41 @@ class Contact extends PureComponent<Props, State> {
         sceneSubMenus={<ContactMenu />}
         navigationMenus={<NavigationMenu />}
       >
-        <Typography type="display1" gutterBottom>
-          Contact
-        </Typography>
+        <div id="contactSection">
+          <Typography type="display1" gutterBottom>
+            Contact
+          </Typography>
+          <List>
+            {/* support */}
+            <ListItem button>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+              <ListItemText primary="Support" />
+            </ListItem>
+            {/* twitter */}
+            <ListItem button>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+              <ListItemText primary="Twitter" />
+            </ListItem>
+            {/* discord */}
+            <ListItem button>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+              <ListItemText primary="Discord" />
+            </ListItem>
+            {/* email */}
+            <ListItem button>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+              <ListItemText primary="Email" />
+            </ListItem>
+          </List>
+        </div>
 
         <Typography type="subheading" gutterBottom>
           to add more content

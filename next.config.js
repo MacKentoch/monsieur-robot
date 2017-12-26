@@ -1,10 +1,17 @@
 // @flow
 // next.config.js (IMPORTANT: it will NOT be used in dev-with hot reload!)
-
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+
 module.exports = {
   // $FlowIgnore
-  webpack: (config) => {
+  webpack: config => {
+    // rules:
+    // config.module.rules.push({
+    //   test: /\.md$/,
+    //   use: 'raw-loader',
+    // });
+
+    // plugins:
     config.plugins.push(
       new SWPrecacheWebpackPlugin({
         verbose: true,
@@ -16,17 +23,17 @@ module.exports = {
           '/static/**/*.json',
           '/static/**/*.txt',
           '/static/**/*.svg',
-          '/static/css/**/*.css'
+          '/static/css/**/*.css',
         ],
         runtimeCaching: [
           {
             handler: 'fastest', // 'networkFirst',
-            urlPattern: /^https?.*/
-          }
-        ]
-      })
+            urlPattern: /^https?.*/,
+          },
+        ],
+      }),
     );
 
     return config;
-  }
+  },
 };
