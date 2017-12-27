@@ -53,7 +53,9 @@ async function prepareNextApplication() {
   }
 
   // #region handles service worker file request (NOTE: it won't work in dev mode but production only):
-  server.get('/sw.js', (req, res) => app.serveStatic(req, res, '.next/service-worker.js'));
+  server.get('/sw.js', (req, res) =>
+    app.serveStatic(req, res, '.next/service-worker.js'),
+  );
   // #endregion
 
   // default request handler by next handler:
@@ -63,12 +65,13 @@ async function prepareNextApplication() {
     if (err) {
       throw err;
     }
-
+    const title = chalk.bgBlue('monsieur robot');
+    const ip = chalk.green(ipAdress);
     /* eslint-disable no-console */
     console.log(`
-        =====================================================================================
-        -> Server (${chalk.bgBlue('monsieur robot')}) 🏃 (running) on ${chalk.green(ipAdress)}:${chalk.green(port)}
-        =====================================================================================
+        ===============================================================
+        -> Server (${title}) 🏃 (running) on ${ip}:${chalk.green(port)}
+        ===============================================================
       `);
     /* eslint-enable no-console */
   });
