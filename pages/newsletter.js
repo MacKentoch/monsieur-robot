@@ -11,6 +11,7 @@ import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
+import validate from 'validate.js';
 import withRoot from '../HOC/withRoot';
 import Layout from '../components/layout/Layout';
 import NavMenus from '../components/navigationMenu/NavigationMenu';
@@ -40,8 +41,11 @@ type Props = {
 type State = {
   // input fields
   firstname: string,
+  firstnameError?: string,
   lastname: string,
+  lastnameError?: string,
   email: string,
+  emailError?: string,
 
   ...any,
 };
@@ -64,19 +68,26 @@ const styles = theme => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
     maxWidth: '1200px',
+    marginTop: '30px',
   },
   formInput: {
     margin: theme.spacing.unit,
+    paddingLeft: 0,
     width: '390px',
   },
   formInputEmail: {
     margin: theme.spacing.unit,
+    paddingLeft: 0,
     width: '800px',
   },
   formInputInfoText: {
     width: '800px',
     marginTop: '20px',
-    marginBottom: '20px',
+    marginBottom: '30px',
+  },
+  formValidationMessage: {
+    color: '#D50000',
+    marginBottom: '10px',
   },
   joinButtonContainer: {
     display: 'flex',
@@ -97,26 +108,64 @@ class NewsLetter extends PureComponent<Props, State> {
   }
   // #endregion
 
+  // #region form field validation contraints
+  contraints = {
+    firstname: {
+      presence: true,
+      length: {
+        minimum: 3,
+        message: 'must be at least 3 characters',
+      },
+    },
+    lastname: {
+      presence: true,
+      length: {
+        minimum: 3,
+        message: 'must be at least 3 characters',
+      },
+    },
+    /* eslint-disable quotes */
+    email: {
+      email: {
+        message: `doesn't look like a valid email`,
+      },
+    },
+    /* eslint-enable quotes */
+  };
+  // #endregion
+
   // #region state initialization
   state = {
     // input fields
     firstname: '',
+    firstnameError: null,
+
     lastname: '',
+    lastnameError: null,
+
     email: '',
+    emailError: null,
   };
   // #endregion
 
   // #region component lifecycle methods
   render() {
     const { pathname, classes } = this.props;
-    const { firstname, lastname, email } = this.state;
+    const {
+      firstname,
+      firstnameError,
+      lastname,
+      lastnameError,
+      email,
+      emailError,
+    } = this.state;
 
     return (
       <Layout pathname={pathname} navigationMenus={<NavMenus />}>
-        <Typography type="display1" gutterBottom>
-          Signup for the Fides Project news
-        </Typography>
         <div className={classes.contentContainer}>
+          <Typography type="display1" gutterBottom>
+            Signup for the Fides Project news
+          </Typography>
           <div className={classes.nameContainer}>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="name-simple">First Name</InputLabel>
@@ -124,9 +173,12 @@ class NewsLetter extends PureComponent<Props, State> {
                 id="firstname"
                 value={firstname}
                 className={classes.formInput}
-                onChange={this.handlesInpuntChange('fistname')}
+                onChange={this.handlesInpuntChange('firstname')}
                 fullWidth
               />
+              <FormHelperText className={classes.formValidationMessage}>
+                {firstnameError}
+              </FormHelperText>
             </FormControl>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="name-simple">Last Name</InputLabel>
@@ -137,6 +189,9 @@ class NewsLetter extends PureComponent<Props, State> {
                 onChange={this.handlesInpuntChange('lastname')}
                 fullWidth
               />
+              <FormHelperText className={classes.formValidationMessage}>
+                {lastnameError}
+              </FormHelperText>
             </FormControl>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="name-simple">Email</InputLabel>
@@ -147,6 +202,9 @@ class NewsLetter extends PureComponent<Props, State> {
                 onChange={this.handlesInpuntChange('email')}
                 fullWidth
               />
+              <FormHelperText className={classes.formValidationMessage}>
+                {emailError}
+              </FormHelperText>
             </FormControl>
             <div className={classes.formInputInfoText}>
               <Typography type="body1" gutterBottom>
@@ -159,7 +217,7 @@ class NewsLetter extends PureComponent<Props, State> {
           </div>
 
           <div className={classes.joinButtonContainer}>
-            <Button raised color="primary" onClick={this.handleClick}>
+            <Button raised color="primary" onClick={this.handlesOnJoin}>
               Join
             </Button>
           </div>
@@ -173,13 +231,58 @@ class NewsLetter extends PureComponent<Props, State> {
   handlesInpuntChange = (field: string = '') => (event: SyntheticEvent<>) => {
     if (event) {
       event.preventDefault();
+
+      switch (field) {
+        case 'firstname':
+          // should add some validator before setState in real use cases
+          this.setState({ firstname: event.target.value.trim() });
+          return;
+
+        case 'lastname':
+          // should add some validator before setState in real use cases
+          this.setState({ lastname: event.target.value.trim() });
+          return;
+
+        case 'email':
+          // should add some validator before setState in real use cases
+          this.setState({ email: event.target.value.trim() });
+          return;
+
+        default:
+          return;
+      }
     }
   };
   // #endregion
 
-  handleClick = () => {
-    Router.push('/');
+  // #region on join click event
+  handlesOnJoin = () => {
+    const { firstname, lastname, email } = this.state;
+
+    // validate fields
+    const validationFailed = validate(
+      { firstname, lastname, email },
+      this.contraints,
+    );
+    if (!validationFailed) {
+      // submit
+
+      return;
+    }
+    // resests error messages
+    this.setState({
+      firstnameError: null,
+      lastnameError: null,
+      emailError: null,
+    });
+    // set errors messages for invalid fields
+    Object.keys(validationFailed).forEach(key => {
+      const error = validationFailed[key][0];
+      this.setState({ [`${key}Error`]: error });
+    });
+    return;
   };
+  // #endregion
 }
 
 // #region redux state and dispatch map to props
