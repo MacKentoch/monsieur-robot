@@ -56,32 +56,31 @@ const styles = theme => ({
   root: {},
   contentContainer: {
     display: 'flex',
-    flex: '1 0 auto',
+    flex: '1 1 auto',
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: '30px',
   },
   nameContainer: {
     display: 'flex',
-    flex: '1 0 auto',
+    flex: '1 1 auto',
     flexDirection: 'row',
     justifyContent: 'center',
     flexWrap: 'wrap',
     maxWidth: '1200px',
     marginTop: '30px',
   },
-  formInput: {
+  formControl: {
     margin: theme.spacing.unit,
-    paddingLeft: 0,
-    width: '390px',
+    display: 'flex',
+    flex: '1 1 auto',
   },
-  formInputEmail: {
-    margin: theme.spacing.unit,
-    paddingLeft: 0,
-    width: '800px',
-  },
+  formInput: {},
+  formInputEmail: {},
   formInputInfoText: {
-    width: '800px',
+    display: 'flex',
+    flex: '1 1 auto',
+    // width: '800px',
     marginTop: '20px',
     marginBottom: '30px',
   },
@@ -167,45 +166,59 @@ class NewsLetter extends PureComponent<Props, State> {
             Signup for the Fides Project news
           </Typography>
           <div className={classes.nameContainer}>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="name-simple">First Name</InputLabel>
-              <Input
-                id="firstname"
-                value={firstname}
-                className={classes.formInput}
-                onChange={this.handlesInpuntChange('firstname')}
-                fullWidth
-              />
-              <FormHelperText className={classes.formValidationMessage}>
-                {firstnameError}
-              </FormHelperText>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="name-simple">Last Name</InputLabel>
-              <Input
-                id="lastname"
-                value={lastname}
-                className={classes.formInput}
-                onChange={this.handlesInpuntChange('lastname')}
-                fullWidth
-              />
-              <FormHelperText className={classes.formValidationMessage}>
-                {lastnameError}
-              </FormHelperText>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="name-simple">Email</InputLabel>
-              <Input
-                id="email"
-                value={email}
-                className={classes.formInputEmail}
-                onChange={this.handlesInpuntChange('email')}
-                fullWidth
-              />
-              <FormHelperText className={classes.formValidationMessage}>
-                {emailError}
-              </FormHelperText>
-            </FormControl>
+            {/* first name and lastname */}
+            <Grid container spacing={24}>
+              <Grid item md={6} sm={12} xs={12}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel htmlFor="name-simple">First Name</InputLabel>
+                  <Input
+                    id="firstname"
+                    value={firstname}
+                    className={classes.formInput}
+                    onChange={this.handlesInpuntChange('firstname')}
+                    fullWidth
+                  />
+                  <FormHelperText className={classes.formValidationMessage}>
+                    {firstnameError}
+                  </FormHelperText>
+                </FormControl>
+              </Grid>
+
+              <Grid item md={6} sm={12} xs={12}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel htmlFor="name-simple">Last Name</InputLabel>
+                  <Input
+                    id="lastname"
+                    value={lastname}
+                    className={classes.formInput}
+                    onChange={this.handlesInpuntChange('lastname')}
+                    fullWidth
+                  />
+                  <FormHelperText className={classes.formValidationMessage}>
+                    {lastnameError}
+                  </FormHelperText>
+                </FormControl>
+              </Grid>
+            </Grid>
+            {/* email */}
+            <Grid container spacing={24}>
+              <Grid item xs={12}>
+                <FormControl className={classes.formControl}>
+                  <InputLabel htmlFor="name-simple">Email</InputLabel>
+                  <Input
+                    id="email"
+                    value={email}
+                    className={classes.formInputEmail}
+                    onChange={this.handlesInpuntChange('email')}
+                    fullWidth
+                  />
+                  <FormHelperText className={classes.formValidationMessage}>
+                    {emailError}
+                  </FormHelperText>
+                </FormControl>
+              </Grid>
+            </Grid>
+
             <div className={classes.formInputInfoText}>
               <Typography type="body1" gutterBottom>
                 The information you provide here will only be used to send you
