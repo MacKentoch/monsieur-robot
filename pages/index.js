@@ -7,7 +7,7 @@ import withRedux from 'next-redux-wrapper';
 import Router from 'next/router';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
+// import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import withRoot from '../HOC/withRoot';
@@ -89,10 +89,10 @@ class Index extends PureComponent<Props, State> {
       <Layout pathname={pathname} navigationMenus={<NavMenus />}>
         <Grid container spacing={24}>
           {/* left content */}
-          <Grid item sm={8} xs={8}>
+          <Grid item md={8} sm={12} xs={12}>
             <Grid container spacing={24}>
               {/* what is the fides project */}
-              <Grid item xs={6}>
+              <Grid item md={6} sm={6} xs={12}>
                 <Typography type="title" gutterBottom>
                   What is the Fides Project
                 </Typography>
@@ -106,14 +106,16 @@ class Index extends PureComponent<Props, State> {
                   cupidatat non proident, sunt in culpa qui officia deserunt
                   mollit anim id est laborum.
                 </Typography>
-                <Button // raised
-                  onClick={this.routeTo('/about')}
+                <Button
+                  onClick={
+                    this.routeTo('/about') // raised
+                  }
                 >
                   learn more about the fides project
                 </Button>
               </Grid>
               {/* why does provacy matters */}
-              <Grid item xs={6} test>
+              <Grid item md={6} sm={6} xs={12}>
                 <Typography type="title" gutterBottom>
                   Why does privacy matters
                 </Typography>
@@ -127,8 +129,10 @@ class Index extends PureComponent<Props, State> {
                   cupidatat non proident, sunt in culpa qui officia deserunt
                   mollit anim id est laborum.
                 </Typography>
-                <Button // raised
-                  onClick={this.routeTo('/getInvolved')}
+                <Button
+                  onClick={
+                    this.routeTo('/getInvolved') // raised
+                  }
                 >
                   get involved with the fides project
                 </Button>
@@ -171,7 +175,7 @@ class Index extends PureComponent<Props, State> {
             </div>
           </Grid>
 
-          <Grid item sm={4} xs={4}>
+          <Grid item md={4} sm={12} xs={12}>
             {/* Recent blog */}
             <Grid container spacing={24}>
               <Grid item xs={12}>
