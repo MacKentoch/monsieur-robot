@@ -82,13 +82,7 @@ class Blog extends PureComponent<Props, State> {
     return (
       <Layout pathname={pathname} navigationMenus={<NavMenus />}>
         <Grid container spacing={24}>
-          <Grid
-            item
-            sm={
-              8 // key={`news-${.id}-${newsIdx}`}
-            }
-            xs={8}
-          >
+          <Grid item md={8} sm={12} xs={12}>
             <div style={{ height: '10px' }} />
             {news.map((oneNews, newsIdx) => (
               <div
@@ -101,7 +95,7 @@ class Blog extends PureComponent<Props, State> {
               </div>
             ))}
           </Grid>
-          <Grid item sm={4} xs={4}>
+          <Grid item md={4} sm={12} xs={12}>
             {[1, 2, 3, 4, 5, 6, 7].map((_, newsIdx) => (
               <div key={`tweet-${newsIdx}`}>
                 <Tweet tweetId="939235471942615040" />
