@@ -7,16 +7,17 @@ import withRedux from 'next-redux-wrapper';
 import Router from 'next/router';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
-// import Paper from 'material-ui/Paper';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+import { Tweet } from 'react-twitter-widgets';
 import withRoot from '../HOC/withRoot';
 import Layout from '../components/layout/Layout';
 import NewsCard from '../components/newsCard/NewsCard';
 import NavMenus from '../components/navigationMenu/NavigationMenu';
 import mockNews from '../mock/mockNews.json';
 import configureStore from '../redux/store/configureStore';
-import { Tweet } from 'react-twitter-widgets';
+import withData from '../services/apolloClient';
+
 // #endregion
 
 // #region flow types
@@ -247,6 +248,7 @@ const mapDispatchToProps = (dispatch: (...any) => any) => {
 
 // #region compose all HOC
 const ComposedIndex = compose(
+  withData,
   withRoot,
   withStyles(styles),
   withRedux(configureStore, mapStateToProps, mapDispatchToProps),
