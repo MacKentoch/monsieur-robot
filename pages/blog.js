@@ -57,6 +57,22 @@ const styles = {
     paddingTop: 200,
     flexGrow: 1,
   },
+  tweetContainer: {
+    display: 'flex',
+    flex: '1 1 auto',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // maxWidth: '100% !important',
+    // maxHeight: '100% !important',
+  },
+  // 'twitter-tweet': {
+  //   width: '300px !important',
+  // },
+  // 'twitter-tweet-rendered': {
+  //   display: 'flex',
+  //   flex: '1 1 auto',
+  // },
 };
 // #endregion
 
@@ -77,7 +93,7 @@ class Blog extends PureComponent<Props, State> {
   render() {
     const { news } = this.state;
 
-    const { pathname } = this.props;
+    const { pathname, classes } = this.props;
 
     return (
       <Layout pathname={pathname} navigationMenus={<NavMenus />}>
@@ -97,8 +113,13 @@ class Blog extends PureComponent<Props, State> {
           </Grid>
           <Grid item md={4} sm={12} xs={12}>
             {[1, 2, 3, 4, 5, 6, 7].map((_, newsIdx) => (
-              <div key={`tweet-${newsIdx}`}>
-                <Tweet tweetId="939235471942615040" />
+              <div key={`tweet-${newsIdx}`} className={classes.tweetContainer}>
+                <Tweet
+                  tweetId="939235471942615040"
+                  options={{
+                    width: '90%',
+                  }}
+                />
               </div>
             ))}
           </Grid>

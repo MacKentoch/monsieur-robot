@@ -2,7 +2,7 @@
 
 const styles = theme => ({
   content: {
-    flex: '1 0 auto',
+    flex: '1 1 auto',
   },
 });
 
