@@ -1,0 +1,8 @@
+version: '2'
+services:
+  pg:
+    extends:
+      file: docker-compose-common.yml
+      service: pg
+    ports:
+      - "5432:5432"
