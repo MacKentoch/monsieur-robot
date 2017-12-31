@@ -35,4 +35,4 @@ const graphqlRoutes = () => {
   return router;
 };
 
-export default graphqlRoutes;
+module.exports = graphqlRoutes;

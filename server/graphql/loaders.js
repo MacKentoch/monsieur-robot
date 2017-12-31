@@ -16,4 +16,4 @@ const createLoaders = () => ({
 });
 // #endregion
 
-export default createLoaders;
+module.exports = createLoaders;
