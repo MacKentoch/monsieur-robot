@@ -42,7 +42,7 @@ const config = convict({
       doc: 'The server port number',
       format: 'port',
       default: 3001,
-      env: 'SERVER_PORT',
+      env: 'PORT',
     },
     externalUrl: {
       doc: 'The server external url',
@@ -70,6 +70,13 @@ const config = convict({
       doc: 'graphiql endpoint',
       format: String,
       default: '/graphiql',
+    },
+  },
+  api: {
+    endpoint: {
+      doc: 'API endpoint',
+      format: String,
+      default: '/api',
     },
   },
 });

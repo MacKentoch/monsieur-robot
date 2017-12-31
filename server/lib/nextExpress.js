@@ -24,13 +24,24 @@ const nextExpress = async app => {
 
   server.use(helmet());
   server.use(compress());
-  server.use(bodyParser.json());
+  server.use(
+    bodyParser.json({
+      limit: config.get('server.bodyParser.limit'),
+    }),
+  );
   server.use(bodyParser.urlencoded({ extended: true }));
   // #endregion
 
   if (config.get('env') === 'production') {
     // express-rate-limit in production to limit over-repeated requests to API
-    server.use('/api/', new RateLimit(config.get('rateLimit')));
+    server.use(
+      config.get('graphiql.endpoint'),
+      new RateLimit(config.get('rateLimit')),
+    );
+    server.use(
+      config.get('api.endpoint'),
+      new RateLimit(config.get('rateLimit')),
+    );
   }
 
   // #region handles service worker file request (NOTE: it won't work in dev mode but production only):
@@ -43,6 +54,7 @@ const nextExpress = async app => {
   server.get('*', (req, res) => handle(req, res));
 
   const port = config.get('server.port');
+
   server.listen(port, err => {
     if (err) {
       throw err;
