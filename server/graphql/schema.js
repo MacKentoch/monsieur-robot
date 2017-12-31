@@ -6,6 +6,7 @@ const { GraphQLDateTime } = require('graphql-iso-date');
 const { GraphqlError } = require('../lib/Graphql');
 // #endregion
 
+// #region types definition
 const typeDefs = /* GraphQL */ `
   schema {
     query: Query
@@ -28,7 +29,9 @@ const typeDefs = /* GraphQL */ `
     date_publication: Datetime!
   }
 `;
+// #endregion
 
+// #region resolvers
 const resolvers = {
   DateTime: GraphQLDateTime,
 
@@ -47,7 +50,10 @@ const resolvers = {
 
   Mutation: {},
 };
+// #endregion
 
+// #region create excutable schema
 const schema = makeExecutableSchema({ typeDefs, resolvers });
+// #endregion
 
 module.exports = schema;
