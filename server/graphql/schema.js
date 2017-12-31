@@ -10,23 +10,19 @@ const { GraphqlError } = require('../lib/Graphql');
 const typeDefs = /* GraphQL */ `
   schema {
     query: Query
-    mutation: Mutation
   }
 
   scalar DateTime
 
   type Query {
-    getBlogs(): [Blog]!
-  }
-
-  type Mutation {
+    getBlogs: [Blog]!
   }
 
   type Blog {
     id: ID!
-    title: String!,
-    subTitle: String,
-    date_publication: Datetime!
+    title: String!
+    subTitle: String
+    date_publication: DateTime!
   }
 `;
 // #endregion
@@ -47,8 +43,6 @@ const resolvers = {
       }
     },
   },
-
-  Mutation: {},
 };
 // #endregion
 

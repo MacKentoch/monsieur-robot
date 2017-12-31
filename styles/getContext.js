@@ -1,15 +1,12 @@
 // @flow
 
 // region imports
-import {
-  create,
-  SheetsRegistry
-}                               from 'jss';
-import preset                   from 'jss-preset-default';
-import { createMuiTheme }       from 'material-ui/styles';
-import createGenerateClassName  from 'material-ui/styles/createGenerateClassName';
-import teal                     from 'material-ui/colors/teal';
-import cyan                     from 'material-ui/colors/cyan';
+import { create, SheetsRegistry } from 'jss';
+import preset from 'jss-preset-default';
+import { createMuiTheme } from 'material-ui/styles';
+import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
+import teal from 'material-ui/colors/teal';
+import cyan from 'material-ui/colors/cyan';
 // #endregion
 
 // #region custom color
@@ -21,11 +18,11 @@ const accent = cyan; // cyan[600]; // #00ACC1
 const theme = createMuiTheme({
   palette: {
     primary,
-    secondary: accent
+    secondary: accent,
   },
   MuiTab: {
-    backgroundColor: teal[600]
-  }
+    backgroundColor: teal[600],
+  },
 });
 // #endregion
 

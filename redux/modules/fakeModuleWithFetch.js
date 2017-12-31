@@ -8,12 +8,9 @@ import { getLocationOrigin } from '../../services/fetchTools';
 // #endregion
 
 // #region CONSTANTS
-const REQUEST_FAKE_FETCH =
-  'REQUEST_FAKE_FETCH';
-const RECEIVED_FAKE_FETCH =
-  'RECEIVED_FAKE_FETCH';
-const ERROR_FAKE_FETCH =
-  'ERROR_FAKE_FETCH';
+const REQUEST_FAKE_FETCH = 'REQUEST_FAKE_FETCH';
+const RECEIVED_FAKE_FETCH = 'RECEIVED_FAKE_FETCH';
+const ERROR_FAKE_FETCH = 'ERROR_FAKE_FETCH';
 // #endregion
 
 // #region REDUCER
@@ -24,10 +21,7 @@ const initialState = {
   error: {},
 };
 
-export default function(
-  state = initialState,
-  action,
-) {
+export default function(state = initialState, action) {
   const currentTime = moment().format();
 
   switch (action.type) {
@@ -51,9 +45,7 @@ export default function(
         ...state,
         actionTime: currentTime,
         isFetching: false,
-        error: action.error
-          ? { ...action.error }
-          : {},
+        error: action.error ? { ...action.error } : {},
       };
 
     default:
@@ -65,16 +57,11 @@ export default function(
 // #region ACTIONS CREATORS
 function fakeFetch() {
   return dispatch => {
-    const shouldFetchMock =
-      AppConfig.DEV_MODE;
-    const fetchType = shouldFetchMock
-      ? 'FETCH_MOCK'
-      : 'FETCH';
+    const shouldFetchMock = AppConfig.DEV_MODE;
+    const fetchType = shouldFetchMock ? 'FETCH_MOCK' : 'FETCH';
     const mockResult = fakeData;
 
-    const url = `${getLocationOrigin()}/${
-      AppConfig.api.fakeEndPoint
-    }`;
+    const url = `${getLocationOrigin()}/${AppConfig.api.fakeEndPoint}`;
     const method = 'get';
     const options = {};
 
@@ -115,9 +102,7 @@ export function fakeFetchIfNeeded() {
 }
 
 function shouldFakeFetch(state) {
-  const isFetching =
-    state.fakeModuleWithFetch
-      .isFetching;
+  const isFetching = state.fakeModuleWithFetch.isFetching;
   // prevents fetching twice while already fetching:
   if (isFetching) {
     return false;
