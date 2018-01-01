@@ -44,7 +44,18 @@ const nextExpress = async app => {
   // #endregion
 
   // #region add app middlewares (route handlers)
-  // server.use(graphqlRoutes);
+  server.use(graphqlRoutes());
+  /* eslint-disable no-console */
+  console.log(`
+  --> graphql route initialized at: ${chalk.blue(
+    config.get('graphql.endpoint'),
+  )}
+
+  --> graphiql route initialized at: ${chalk.blue(
+    config.get('graphiql.endpoint'),
+  )}
+  `);
+  /* eslint-enable no-console */
   // #endregion
 
   // #region handles service worker file request (NOTE: it won't work in dev mode but production only):
