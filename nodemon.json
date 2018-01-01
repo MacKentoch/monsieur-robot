@@ -5,6 +5,9 @@
     ".next",
     "node_modules/**/node_modules"
   ],
+  "watch": [
+    "server"
+  ],
   "verbose": true,
   "execMap": {
     "js": "node"

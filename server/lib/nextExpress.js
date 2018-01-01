@@ -44,7 +44,7 @@ const nextExpress = async app => {
   // #endregion
 
   // #region add app middlewares (route handlers)
-  server.use(graphqlRoutes);
+  // server.use(graphqlRoutes);
   // #endregion
 
   // #region handles service worker file request (NOTE: it won't work in dev mode but production only):
