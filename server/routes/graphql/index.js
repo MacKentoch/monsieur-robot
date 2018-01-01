@@ -1,18 +1,15 @@
 // @flow
 
 // #region imports
-const chalk = require('chalk');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
-// const Router = require('express-promise-router');
-const express = require('express');
+const Router = require('express-promise-router');
 const config = require('../../config');
-const loaders = require('../../graphql/loaders');
-const schema = require('../../graphql/schema');
-const { formatGraphqlError } = require('../../lib/Graphql');
+const loaders = require('../../data/loaders');
+const schema = require('../../data/schema');
+const { formatGraphqlError } = require('../../lib/graphqlErrors');
 // #endregion
 
-// const router = new Router();
-const router = express.Router();
+const router = new Router();
 
 const graphqlRoutes = () => {
   // graphqlExpress (graphql)

@@ -3,7 +3,7 @@
 // #region imports
 const { makeExecutableSchema } = require('graphql-tools');
 const { GraphQLDateTime } = require('graphql-iso-date');
-const { GraphqlError } = require('../lib/Graphql');
+const { GraphqlError } = require('../lib/graphqlErrors');
 // #endregion
 
 // #region types definition
