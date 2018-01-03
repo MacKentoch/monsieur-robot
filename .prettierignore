@@ -3,3 +3,4 @@ node_modules/
 **/*.txt
 **/*.xml
 **/*.svg
+**/*.sql

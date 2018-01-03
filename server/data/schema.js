@@ -22,6 +22,7 @@ const typeDefs = /* GraphQL */ `
     id: ID!
     title: String!
     subTitle: String
+    md_content: String!
     date_publication: DateTime!
   }
 `;
