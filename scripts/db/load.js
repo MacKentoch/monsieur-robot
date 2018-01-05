@@ -3,11 +3,11 @@ const config = require('server/config');
 
 const command =
   config.get('env') === 'production'
-    ? `createdb --username postgres ${config.get('env')}`
-    : `docker-compose run postgres createdb --host postgres --username postgres ${config.get(
+    ? `psql --username postgres ${config.get('env')} < db/schema.sql`
+    : `docker exec -i \`docker-compose ps -q postgres\` psql --username postgres ${config.get(
         'env',
-      )}`;
-const commandName = 'createDB';
+      )} < db/schema.sql`;
+const commandName = 'loadDB';
 const shouldLog = true;
 
 executeCmd(command, commandName, shouldLog);
