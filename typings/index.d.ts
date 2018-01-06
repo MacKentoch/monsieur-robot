@@ -1,4 +1,5 @@
 /// <reference path="globals/axios/index.d.ts" />
+/// <reference path="globals/jest/index.d.ts" />
 /// <reference path="globals/jss/index.d.ts" />
 /// <reference path="globals/localforage/index.d.ts" />
 /// <reference path="globals/material-ui/index.d.ts" />

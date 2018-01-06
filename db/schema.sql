@@ -1,3 +1,5 @@
+-- schema creation
+
 --------------------------------------------
 -- TABLES
 --------------------------------------------
@@ -52,9 +54,9 @@ ALTER TABLE newsLetters OWNER TO postgres;
 CREATE TABLE newsLettersSubscribers
 (
     id serial primary key,
-    firtsname: VARCHAR(255) not null,
-    lastname: VARCHAR(255) not null,
-    email: VARCHAR(255) not null,
+    firtsname VARCHAR(255) not null,
+    lastname VARCHAR(255) not null,
+    email VARCHAR(255) not null,
     subscribtion_date DATE not NULL,
     unsubscribtion_date DATE
 );
