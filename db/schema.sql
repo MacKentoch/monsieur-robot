@@ -13,6 +13,16 @@ CREATE TABLE languages
 );
 ALTER TABLE languages OWNER TO postgres;
 
+--
+CREATE TABLE authors
+(
+    id serial primary key,
+    email VARCHAR(255) not null,
+    nickname VARCHAR(255) not null,
+    twitterId VARCHAR(255),
+    date_creation TIMESTAMP NOT NULL default NOW()
+);
+ALTER TABLE languages OWNER TO postgres;
 
 
 -- blogs (language is english)
@@ -22,7 +32,8 @@ CREATE TABLE blogs
     title VARCHAR(255) not null,
     subTitle VARCHAR(255) not null,
     md_content TEXT not null,
-    date_publication DATE not null
+    date_publication TIMESTAMP NOT NULL default NOW(),
+    author INTEGER
 );
 ALTER TABLE blogs OWNER TO postgres;
 
@@ -35,7 +46,7 @@ CREATE TABLE blogs_translations
     title VARCHAR(255) not null,
     subTitle VARCHAR(255) not null,
     md_content TEXT not null,
-    date_publication DATE not null
+    date_publication TIMESTAMP NOT NULL default NOW()
 );
 ALTER TABLE blogs_translations OWNER TO postgres;
 
@@ -44,7 +55,7 @@ ALTER TABLE blogs_translations OWNER TO postgres;
 CREATE TABLE newsLetters
 (
     id serial primary key,
-    creation_date DATE not NULL,
+    creation_date TIMESTAMP NOT NULL default NOW(),
     submission_date DATE,
     md_content TEXT not null
 );
@@ -57,8 +68,8 @@ CREATE TABLE newsLettersSubscribers
     firtsname VARCHAR(255) not null,
     lastname VARCHAR(255) not null,
     email VARCHAR(255) not null,
-    subscribtion_date DATE not NULL,
-    unsubscribtion_date DATE
+    subscribtion_date TIMESTAMP NOT NULL default NOW(),
+    unsubscribtion_date TIMESTAMP
 );
 ALTER TABLE newsLettersSubscribers OWNER TO postgres;
 

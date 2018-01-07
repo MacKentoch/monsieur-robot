@@ -9,6 +9,11 @@ const AppConfig = {
     fakeEndPoint: 'api/somewhere',
   },
 
+  discord: {
+    clientId: '',
+    clientSecret: '',
+  },
+
   // navigation
   navigation: {
     // about sub navigation
