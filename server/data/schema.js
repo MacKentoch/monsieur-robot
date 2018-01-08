@@ -25,6 +25,20 @@ const typeDefs = /* GraphQL */ `
     md_content: String!
     date_publication: DateTime!
   }
+
+  type Author {
+    id: ID!
+    nickname: String!
+    twitterId: String,
+    date_creation: DateTime!
+  }
+
+  type NewsLetter {
+    id: ID!
+    md_content: String!
+    submission_date: DateTime,
+    creation_date: DateTime!
+  }
 `;
 // #endregion
 
