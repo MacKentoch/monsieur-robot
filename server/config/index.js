@@ -80,7 +80,7 @@ const config = convict({
     password: {
       doc: 'postgresql database password',
       format: String,
-      default: null,
+      default: '',
       env: 'PGPASSWORD',
     },
     port: {
