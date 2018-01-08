@@ -4,7 +4,7 @@
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const Router = require('express-promise-router');
 const config = require('../../config');
-const loaders = require('../../data/loaders');
+const createLoaders = require('../../data/loaders');
 const schema = require('../../data/schema');
 const { formatGraphqlError } = require('../../lib/graphqlErrors');
 // #endregion
@@ -18,7 +18,7 @@ const graphqlRoutes = () => {
     graphqlExpress({
       schema,
       context: {
-        loaders: loaders(),
+        loaders: createLoaders(),
       },
       formatError: formatGraphqlError,
     }),

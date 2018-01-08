@@ -11,6 +11,7 @@ const createLoaders = () => ({
     const { rows } = await db.query(
       'SELECT * FROM blogs ORDER BY date_publication',
     );
+    console.log('rows: ', rows);
     return rows;
   }),
   author: new DataLoader(async id => {

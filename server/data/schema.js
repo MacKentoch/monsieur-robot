@@ -4,6 +4,7 @@
 const { makeExecutableSchema } = require('graphql-tools');
 const { GraphQLDateTime } = require('graphql-iso-date');
 const { GraphqlError } = require('../lib/graphqlErrors');
+const db = require('../db');
 // #endregion
 
 // #region types definition
@@ -25,6 +26,7 @@ const typeDefs = /* GraphQL */ `
     subTitle: String
     md_content: String!
     date_publication: DateTime!
+    author: String!
   }
 
   type Author {
@@ -48,14 +50,14 @@ const resolvers = {
   DateTime: GraphQLDateTime,
 
   Query: {
-    async getBlogs(obj, args, { loaders }) {
+    async getBlogs() {
       try {
-        const blogs = await loaders.blogs.load();
-        if (!blogs.sucess) {
-          console.log(`blogs select failed`);
-          return;
-        }
-        return blogs.data;
+        const { rows: blogs } = await db.query(
+          `SELECT blogs.*, authors.nickname author
+          FROM blogs INNER JOIN authors ON blogs.author = authors.id
+          ORDER BY blogs.date_publication DESC`,
+        );
+        return blogs;
       } catch (error) {
         const code = error.code ? error.code : '-1';
         const message = error.message ? error.message : '-1';
@@ -63,10 +65,20 @@ const resolvers = {
       }
     },
 
-    async getAuthor(obj, { id }, { loaders }) {
+    async getAuthor(obj, { id } /* { loaders } */) {
       try {
-        const author = await loaders.author.load(id);
-        return author.data;
+        const { rows: authors } = await db.query(
+          `SELECT authors.*
+          FROM authors
+          WHERE id = $1`,
+          [id],
+        );
+        if (!Array.isArray(authors) || authors.length !== 1) {
+          const code = '-1';
+          const message = 'author query failed';
+          throw new GraphqlError(code, message);
+        }
+        return authors[0];
       } catch (error) {
         const code = error.code ? error.code : '-1';
         const message = error.message ? error.message : '-1';

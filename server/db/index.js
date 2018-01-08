@@ -9,8 +9,6 @@ const dbConfig = {
   port: config.get('postgresql.port'),
 };
 
-console.log('dbConfig: ', dbConfig);
-
 // see documentation on environment variable associated (https://node-postgres.com/features/connecting)
 const pool = new Pool(dbConfig);
 
