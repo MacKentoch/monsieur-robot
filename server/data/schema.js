@@ -16,6 +16,7 @@ const typeDefs = /* GraphQL */ `
 
   type Query {
     getBlogs: [Blog]!
+    getAuthor(id: ID!): Author!
   }
 
   type Blog {
@@ -49,8 +50,23 @@ const resolvers = {
   Query: {
     async getBlogs(obj, args, { loaders }) {
       try {
-        const blogs = await loaders.blog.load();
-        return blogs;
+        const blogs = await loaders.blogs.load();
+        if (!blogs.sucess) {
+          console.log(`blogs select failed`);
+          return;
+        }
+        return blogs.data;
+      } catch (error) {
+        const code = error.code ? error.code : '-1';
+        const message = error.message ? error.message : '-1';
+        throw new GraphqlError(code, message);
+      }
+    },
+
+    async getAuthor(obj, { id }, { loaders }) {
+      try {
+        const author = await loaders.author.load(id);
+        return author.data;
       } catch (error) {
         const code = error.code ? error.code : '-1';
         const message = error.message ? error.message : '-1';

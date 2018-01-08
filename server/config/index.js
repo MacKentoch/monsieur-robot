@@ -58,6 +58,38 @@ const config = convict({
       },
     },
   },
+  postgresql: {
+    user: {
+      doc: 'postgresql database user',
+      format: String,
+      default: 'postgres',
+      env: 'PGUSER',
+    },
+    host: {
+      doc: 'postgresql database host',
+      format: String,
+      default: 'localhost',
+      env: 'PGHOST',
+    },
+    database: {
+      doc: 'postgresql database name',
+      format: String,
+      default: 'postgres',
+      env: 'PGDATABASE',
+    },
+    password: {
+      doc: 'postgresql database password',
+      format: String,
+      default: null,
+      env: 'PGPASSWORD',
+    },
+    port: {
+      doc: 'postgresql database port',
+      format: 'port',
+      default: 5432,
+      env: 'PGPORT',
+    },
+  },
   graphql: {
     endpoint: {
       doc: 'graphql endpoint',

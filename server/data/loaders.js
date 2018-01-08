@@ -13,6 +13,12 @@ const createLoaders = () => ({
     );
     return rows;
   }),
+  author: new DataLoader(async id => {
+    const { rows } = await db.query('SELECT * FROM authors WHERE ID = $1', [
+      id,
+    ]);
+    return rows;
+  }),
 });
 // #endregion
 
