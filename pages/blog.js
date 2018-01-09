@@ -6,13 +6,16 @@ import { compose, bindActionCreators } from 'redux';
 import withRedux from 'next-redux-wrapper';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
+import { Tweet } from 'react-twitter-widgets';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import withRoot from '../HOC/withRoot';
 import Layout from '../components/layout/Layout';
 import configureStore from '../redux/store/configureStore';
 import NewsCard from '../components/newsCard/NewsCard';
 import NavMenus from '../components/navigationMenu/NavigationMenu';
 import mockNews from '../mock/mockNews.json';
-import { Tweet } from 'react-twitter-widgets';
+import withApollo from '../HOC/withApollo';
 // #endregion
 
 // #region flow types
@@ -147,9 +150,33 @@ const mapDispatchToProps = (dispatch: (...any) => any) => {
 };
 // #endregion
 
+// #region graphql queries
+const GetBlogsQuery = gql`
+  query GetBlogs {
+    getBlogs {
+      id
+      title
+      subTitle
+      md_content
+      date_publication
+      author
+    }
+  }
+`;
+
+const GetBlogsQueryOptions = {
+  props: ({ ownProps, data: { loading, getBlogs /* , refetch*/ } }) => {
+    // no need to return data (avoid no use re-renders)
+    return { isLoadingBlogs: loading, blogs: [...getBlogs] };
+  },
+};
+// #endregion
+
 // #region compose all HOC
 const ComposedAbout = compose(
+  graphql(GetBlogsQuery, GetBlogsQueryOptions),
   withRoot,
+  withApollo(),
   withStyles(styles),
   withRedux(configureStore, mapStateToProps, mapDispatchToProps),
 )(Blog);
