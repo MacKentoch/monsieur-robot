@@ -165,20 +165,22 @@ const GetBlogsQuery = gql`
 `;
 
 const GetBlogsQueryOptions = {
+  /* eslint-disable no-unused-vars */
   props: ({ ownProps, data: { loading, getBlogs /* , refetch*/ } }) => {
     // no need to return data (avoid no use re-renders)
-    return { isLoadingBlogs: loading, blogs: [...getBlogs] };
+    return { isLoadingBlogs: loading, blogs: getBlogs };
   },
+  /* eslint-enable no-unused-vars */
 };
 // #endregion
 
 // #region compose all HOC
 const ComposedAbout = compose(
+  withRedux(configureStore, mapStateToProps, mapDispatchToProps),
+  withApollo(),
   graphql(GetBlogsQuery, GetBlogsQueryOptions),
   withRoot,
-  withApollo(),
   withStyles(styles),
-  withRedux(configureStore, mapStateToProps, mapDispatchToProps),
 )(Blog);
 // #endregion
 

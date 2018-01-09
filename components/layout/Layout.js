@@ -172,7 +172,7 @@ class Layout extends PureComponent<Props, State> {
             classes={{
               paper: classes.drawerPaper,
             }}
-            onRequestClose={this.handleDrawerToggle}
+            onClose={this.handleDrawerToggle}
             // ModalProps={{
             //   keepMounted: true, // Better open performance on mobile.
             // }}
@@ -184,7 +184,7 @@ class Layout extends PureComponent<Props, State> {
               [classes.topTitle]: true,
             })}
           >
-            <Typography type="display3" gutterBottom color="#FFFFFF">
+            <Typography type="display3" gutterBottom color="inherit">
               <span
                 className={cx({
                   [classes.show]: !fadeTitleContainer,

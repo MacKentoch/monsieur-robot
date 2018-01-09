@@ -18,7 +18,7 @@ function withApollo() {
     /* eslint-disable no-process-env */
     if (process.env.NODE_ENV !== 'production') {
       // HOC would obfuscate component name, this trick is helpful for dev (we don't care in production)
-      WithApollo.displayName = wrapDisplayName(BaseComponent, 'WithApollo');
+      WithApollo.displayName = wrapDisplayName(BaseComponent, 'withApollo');
     }
     return withData(WithApollo);
   };
