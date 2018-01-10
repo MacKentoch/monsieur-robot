@@ -7,9 +7,9 @@ const styles = theme => ({
   root: {
     width: '100%',
     height: '100%',
-    // marginTop: theme.spacing.unit * 3,
     zIndex: 1,
     overflow: 'hidden',
+    // backgroundColor: theme.palette.primary[600],
   },
   appFrame: {
     position: 'relative',

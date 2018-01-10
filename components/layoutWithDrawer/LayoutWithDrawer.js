@@ -39,6 +39,7 @@ type Props = {
 };
 
 type State = {
+  showSearchButton: boolean,
   mobileOpen: boolean,
   anchorEl: any,
   // from parent
@@ -66,6 +67,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
 
   // #region state initialization
   state = {
+    showSearchButton: false,
     mobileOpen: false,
     anchorEl: null,
     currentTab: defautTabMenuId,
@@ -109,6 +111,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
     } = this.props;
 
     const {
+      showSearchButton,
       anchorEl,
       currentTab,
       pageTitle,
@@ -163,16 +166,18 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
 
               {/* right actions */}
               <div>
-                <Link prefetch href={'/login'} passHref>
-                  <IconButton
-                    aria-owns={open ? 'menu-appbar' : null}
-                    aria-haspopup="true"
-                    onClick={this.handleOnSearch}
-                    color="contrast"
-                  >
-                    <Search />
-                  </IconButton>
-                </Link>
+                {showSearchButton && (
+                  <Link prefetch href={'/login'} passHref>
+                    <IconButton
+                      aria-owns={open ? 'menu-appbar' : null}
+                      aria-haspopup="true"
+                      onClick={this.handleOnSearch}
+                      color="contrast"
+                    >
+                      <Search />
+                    </IconButton>
+                  </Link>
+                )}
               </div>
             </Toolbar>
           </AppBar>

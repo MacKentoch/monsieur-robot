@@ -8,6 +8,7 @@ const styles = theme => ({
     height: '100%',
     zIndex: 1,
     overflow: 'hidden',
+    // backgroundColor: theme.palette.primary[600],
   },
   appFrame: {
     position: 'relative',
@@ -16,13 +17,14 @@ const styles = theme => ({
     height: '100%',
   },
   appBar: {
-    zIndex: 1500,
+    // zIndex: 1500,
     position: 'fixed',
     width: '100%',
     backgroundColor: theme.palette.primary[600],
   },
   topTitle: {
-    zIndex: 1400,
+    // zIndex: 1400,
+    zIndex: 1001,
     opacity: 1,
     backgroundColor: theme.palette.primary[600],
     position: 'absolute',
@@ -42,7 +44,8 @@ const styles = theme => ({
     },
   },
   tabs: {
-    zIndex: 1400,
+    // zIndex: 1400,
+    zIndex: 1000,
     position: 'absolute',
     marginTop: 56 + 160 - 1, // removing 1 px: fixing mobile render delta
     width: '100%',
@@ -55,7 +58,8 @@ const styles = theme => ({
     boxShadow: theme.shadows[0],
   },
   tabsFixed: {
-    zIndex: 1400,
+    // zIndex: 1400,
+    zIndex: 1000,
     position: 'fixed',
     marginTop: 56 - 1, // removing 1 px: fixing mobile render delta
     width: '100%',

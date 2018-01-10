@@ -62,6 +62,7 @@ class Layout extends PureComponent<Props, State> {
 
   // #region state initialization
   state = {
+    showSearchButton: false,
     mobileOpen: false,
     anchorEl: null,
     currentTab: defautTabMenuId,
@@ -107,6 +108,7 @@ class Layout extends PureComponent<Props, State> {
       anchorEl,
       currentTab,
       pageTitle,
+      showSearchButton,
       // scroll spy
       toggleTopNavClasses,
       fadeTitleContainer,
@@ -151,17 +153,20 @@ class Layout extends PureComponent<Props, State> {
               <div className={classes.flexible} />
 
               {/* right actions */}
+
               <div>
-                <Link prefetch href={'/login'} passHref>
-                  <IconButton
-                    aria-owns={open ? 'menu-appbar' : null}
-                    aria-haspopup="true"
-                    onClick={this.handleOnSearch}
-                    color="contrast"
-                  >
-                    <Search />
-                  </IconButton>
-                </Link>
+                {showSearchButton && (
+                  <Link prefetch href={'/login'} passHref>
+                    <IconButton
+                      aria-owns={open ? 'menu-appbar' : null}
+                      aria-haspopup="true"
+                      onClick={this.handleOnSearch}
+                      color="contrast"
+                    >
+                      <Search />
+                    </IconButton>
+                  </Link>
+                )}
               </div>
             </Toolbar>
           </AppBar>
