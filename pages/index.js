@@ -225,7 +225,6 @@ class Index extends PureComponent<Props, State> {
     }
     Router.push({ pathname });
   };
-
   // #endregion
 }
 

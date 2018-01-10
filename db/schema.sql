@@ -31,6 +31,7 @@ CREATE TABLE blogs
     id SERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     subTitle VARCHAR(255) NOT NULL,
+    sumUp VARCHAR(255) NOT NULL,
     md_content TEXT NOT NULL,
     date_publication TIMESTAMP NOT NULL DEFAULT NOW(),
     author INTEGER REFERENCES authors (id) NOT NULL
@@ -45,6 +46,7 @@ CREATE TABLE blogs_translations
     lang_id INTEGER REFERENCES languages (id) NOT NULL,
     title VARCHAR(255) NOT NULL,
     subTitle VARCHAR(255) NOT NULL,
+    sumUp VARCHAR(255) NOT NULL,
     md_content TEXT NOT NULL,
     date_publication TIMESTAMP NOT NULL DEFAULT NOW()
 );

@@ -213,7 +213,7 @@ class LayoutWithDrawer extends PureComponent<Props, State> {
               [classes.topTitle]: true,
             })}
           >
-            <Typography type="display3" gutterBottom color="#FFFFFF">
+            <Typography type="display3" gutterBottom color="inherit">
               <span
                 className={cx({
                   [classes.show]: !fadeTitleContainer,

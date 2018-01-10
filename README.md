@@ -43,35 +43,37 @@
 npm install
 ```
 
-### Scripts
+### Database
 
-<details>
-  <summary>run dev with hot reload</summary>
 
-  Clone this repository, then install dependencies:
+#### Install Postgresql
+
+Follow [database creation README](./db/README.md)
+
+#### Create database
+
+```bash
+npm run db:create
+```
+
+### Application (website)
+
+#### Clone this repository, then install dependencies
 
   ```bash
   npm run dev
   ```
 
-</details>
-
-<details>
-  <summary>build dev bundle</summary>
+#### build dev bundle
 
   ```bash
   npm run build
   ```
 
-</details>
+#### start dev (no hot reload)
 
-<details>
-  <summary>start dev (no hot reload)</summary>
-
-  *NOTE: ensure you built first before starting*
+*NOTE:* ensure you built first before starting.
 
   ```bash
   npm run start
   ```
-
-</details>
