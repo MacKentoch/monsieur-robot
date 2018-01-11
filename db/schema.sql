@@ -83,6 +83,6 @@ CREATE TABLE page_home
     ui_part_key VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
     md_content TEXT NOT NULL,
-    edit_date TIMESTAMP NOT NULL DEFAULT NOW(),
+    edit_date TIMESTAMP NOT NULL DEFAULT NOW()
 );
 ALTER TABLE page_home OWNER TO postgres;
