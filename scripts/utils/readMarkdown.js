@@ -10,7 +10,7 @@ async function readMarkdown(filePath = null) {
     throw new Error('readMarkDown needs a filePath');
   }
   try {
-    const data = await readFile(filePath);
+    const data = await readFile(filePath, 'utf-8');
     return data;
   } catch (error) {
     setTimeout(() => {

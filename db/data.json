@@ -1,0 +1,17 @@
+{
+  "home": {
+    "paragraphTopLeft": {
+      "title": "What is the Fides Project",
+      "markdownContentLink": "markdown/homeParagraphLeftContent.md"
+    },
+    "paragraphTopRight": {
+      "title": "Why does privacy matters",
+      "markdownContentLink": "markdown/homeParagraphRightContent.md"
+    },
+    "paragraphBottomCenter": {
+      "title": "Why does privacy matters",
+      "markdownContentLink": "markdown/homeParagraphBottomContent.md"
+    }
+  },
+  "about": {}
+}

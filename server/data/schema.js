@@ -23,7 +23,8 @@ const typeDefs = /* GraphQL */ `
   type Blog {
     id: ID!
     title: String!
-    subTitle: String
+    subtitle: String
+    summary: String!
     md_content: String!
     date_publication: DateTime!
     author: String!
@@ -32,7 +33,7 @@ const typeDefs = /* GraphQL */ `
   type Author {
     id: ID!
     nickname: String!
-    twitterId: String,
+    twitter_id: String,
     date_creation: DateTime!
   }
 
