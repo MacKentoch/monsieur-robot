@@ -9,15 +9,18 @@ import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
+import { CircularProgress } from 'material-ui/Progress';
 import { Tweet } from 'react-twitter-widgets';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import withRoot from '../HOC/withRoot';
 import Layout from '../components/layout/Layout';
 import NewsCard from '../components/newsCard/NewsCard';
 import NavMenus from '../components/navigationMenu/NavigationMenu';
 import mockNews from '../mock/mockNews.json';
 import configureStore from '../redux/store/configureStore';
-import withData from '../services/apolloClient';
-
+import withApollo from '../HOC/withApollo';
+import Markdown from '../components/markdown/Markdown';
 // #endregion
 
 // #region flow types
@@ -32,11 +35,24 @@ type InitialProps = {
   ...any,
 };
 
+type UIType = {
+  ui_part_key: string,
+  title: string,
+  md_content: string,
+  edit_date: Date,
+};
+
 type Props = {
   // withStyle HOC
   classes: any,
+
   // initialProps
   pathname: string,
+
+  // graphql
+  isLoadingUI: boolean,
+  ui: Array<UIType>,
+
   ...any,
 };
 
@@ -56,16 +72,24 @@ type State = {
 // #endregion
 
 // #region styles
-const styles = {
+const styles = theme => ({
   root: {
     textAlign: 'center',
     paddingTop: 200,
     flexGrow: 1,
   },
   ourProjectContainer: {
-    marginTop: '70px',
+    // marginTop: '150px',
   },
-};
+  progressContainer: {
+    textAlign: 'center',
+    marginTop: '20px',
+    marginBottom: '20px',
+  },
+  progress: {
+    margin: `0 ${theme.spacing.unit * 10}px`,
+  },
+});
 // #endregion
 class Index extends PureComponent<Props, State> {
   // #region next initialProps
@@ -73,6 +97,11 @@ class Index extends PureComponent<Props, State> {
     return { pathname };
   }
   // #endregion
+
+  static defaultProps = {
+    isLoadingUI: false,
+    ui: [],
+  };
 
   // #region state initialization
   state = {
@@ -83,8 +112,17 @@ class Index extends PureComponent<Props, State> {
   // #region component lifecycle methods
   render() {
     const { news } = this.state;
+    const { classes, pathname, isLoadingUI, ui } = this.props;
 
-    const { pathname } = this.props;
+    const mdParagraphTopLeft = ui
+      ? ui.find(md => md.ui_part_key === 'paragraphTopLeft')
+      : '';
+    const mdParagraphTopRight = ui
+      ? ui.find(md => md.ui_part_key === 'paragraphTopRight')
+      : '';
+    const mdParagraphBottomCenter = ui
+      ? ui.find(md => md.ui_part_key === 'paragraphBottomCenter')
+      : '';
 
     return (
       <Layout pathname={pathname} navigationMenus={<NavMenus />}>
@@ -98,14 +136,18 @@ class Index extends PureComponent<Props, State> {
                   What is the Fides Project
                 </Typography>
                 <Typography type="body1" gutterBottom align="left">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
+                  <span>
+                    {!isLoadingUI &&
+                      mdParagraphTopLeft && (
+                        <Markdown text={mdParagraphTopLeft.md_content} />
+                      )}
+                    {isLoadingUI ||
+                      (!mdParagraphTopLeft && (
+                        <span className={classes.progressContainer}>
+                          <CircularProgress className={classes.progress} />
+                        </span>
+                      ))}
+                  </span>
                 </Typography>
                 <Button
                   onClick={
@@ -121,14 +163,18 @@ class Index extends PureComponent<Props, State> {
                   Why does privacy matters
                 </Typography>
                 <Typography type="body1" gutterBottom align="left">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                  irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                  cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
+                  <span>
+                    {!isLoadingUI &&
+                      mdParagraphTopRight && (
+                        <Markdown text={mdParagraphTopRight.md_content} />
+                      )}
+                    {isLoadingUI ||
+                      (!mdParagraphTopRight && (
+                        <span className={classes.progressContainer}>
+                          <CircularProgress className={classes.progress} />
+                        </span>
+                      ))}
+                  </span>
                 </Typography>
                 <Button
                   onClick={
@@ -148,34 +194,27 @@ class Index extends PureComponent<Props, State> {
                   </Typography>
                   <div>
                     <Typography type="body1" gutterBottom>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Etiam facilisis nisl sed justo egestas, at fringilla sem
-                      accumsan. Etiam bibendum viverra tristique. Fusce id
-                      vehicula sapien. Nullam porta, justo a interdum tincidunt,
-                      est nisl hendrerit metus, vitae pharetra lorem tellus eu
-                      elit. Vivamus imperdiet rutrum nibh, sit amet semper nisl
-                      maximus eget. Vestibulum ante ipsum primis in faucibus
-                      orci luctus et ultrices posuere cubilia Curae; Sed
-                      lobortis purus nec condimentum consequat. Phasellus in
-                      nibh sed odio pellentesque blandit accumsan ac nisl. Donec
-                      at nulla elementum, tempus turpis ut, congue nisl. Etiam
-                      aliquam, arcu at posuere malesuada, sem est lacinia eros,
-                      vitae blandit justo elit non arcu. Ut nec pretium risus.
-                      Aliquam fermentum pulvinar maximus. Fusce ipsum leo,
-                      ornare in leo vel, dapibus sollicitudin massa. Ut
-                      consectetur justo id pretium consequat. Suspendisse ipsum
-                      augue, faucibus lobortis felis vel, vestibulum malesuada
-                      neque. Phasellus justo mi, efficitur id libero eu,
-                      hendrerit tempus nulla. Morbi lacus turpis, feugiat vel
-                      tellus eu, dapibus vehicula ex. Ut nec dui lectus. Nunc in
-                      dignissim neque.
+                      <span>
+                        {!isLoadingUI &&
+                          mdParagraphBottomCenter && (
+                            <Markdown
+                              text={mdParagraphBottomCenter.md_content}
+                            />
+                          )}
+                        {isLoadingUI ||
+                          (!mdParagraphBottomCenter && (
+                            <span className={classes.progressContainer}>
+                              <CircularProgress className={classes.progress} />
+                            </span>
+                          ))}
+                      </span>
                     </Typography>
                   </div>
                 </Grid>
               </Grid>
             </div>
           </Grid>
-
+          {/* right content */}
           <Grid item md={4} sm={12} xs={12}>
             {/* Recent blog */}
             <Grid container spacing={24}>
@@ -229,7 +268,8 @@ class Index extends PureComponent<Props, State> {
 }
 
 // #region redux state and dispatch map to props
-const mapStateToProps = (state: any) => ({
+/* eslint-disable no-unused-vars */
+const mapStateToProps = state => ({
   // to add
 });
 
@@ -243,14 +283,43 @@ const mapDispatchToProps = (dispatch: (...any) => any) => {
     ),
   };
 };
+/* eslint-enable no-unused-vars */
+// #endregion
+
+// #region graphql queries
+const GetUIPageHomeQuery = gql`
+  query getPageHome {
+    getUIPageHome {
+      ui_part_key
+      title
+      md_content
+      edit_date
+    }
+  }
+`;
+
+const GetUIPageHomeOptions = {
+  /* eslint-disable no-unused-vars */
+  props: ({
+    ownProps,
+    data: { loading, getUIPageHome /* , refetch, error*/ },
+  }) => {
+    if (!loading) {
+      return { isLoadingUI: loading, ui: getUIPageHome };
+    }
+    return { isLoadingUI: loading };
+  },
+  /* eslint-enable no-unused-vars */
+};
 // #endregion
 
 // #region compose all HOC
 const ComposedIndex = compose(
-  withData,
+  withRedux(configureStore, mapStateToProps, mapDispatchToProps),
+  withApollo(),
+  graphql(GetUIPageHomeQuery, GetUIPageHomeOptions),
   withRoot,
   withStyles(styles),
-  withRedux(configureStore, mapStateToProps, mapDispatchToProps),
 )(Index);
 // #endregion
 
