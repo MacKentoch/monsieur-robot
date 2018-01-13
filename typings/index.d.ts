@@ -8,4 +8,5 @@
 /// <reference path="globals/recompose/index.d.ts" />
 /// <reference path="globals/redux-thunk/index.d.ts" />
 /// <reference path="globals/redux/index.d.ts" />
+/// <reference path="globals/twitter/index.d.ts" />
 /// <reference path="globals/validate.js/index.d.ts" />

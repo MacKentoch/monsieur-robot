@@ -40,9 +40,7 @@ class NewsCard extends PureComponent<Props, State> {
 
   // #region lifecycle
   render() {
-    const { id, title, subtitle, sumUp, showSumUp, classes } = this.props;
-
-    const mockTweetId = '939235471942615040';
+    const { title, subtitle, sumUp, showSumUp, classes } = this.props;
 
     return (
       <Card>
@@ -54,10 +52,6 @@ class NewsCard extends PureComponent<Props, State> {
           </Typography>
 
           {showSumUp && <Typography type="body2">{sumUp}</Typography>}
-
-          {/* <Tweet
-            tweetId={mockTweetId}
-          /> */}
         </CardContent>
         <CardActions>
           <Button dense color="primary">

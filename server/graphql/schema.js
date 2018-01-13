@@ -4,6 +4,7 @@
 const { makeExecutableSchema } = require('graphql-tools');
 const { GraphQLDateTime } = require('graphql-iso-date');
 const { GraphqlError } = require('../lib/graphqlErrors');
+const merge = require('lodash.merge');
 const db = require('../db');
 // #endregion
 
@@ -16,9 +17,22 @@ const typeDefs = /* GraphQL */ `
   scalar DateTime
 
   type Query {
+    # GET all blogs
+    #
     getBlogs: [Blog]!
+
+    # GET N last blogs
+    #
+    # (n: number old blogs to retrieve)
     getTopNLastestBlogs(n: Int!): [Blog]!
+
+    # GET one author
+    #
+    # (id: author's id)
     getAuthor(id: ID!): Author!
+
+    # GET all ui page home
+    #
     getUIPageHome: [UIPageHome]!
   }
 

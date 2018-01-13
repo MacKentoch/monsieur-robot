@@ -124,8 +124,6 @@ class Index extends PureComponent<Props, State> {
       topBlogs,
     } = this.props;
 
-    console.log('topBlogs: ', topBlogs);
-
     const mdParagraphTopLeft = ui
       ? ui.find(md => md.ui_part_key === 'paragraphTopLeft')
       : '';
