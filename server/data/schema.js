@@ -17,6 +17,7 @@ const typeDefs = /* GraphQL */ `
 
   type Query {
     getBlogs: [Blog]!
+    getTopNLastestBlogs(n: Int!): [Blog]!
     getAuthor(id: ID!): Author!
     getUIPageHome: [UIPageHome]!
   }
@@ -65,6 +66,23 @@ const resolvers = {
           `SELECT blogs.*, authors.nickname author
           FROM blogs INNER JOIN authors ON blogs.author = authors.id
           ORDER BY blogs.date_publication DESC`,
+        );
+        return blogs;
+      } catch (error) {
+        const code = error.code ? error.code : '-1';
+        const message = error.message ? error.message : '-1';
+        throw new GraphqlError(code, message);
+      }
+    },
+
+    async getTopNLastestBlogs(obj, { n }) {
+      try {
+        const { rows: blogs } = await db.query(
+          `SELECT blogs.*, authors.nickname author
+          FROM blogs INNER JOIN authors ON blogs.author = authors.id
+          ORDER BY blogs.date_publication DESC
+          LIMIT $1`,
+          [n],
         );
         return blogs;
       } catch (error) {

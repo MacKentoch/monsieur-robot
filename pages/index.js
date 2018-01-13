@@ -17,7 +17,6 @@ import withRoot from '../HOC/withRoot';
 import Layout from '../components/layout/Layout';
 import NewsCard from '../components/newsCard/NewsCard';
 import NavMenus from '../components/navigationMenu/NavigationMenu';
-import mockNews from '../mock/mockNews.json';
 import configureStore from '../redux/store/configureStore';
 import withApollo from '../HOC/withApollo';
 import Markdown from '../components/markdown/Markdown';
@@ -42,6 +41,14 @@ type UIType = {
   edit_date: Date,
 };
 
+type LatestBlogs = {
+  title: string,
+  subtitle: string,
+  summary: string,
+  date_publication: date,
+  author: string,
+};
+
 type Props = {
   // withStyle HOC
   classes: any,
@@ -53,20 +60,21 @@ type Props = {
   isLoadingUI: boolean,
   ui: Array<UIType>,
 
+  isLoadingBlogs: boolean,
+  topBlogs: Array<LatestBlogs>,
+
   ...any,
 };
 
-type OneNews = {
-  id: number | string,
-  title: string,
-  subtitle?: string,
-  sumUp: string,
-  ...any,
-};
+// type OneNews = {
+//   id: number | string,
+//   title: string,
+//   subtitle?: string,
+//   sumUp: string,
+//   ...any,
+// };
 
 type State = {
-  news: Array<OneNews>,
-
   ...any,
 };
 // #endregion
@@ -101,18 +109,22 @@ class Index extends PureComponent<Props, State> {
   static defaultProps = {
     isLoadingUI: false,
     ui: [],
+    isLoadingBlogs: false,
+    topBlogs: [],
   };
-
-  // #region state initialization
-  state = {
-    news: mockNews,
-  };
-  // #endregion
 
   // #region component lifecycle methods
   render() {
-    const { news } = this.state;
-    const { classes, pathname, isLoadingUI, ui } = this.props;
+    const {
+      classes,
+      pathname,
+      isLoadingUI,
+      ui,
+      isLoadingBlogs,
+      topBlogs,
+    } = this.props;
+
+    console.log('topBlogs: ', topBlogs);
 
     const mdParagraphTopLeft = ui
       ? ui.find(md => md.ui_part_key === 'paragraphTopLeft')
@@ -222,18 +234,24 @@ class Index extends PureComponent<Props, State> {
                 <Typography type="title" gutterBottom>
                   Recent blog
                 </Typography>
-                {news.slice(0, 3).map((oneNews, newsIdx) => (
-                  <div
-                    key={`news-${oneNews.id}-${newsIdx}`}
-                    style={{ marginBottom: '20px' }}
-                  >
-                    <NewsCard
-                      key={`news-${oneNews.id}-${newsIdx}`}
-                      showSumUp={false}
-                      {...oneNews}
-                    />
-                  </div>
-                ))}
+                {isLoadingBlogs && (
+                  <span className={classes.progressContainer}>
+                    <CircularProgress className={classes.progress} />
+                  </span>
+                )}
+                {!isLoadingBlogs &&
+                  topBlogs.map((blog, newsIdx) => (
+                    <div
+                      key={`news-${blog.id}-${newsIdx}`}
+                      style={{ marginBottom: '20px' }}
+                    >
+                      <NewsCard
+                        key={`news-${blog.id}-${newsIdx}`}
+                        showSumUp={false}
+                        {...blog}
+                      />
+                    </div>
+                  ))}
               </Grid>
             </Grid>
 
@@ -286,7 +304,7 @@ const mapDispatchToProps = (dispatch: (...any) => any) => {
 /* eslint-enable no-unused-vars */
 // #endregion
 
-// #region graphql queries
+// #region graphql query getPageHome
 const GetUIPageHomeQuery = gql`
   query getPageHome {
     getUIPageHome {
@@ -313,11 +331,41 @@ const GetUIPageHomeOptions = {
 };
 // #endregion
 
+// #region graphql query getTopNLastestBlogs
+const GetTopNLastestBlogs = gql`
+  query getTopNLastestBlogs($n: Int!) {
+    getTopNLastestBlogs(n: $n) {
+      title
+      subtitle
+      summary
+      date_publication
+      author
+    }
+  }
+`;
+
+const GetTopNLastestBlogsOptions = {
+  /* eslint-disable no-unused-vars */
+  options: () => ({ variables: { n: 3 } }),
+  props: ({
+    ownProps,
+    data: { loading, getTopNLastestBlogs /* , refetch, error*/ },
+  }) => {
+    if (!loading) {
+      return { isLoadingBlogs: loading, topBlogs: getTopNLastestBlogs };
+    }
+    return { isLoadingBlogs: loading };
+  },
+  /* eslint-enable no-unused-vars */
+};
+// #endregion
+
 // #region compose all HOC
 const ComposedIndex = compose(
   withRedux(configureStore, mapStateToProps, mapDispatchToProps),
   withApollo(),
   graphql(GetUIPageHomeQuery, GetUIPageHomeOptions),
+  graphql(GetTopNLastestBlogs, GetTopNLastestBlogsOptions),
   withRoot,
   withStyles(styles),
 )(Index);
