@@ -90,6 +90,11 @@ const config = convict({
       env: 'PGPORT',
     },
   },
+  dateFormat: {
+    doc: 'default date format (used for example to insert initial data)',
+    format: String,
+    default: 'DD-MM-YYYY',
+  },
   graphql: {
     endpoint: {
       doc: 'graphql endpoint',
@@ -103,6 +108,12 @@ const config = convict({
       format: String,
       default: '/graphiql',
     },
+  },
+  graphqlCursorSecret: {
+    doc: 'secret to encode graphql cursors',
+    format: String,
+    default: 'DEFINITELY_NOT_ENOUGH_SECRET',
+    env: 'QL_CURSOR_SECRET',
   },
   api: {
     endpoint: {

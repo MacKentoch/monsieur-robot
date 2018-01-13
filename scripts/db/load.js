@@ -1,10 +1,12 @@
 // @flow
+/* eslint-disable camelcase */
 
 // #region lib imports
+const moment = require('moment');
+const { join } = require('path');
 const executeCmd = require('../utils/executeCmd');
 const config = require('../../server/config');
 const readMarkdown = require('../utils/readMarkdown');
-const { join } = require('path');
 const db = require('../../server/db');
 const getPageDataFromJSON = require('../../scripts/utils/getPageDataFromJSON');
 // #endregion
@@ -55,6 +57,65 @@ const dataJsonPath = join(__dirname, '../../db/data.json');
 
       console.log(
         `inserted home data key: ${homeKey} content id: `,
+        rows[0].id,
+      );
+    });
+    // #endregion
+
+    // #region Blogs content
+    const blogsData = await getPageDataFromJSON(dataJsonPath, 'blogs');
+    Object.keys(blogsData).forEach(async blogKey => {
+      console.log(`inserting blogs data key: ${blogKey} content`);
+      const data = await getPageDataFromJSON(dataJsonPath, 'blogs');
+      const {
+        title,
+        subtitle,
+        summary,
+        md_content,
+        date_publication,
+        date_format,
+        author_id,
+      } = data[blogKey];
+
+      // markdown column content:
+      const mdLink = join(__dirname, `../../db/markdown/${md_content}.md`);
+      const mdContent = await readMarkdown(mdLink);
+
+      // date_publication column formated:
+      const date_publication_formatted = moment(
+        date_publication,
+        date_format || config.get('dateFormat'),
+      );
+
+      const { rows } = await db.query(
+        `INSERT INTO blogs (
+          title,
+          subtitle,
+          summary,
+          md_content,
+          date_publication,
+          author
+        )
+          VALUES (
+            $1,
+            $2,
+            $3,
+            $4::text,
+            $5,
+            $6
+          ) RETURNING id;`,
+        [
+          title,
+          subtitle,
+          summary,
+          mdContent,
+          date_publication_formatted,
+          author_id,
+        ],
+      );
+
+      console.log(
+        `inserted blog data key: ${blogKey} content id: `,
         rows[0].id,
       );
     });

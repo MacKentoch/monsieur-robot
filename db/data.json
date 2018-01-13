@@ -13,5 +13,79 @@
       "markdownContentFile": "homeParagraphBottomContent"
     }
   },
-  "about": {}
+  "about": {},
+  "blogs": [
+    {
+      "title": "News mock 1",
+      "subtitle": "subtitle for news mock 1",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "md_content": "mdBlogMock1",
+      "date_publication": "01-11-2017",
+      "date_format": "DD-MM-YYYY",
+      "author_id": "1"
+    },
+    {
+      "title": "News mock 2",
+      "subtitle": "subtitle for news mock 2",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "md_content": "mdBlogMock2",
+      "date_publication": "02-11-2017",
+      "date_format": "DD-MM-YYYY",
+      "author_id": "1"
+    },
+    {
+      "title": "News mock 3",
+      "subtitle": "subtitle for news mock 3",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "md_content": "mdBlogMock3",
+      "date_publication": "03-11-2017",
+      "date_format": "DD-MM-YYYY",
+      "author_id": "1"
+    },
+    {
+      "title": "News mock 4",
+      "subtitle": "subtitle for news mock 4",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "md_content": "mdBlogMock4",
+      "date_publication": "04-11-2017",
+      "date_format": "DD-MM-YYYY",
+      "author_id": "1"
+    },
+    {
+      "title": "News mock 5",
+      "subtitle": "subtitle for news mock 5",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "md_content": "mdBlogMock5",
+      "date_publication": "05-11-2017",
+      "date_format": "DD-MM-YYYY",
+      "author_id": "1"
+    },
+    {
+      "title": "News mock 6",
+      "subtitle": "subtitle for news mock 6",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "md_content": "mdBlogMock6",
+      "date_publication": "06-11-2017",
+      "date_format": "DD-MM-YYYY",
+      "author_id": "1"
+    },
+    {
+      "title": "News mock 7",
+      "subtitle": "subtitle for news mock 7",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "md_content": "mdBlogMock7",
+      "date_publication": "07-11-2017",
+      "date_format": "DD-MM-YYYY",
+      "author_id": "1"
+    },
+    {
+      "title": "News mock 8",
+      "subtitle": "subtitle for news mock 8",
+      "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
+      "md_content": "mdBlogMock8",
+      "date_publication": "07-11-2017",
+      "date_format": "DD-MM-YYYY",
+      "author_id": "1"
+    }
+  ]
 }
