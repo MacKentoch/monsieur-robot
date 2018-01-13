@@ -5,7 +5,7 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const Router = require('express-promise-router');
 const config = require('../../config');
 const createLoaders = require('../../graphql/loaders');
-const schema = require('../../graphql/schema');
+const schema = require('../../graphql');
 const { formatGraphqlError } = require('../../lib/graphqlErrors');
 // #endregion
 
