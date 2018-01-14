@@ -4,7 +4,10 @@ const AppConfig = {
   // flag: set fetch mock or real fetch
   DEV_MODE: true,
 
-  baseUrl: 'http://localhost:3001',
+  baseUrl: {
+    dev: 'http://localhost:3001',
+    prod: 'https://monsieur-robot.herokuapp.com',
+  },
 
   // API
   api: {

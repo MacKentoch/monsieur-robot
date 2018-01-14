@@ -10,10 +10,10 @@ import appConfig from '../config/appConfig';
 // #endregion
 
 // #region constants
-let baseUrl = appConfig.baseUrl;
+let baseUrl = appConfig.baseUrl.dev;
 /* eslint-disable no-process-env */
 if (process.env.NODE_ENV === 'production') {
-  baseUrl = 'https://monsieur-robot.herokuapp.com';
+  baseUrl = appConfig.baseUrl.prod;
 }
 
 /* eslint-enable no-process-env */
