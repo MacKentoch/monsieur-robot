@@ -17,7 +17,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 if (!!window) {
-  window.SERVER_EXT_URL = baseUrl;
+  window.NODE_ENV = process.env.NODE_ENV;
+  window.SERVER_EXT_URL = process.env.SERVER_EXT_URL;
 }
 
 /* eslint-enable no-process-env */

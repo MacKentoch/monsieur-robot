@@ -117,6 +117,7 @@ const styles = theme => ({
   drawerPaper: {
     borderRight: 'none',
     width: 250,
+    zIndex: 200,
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       position: 'relative',
