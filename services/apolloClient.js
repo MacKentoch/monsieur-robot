@@ -5,15 +5,21 @@ import { withData } from 'next-apollo';
 // import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import appConfig from '../config/appConfig';
 // import { setContext } from 'apollo-link-context';
 // #endregion
 
 // #region constants
-let baseUrl = 'http://localhost:3001';
+let baseUrl = appConfig.baseUrl;
 /* eslint-disable no-process-env */
 if (process.env.NODE_ENV === 'production') {
-  baseUrl = process.env.SERVER_EXT_URL || 'http://localhost:3001';
+  baseUrl = process.env.SERVER_EXT_URL || appConfig.baseUrl;
 }
+
+if (window) {
+  window.SERVER_EXT_URL = baseUrl;
+}
+
 /* eslint-enable no-process-env */
 // #endregion
 

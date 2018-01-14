@@ -4,6 +4,8 @@ const AppConfig = {
   // flag: set fetch mock or real fetch
   DEV_MODE: true,
 
+  baseUrl: 'http://localhost:3001',
+
   // API
   api: {
     fakeEndPoint: 'api/somewhere',
