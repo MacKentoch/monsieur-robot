@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
   baseUrl = process.env.SERVER_EXT_URL || appConfig.baseUrl;
 }
 
-if (!!window) {
+if (typeof window !== 'undefined') {
   window.NODE_ENV = process.env.NODE_ENV;
   window.SERVER_EXT_URL = process.env.SERVER_EXT_URL;
 }
