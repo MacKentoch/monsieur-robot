@@ -37,7 +37,9 @@ async function load() {
     const schemaFile = join(__dirname, '../../', 'db/schema.sql');
     const command0 =
       config.get('env') === 'production'
-        ? `psql --username postgres ${config.get('env')} < ${schemaFile}`
+        ? `psql --username ${config.get('user')} ${config.get(
+            'database',
+          )} < ${schemaFile}`
         : `psql --username postgres ${config.get('env')} < ${schemaFile}`;
     await executeCmd(command0, 'createSchema', true);
     // #endregion
@@ -46,7 +48,9 @@ async function load() {
     const dataFile = join(__dirname, '../../', 'db/base_data.sql');
     const command1 =
       config.get('env') === 'production'
-        ? `psql --username postgres ${config.get('env')} < ${dataFile}`
+        ? `psql --username ${config.get('user')} ${config.get(
+            'database',
+          )} < ${dataFile}`
         : `psql --username postgres ${config.get('env')} < ${dataFile}`;
     await executeCmd(command1, 'loadData', true);
     // #endregion

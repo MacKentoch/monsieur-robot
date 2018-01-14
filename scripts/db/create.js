@@ -14,7 +14,7 @@ askConfirmation(async confirmed => {
     console.log('database will be created...');
     const command =
       config.get('env') === 'production'
-        ? `createdb --username postgres ${config.get('env')}`
+        ? `createdb --username ${config.get('user')} ${config.get('database')}`
         : `createdb --username postgres ${config.get('env')}`;
     const commandName = 'createDB';
     const shouldLog = true;

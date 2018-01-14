@@ -15,7 +15,9 @@ askConfirmation(async confirmed => {
     console.log('database will be dropped...');
     const command =
       config.get('env') === 'production'
-        ? `dropdb --username postgres ${config.get('env')} --if-exists`
+        ? `dropdb --username ${config.get('user')} ${config.get(
+            'database',
+          )} --if-exists`
         : `dropdb --username postgres ${config.get('env')} --if-exists`;
     const commandName = 'dropDB';
     const shouldLog = true;

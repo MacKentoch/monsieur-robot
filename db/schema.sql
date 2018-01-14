@@ -11,7 +11,6 @@ CREATE TABLE languages
     code VARCHAR(255) NOT NULL,
     name VARCHAR(255) NOT NULL
 );
-ALTER TABLE languages OWNER TO postgres;
 
 -- authors
 CREATE TABLE authors
@@ -22,7 +21,6 @@ CREATE TABLE authors
     twitter_id VARCHAR(255),
     date_creation TIMESTAMP NOT NULL DEFAULT NOW()
 );
-ALTER TABLE authors OWNER TO postgres;
 
 
 -- blogs (language is english)
@@ -36,7 +34,6 @@ CREATE TABLE blogs
     date_publication TIMESTAMP NOT NULL DEFAULT NOW(),
     author INTEGER REFERENCES authors (id) NOT NULL
 );
-ALTER TABLE blogs OWNER TO postgres;
 
 -- blogs translations (other than default language english english)
 CREATE TABLE blogs_translations
@@ -50,7 +47,6 @@ CREATE TABLE blogs_translations
     md_content TEXT NOT NULL,
     date_publication TIMESTAMP NOT NULL DEFAULT NOW()
 );
-ALTER TABLE blogs_translations OWNER TO postgres;
 
 
 -- newsLetters (language is english)
@@ -61,7 +57,6 @@ CREATE TABLE newsletters
     submission_date TIMESTAMP,
     md_content TEXT NOT NULL
 );
-ALTER TABLE newsletters OWNER TO postgres;
 
 -- newsLettersSubscribers (language is english)
 CREATE TABLE newsletters_subscribers
@@ -73,7 +68,6 @@ CREATE TABLE newsletters_subscribers
     subscribtion_date TIMESTAMP NOT NULL DEFAULT NOW(),
     unsubscribtion_date TIMESTAMP
 );
-ALTER TABLE newsletters_subscribers OWNER TO postgres;
 
 
 -- page (UI) HOME (or index)
@@ -85,4 +79,3 @@ CREATE TABLE page_home
     md_content TEXT NOT NULL,
     edit_date TIMESTAMP NOT NULL DEFAULT NOW()
 );
-ALTER TABLE page_home OWNER TO postgres;
