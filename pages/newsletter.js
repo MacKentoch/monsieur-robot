@@ -149,7 +149,7 @@ class NewsLetter extends PureComponent<Props, State> {
 
   // #region component lifecycle methods
   render() {
-    const { pathname, classes } = this.props;
+    const { classes } = this.props;
     const {
       firstname,
       firstnameError,
@@ -160,7 +160,7 @@ class NewsLetter extends PureComponent<Props, State> {
     } = this.state;
 
     return (
-      <Layout pathname={pathname} navigationMenus={<NavMenus />}>
+      <Layout pathname={'/newsletter'} navigationMenus={<NavMenus />}>
         <div className={classes.contentContainer}>
           <Typography type="display1" gutterBottom>
             Signup for the Fides Project news

@@ -54,10 +54,8 @@ class GetInvolved extends PureComponent<Props, State> {
 
   // #region component lifecycle methods
   render() {
-    const { pathname } = this.props;
-
     return (
-      <Layout pathname={pathname} navigationMenus={<NavMenus />}>
+      <Layout pathname={'/getInvolved'} navigationMenus={<NavMenus />}>
         <Typography type="display1" gutterBottom>
           Get involved
         </Typography>

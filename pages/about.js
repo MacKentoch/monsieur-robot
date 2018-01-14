@@ -58,12 +58,11 @@ class About extends PureComponent<Props, State> {
 
   // #region component lifecycle methods
   render() {
-    const { pathname } = this.props;
     const { root, sub: paths } = appConfig.navigation.about;
 
     return (
       <LayoutWithDrawer
-        pathname={pathname}
+        pathname={'/about'}
         sceneSubMenus={<AboutMenu />}
         navigationMenus={<NavigationMenu />}
       >

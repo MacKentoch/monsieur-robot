@@ -57,10 +57,10 @@ class Press extends PureComponent<Props, State> {
 
   // #region component lifecycle methods
   render() {
-    const { pathname, classes } = this.props;
+    const { classes } = this.props;
 
     return (
-      <Layout pathname={pathname} navigationMenus={<NavMenus />}>
+      <Layout pathname={'/press'} navigationMenus={<NavMenus />}>
         <div className={classes.contentContainer}>
           <Grid container spacing={24}>
             {/* left content */}

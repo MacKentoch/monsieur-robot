@@ -115,14 +115,7 @@ class Index extends PureComponent<Props, State> {
 
   // #region component lifecycle methods
   render() {
-    const {
-      classes,
-      pathname,
-      isLoadingUI,
-      ui,
-      isLoadingBlogs,
-      topBlogs,
-    } = this.props;
+    const { classes, isLoadingUI, ui, isLoadingBlogs, topBlogs } = this.props;
 
     const mdParagraphTopLeft = ui
       ? ui.find(md => md.ui_part_key === 'paragraphTopLeft')
@@ -135,7 +128,7 @@ class Index extends PureComponent<Props, State> {
       : '';
 
     return (
-      <Layout pathname={pathname} navigationMenus={<NavMenus />}>
+      <Layout pathname={'/'} navigationMenus={<NavMenus />}>
         <Grid container spacing={24}>
           {/* left content */}
           <Grid item md={8} sm={12} xs={12}>
@@ -316,6 +309,7 @@ const GetUIPageHomeQuery = gql`
 
 const GetUIPageHomeOptions = {
   /* eslint-disable no-unused-vars */
+  options: () => ({ errorPolicy: 'ignore' }),
   props: ({
     ownProps,
     data: { loading, getUIPageHome /* , refetch, error*/ },

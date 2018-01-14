@@ -263,6 +263,7 @@ class Layout extends PureComponent<Props, State> {
   initizeTabsStateAndTitle(pathname: string) {
     const currentPage = tabMenu.find(tab => tab.id === pathname);
     const pageTitle = currentPage ? currentPage.pageTitle : '';
+
     this.setState({
       currentTab: pathname,
       pageTitle,

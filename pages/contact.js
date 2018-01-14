@@ -58,11 +58,9 @@ class Contact extends PureComponent<Props, State> {
 
   // #region component lifecycle methods
   render() {
-    const { pathname } = this.props;
-
     return (
       <LayoutWithDrawer
-        pathname={pathname}
+        pathname={'/contact'}
         sceneSubMenus={<ContactMenu />}
         navigationMenus={<NavigationMenu />}
       >

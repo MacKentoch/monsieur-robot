@@ -86,6 +86,10 @@ class Blog extends PureComponent<Props, State> {
   }
   // #endregion
 
+  static defaultProps = {
+    pathname: '/blog',
+  };
+
   // #region state initialization
   state = {
     news: mockNews,
@@ -95,11 +99,10 @@ class Blog extends PureComponent<Props, State> {
   // #region component lifecycle methods
   render() {
     const { news } = this.state;
-
-    const { pathname, classes } = this.props;
+    const { classes } = this.props;
 
     return (
-      <Layout pathname={pathname} navigationMenus={<NavMenus />}>
+      <Layout pathname={'/blog'} navigationMenus={<NavMenus />}>
         <Grid container spacing={24}>
           <Grid item md={8} sm={12} xs={12}>
             <div style={{ height: '10px' }} />
@@ -156,7 +159,7 @@ const GetBlogsQuery = gql`
     getBlogs {
       id
       title
-      subTitle
+      subtitle
       md_content
       date_publication
       author
@@ -166,6 +169,7 @@ const GetBlogsQuery = gql`
 
 const GetBlogsQueryOptions = {
   /* eslint-disable no-unused-vars */
+  options: () => ({ errorPolicy: 'ignore' }),
   props: ({ ownProps, data: { loading, getBlogs /* , refetch*/ } }) => {
     // no need to return data (avoid no use re-renders)
     return { isLoadingBlogs: loading, blogs: getBlogs };
