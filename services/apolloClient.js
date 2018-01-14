@@ -13,12 +13,7 @@ import appConfig from '../config/appConfig';
 let baseUrl = appConfig.baseUrl;
 /* eslint-disable no-process-env */
 if (process.env.NODE_ENV === 'production') {
-  baseUrl = process.env.SERVER_EXT_URL || appConfig.baseUrl;
-}
-
-if (typeof window !== 'undefined') {
-  window.NODE_ENV = process.env.NODE_ENV;
-  window.SERVER_EXT_URL = process.env.SERVER_EXT_URL;
+  baseUrl = 'https://monsieur-robot.herokuapp.com';
 }
 
 /* eslint-enable no-process-env */
