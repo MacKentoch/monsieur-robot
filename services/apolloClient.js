@@ -8,9 +8,16 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 // import { setContext } from 'apollo-link-context';
 // #endregion
 
+// #region constants
+let baseUrl = 'http://localhost:3001';
+if (process.NODE_ENV === 'production') {
+  baseUrl = process.SERVER_EXT_URL || 'http://localhost:3001';
+}
+// #endregion
+
 // #region link, middleware
 const httplink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: `${baseUrl}/graphql`,
   credentials: 'same-origin',
 });
 
@@ -58,10 +65,10 @@ const isDevEnv = process.env.NODE_ENV === 'development';
 // export default client;
 
 // #region we don't use traditional ApolloClient in a NextJS app
-const config = {
+const apolloConfig = {
   link,
   cache, // : cache.restore(window.__APOLLO_STATE__),
   connectToDevTools: isDevEnv,
   queryDeduplication: true,
 };
-export default withData(config);
+export default withData(apolloConfig);

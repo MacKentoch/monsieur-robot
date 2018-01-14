@@ -47,7 +47,7 @@ const config = convict({
     externalUrl: {
       doc: 'The server external url',
       format: 'url',
-      default: 'http://localhost:3000/',
+      default: 'http://localhost:3001/',
       env: 'SERVER_EXT_URL',
     },
     bodyParser: {
