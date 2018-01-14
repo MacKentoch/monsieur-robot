@@ -10,9 +10,11 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 // #region constants
 let baseUrl = 'http://localhost:3001';
-if (process.NODE_ENV === 'production') {
-  baseUrl = process.SERVER_EXT_URL || 'http://localhost:3001';
+/* eslint-disable no-process-env */
+if (process.env.NODE_ENV === 'production') {
+  baseUrl = process.env.SERVER_EXT_URL || 'http://localhost:3001';
 }
+/* eslint-enable no-process-env */
 // #endregion
 
 // #region link, middleware
