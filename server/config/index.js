@@ -122,6 +122,37 @@ const config = convict({
       default: '/api',
     },
   },
+  twitter: {
+    consumerKey: {
+      doc: 'twitter consumer key',
+      format: String,
+      default: 'SORRY_THIS_IS_SECRET',
+      env: 'TWITTER_CONSUMER_KEY',
+    },
+    consumerSecret: {
+      doc: 'twitter consumer secret',
+      format: String,
+      default: 'SORRY_THIS_IS_SECRET',
+      env: 'TWITTER_CONSUMER_SECRET',
+    },
+    accessTokenKey: {
+      doc: 'twitter access token key',
+      format: String,
+      default: 'SORRY_THIS_IS_SECRET',
+      env: 'TWITTER_ACCESS_TOKEN_KEY',
+    },
+    accessTokenSecret: {
+      doc: 'twitter access token secret',
+      format: String,
+      default: 'SORRY_THIS_IS_SECRET',
+      env: 'TWITTER_ACCESS_TOKEN_SECRET',
+    },
+  },
+  tweetsUserId: {
+    doc: 'userId tweets to retrieve on the app',
+    format: String,
+    default: '3317233336',
+  },
 });
 
 const env = config.get('env');

@@ -18,6 +18,11 @@ const typeDefs = /* GraphQL */ `
     # (n: number old blogs to retrieve)
     getTopNLastestBlogs(n: Int!): [Blog]!
 
+    # GET N last tweets
+    #
+    # (n: number old blogs to retrieve)
+    getTopNLastestTweets(n: Int!): [Tweet]!
+
     # GET one author
     #
     # (id: author's id)
@@ -43,6 +48,22 @@ const typeDefs = /* GraphQL */ `
     nickname: String!
     twitter_id: String
     date_creation: DateTime!
+  }
+
+  type Tweet {
+    id: ID!
+    text: String!
+    in_reply_to_status_id: ID
+    in_reply_to_user_id: ID
+    in_reply_to_screen_name: ID
+    is_quote_status: Boolean
+    retweet_count: Int
+    favorite_count: Int
+    favorited: Boolean
+    retweeted: Boolean
+    possibly_sensitive: Boolean
+    lang: String
+    userId: ID
   }
 
   type NewsLetter {

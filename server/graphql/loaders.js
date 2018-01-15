@@ -7,18 +7,17 @@ const db = require('../db');
 
 // #region create loaders factory
 const createLoaders = () => ({
-  blogs: new DataLoader(async () => {
-    const { rows } = await db.query(
-      'SELECT * FROM blogs ORDER BY date_publication',
-    );
-    return rows;
-  }),
-
-  author: new DataLoader(async id => {
-    const { rows } = await db.query('SELECT * FROM authors WHERE ID = $1', [
-      id,
-    ]);
-    return rows;
+  author: new DataLoader(async ids => {
+    const result = ids.map(async id => {
+      const { rows: authors } = await db.query(
+        `SELECT authors.*
+          FROM authors
+          WHERE id = $1::integer`,
+        [id],
+      );
+      return authors[0];
+    });
+    return Promise.resolve(result);
   }),
 });
 // #endregion
