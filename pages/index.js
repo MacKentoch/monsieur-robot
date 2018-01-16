@@ -41,6 +41,10 @@ type UIType = {
   edit_date: Date,
 };
 
+type LatestTweets = {
+  id: number | string,
+};
+
 type LatestBlogs = {
   title: string,
   subtitle: string,
@@ -62,6 +66,9 @@ type Props = {
 
   isLoadingBlogs: boolean,
   topBlogs: Array<LatestBlogs>,
+
+  isLoadingTweets: boolean,
+  topTweets: Array<LatestTweets>,
 
   ...any,
 };
@@ -111,11 +118,21 @@ class Index extends PureComponent<Props, State> {
     ui: [],
     isLoadingBlogs: false,
     topBlogs: [],
+    isLoadingTweets: false,
+    topTweets: [],
   };
 
   // #region component lifecycle methods
   render() {
-    const { classes, isLoadingUI, ui, isLoadingBlogs, topBlogs } = this.props;
+    const {
+      classes,
+      isLoadingUI,
+      ui,
+      isLoadingBlogs,
+      topBlogs,
+      isLoadingTweets,
+      topTweets,
+    } = this.props;
 
     const mdParagraphTopLeft = ui
       ? ui.find(md => md.ui_part_key === 'paragraphTopLeft')
@@ -231,6 +248,7 @@ class Index extends PureComponent<Props, State> {
                   </span>
                 )}
                 {!isLoadingBlogs &&
+                  topBlogs.length > 0 &&
                   topBlogs.map((blog, newsIdx) => (
                     <div
                       key={`news-${blog.id}-${newsIdx}`}
@@ -252,11 +270,21 @@ class Index extends PureComponent<Props, State> {
                 <Typography type="title" gutterBottom>
                   Recent tweets
                 </Typography>
-                {[1, 2, 3].map((_, newsIdx) => (
-                  <div key={`tweet-${newsIdx}`}>
-                    <Tweet tweetId="939235471942615040" />
-                  </div>
-                ))}
+                {isLoadingTweets && (
+                  <span className={classes.progressContainer}>
+                    <CircularProgress className={classes.progress} />
+                  </span>
+                )}
+                {!isLoadingTweets &&
+                  topTweets.map(({ id }, newsIdx) => {
+                    console.log('should render tweet id: ', id);
+
+                    return (
+                      <div key={`tweet-${newsIdx}`}>
+                        <Tweet tweetId={id} />
+                      </div>
+                    );
+                  })}
               </Grid>
             </Grid>
           </Grid>
@@ -352,12 +380,38 @@ const GetTopNLastestBlogsOptions = {
 };
 // #endregion
 
+// #region graphql query getTopNLastestBlogs
+const GetTopNLastestTweets = gql`
+  query getTopNLastestTweets($n: Int!) {
+    getTopNLastestTweets(n: $n) {
+      id
+    }
+  }
+`;
+
+const GetTopNLastestTweetsOptions = {
+  /* eslint-disable no-unused-vars */
+  options: () => ({ variables: { n: 3 } }),
+  props: ({
+    ownProps,
+    data: { loading, getTopNLastestTweets /* , refetch, error*/ },
+  }) => {
+    if (!loading) {
+      return { isLoadingTweets: loading, topTweets: getTopNLastestTweets };
+    }
+    return { isLoadingTweets: loading };
+  },
+  /* eslint-enable no-unused-vars */
+};
+// #endregion
+
 // #region compose all HOC
 const ComposedIndex = compose(
   withRedux(configureStore, mapStateToProps, mapDispatchToProps),
   withApollo(),
   graphql(GetUIPageHomeQuery, GetUIPageHomeOptions),
   graphql(GetTopNLastestBlogs, GetTopNLastestBlogsOptions),
+  graphql(GetTopNLastestTweets, GetTopNLastestTweetsOptions),
   withRoot,
   withStyles(styles),
 )(Index);
