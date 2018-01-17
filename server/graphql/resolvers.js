@@ -51,6 +51,7 @@ const resolvers = {
         const tweets = await twitterClient.get(
           `statuses/user_timeline.json?count=${n}&user_id=${user_id}&exclude_replies=true`,
         );
+        console.log('tweets: ', tweets);
         if (Array.isArray(tweets)) {
           return tweets.map(tweet => {
             const {

@@ -13,7 +13,6 @@
     "dev": "cross-env NODE_ENV=development nodemon ./server/server",
     "build": "next build",
     "start": "cross-env NODE_ENV=production node ./server/server",
-    "deploy": "now --public",
     "db:start": "cross-env USER=postgres scripts/startDB.sh",
     "db:create": "node scripts/db/create",
     "db:load": "node scripts/db/load",
