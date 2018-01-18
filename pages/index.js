@@ -397,6 +397,7 @@ const GetTopNLastestTweetsOptions = {
     data: { loading, getTopNLastestTweets /* , refetch, error*/ },
   }) => {
     if (!loading) {
+      console.log('tweets: ', getTopNLastestTweets);
       return { isLoadingTweets: loading, topTweets: getTopNLastestTweets };
     }
     return { isLoadingTweets: loading };

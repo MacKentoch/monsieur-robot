@@ -51,7 +51,12 @@ const resolvers = {
         const tweets = await twitterClient.get(
           `statuses/user_timeline.json?count=${n}&user_id=${user_id}&exclude_replies=true`,
         );
-        console.log('tweets: ', tweets);
+        if (tweets.data.errors) {
+          const firstError = tweets.data.errors[0];
+          const code = firstError.code ? firstError.code : '-1';
+          const message = firstError.message ? firstError.message : '-1';
+          throw new GraphqlError(code, message);
+        }
         if (Array.isArray(tweets)) {
           return tweets.map(tweet => {
             const {
