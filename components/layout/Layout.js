@@ -53,6 +53,7 @@ type State = {
 
 // #region constants
 const { tabMenu, defautTabMenuId } = appConfig.navigation;
+const { appName } = appConfig;
 // #endregion
 
 class Layout extends PureComponent<Props, State> {
@@ -146,7 +147,7 @@ class Layout extends PureComponent<Props, State> {
 
               {/* title */}
               <Typography type="title" color="inherit" noWrap>
-                Monsieur Robot
+                {appName}
               </Typography>
 
               {/* a filler */}

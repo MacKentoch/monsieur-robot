@@ -4,6 +4,8 @@ const AppConfig = {
   // flag: set fetch mock or real fetch
   DEV_MODE: true,
 
+  appName: 'The Fides Project',
+
   baseUrl: {
     dev: 'http://localhost:3001',
     prod: 'https://monsieur-robot.herokuapp.com',
