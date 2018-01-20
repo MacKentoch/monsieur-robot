@@ -7,6 +7,7 @@ import withRedux from 'next-redux-wrapper';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 import { Tweet } from 'react-twitter-widgets';
+import { CircularProgress } from 'material-ui/Progress';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import withRoot from '../HOC/withRoot';
@@ -14,7 +15,6 @@ import Layout from '../components/layout/Layout';
 import configureStore from '../redux/store/configureStore';
 import NewsCard from '../components/newsCard/NewsCard';
 import NavMenus from '../components/navigationMenu/NavigationMenu';
-import mockNews from '../mock/mockNews.json';
 import withApollo from '../HOC/withApollo';
 // #endregion
 
@@ -30,25 +30,31 @@ type InitialProps = {
   ...any,
 };
 
+type BlogType = {
+  id: number,
+  title: string,
+  subtitle?: string,
+  summary?: string,
+  md_content: string,
+  date_publication: date,
+  author: string,
+};
+
 type Props = {
   // withStyle HOC
   classes: any,
+
+  // GetBlogs query
+  blogs: Array<BlogType>,
+  isLoadingBlogs: boolean,
+
   // initialProps
   pathname: string,
-  ...any,
-};
 
-type OneNews = {
-  id: number | string,
-  title: string,
-  subtitle?: string,
-  sumUp: string,
   ...any,
 };
 
 type State = {
-  news: Array<OneNews>,
-
   ...any,
 };
 // #endregion
@@ -66,16 +72,7 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    // maxWidth: '100% !important',
-    // maxHeight: '100% !important',
   },
-  // 'twitter-tweet': {
-  //   width: '300px !important',
-  // },
-  // 'twitter-tweet-rendered': {
-  //   display: 'flex',
-  //   flex: '1 1 auto',
-  // },
 };
 // #endregion
 
@@ -88,34 +85,41 @@ class Blog extends PureComponent<Props, State> {
 
   static defaultProps = {
     pathname: '/blog',
+    blogs: [],
+    isLoadingBlogs: false,
   };
 
   // #region state initialization
-  state = {
-    news: mockNews,
-  };
+  state = {};
   // #endregion
 
   // #region component lifecycle methods
   render() {
-    const { news } = this.state;
-    const { classes } = this.props;
+    const { classes, blogs, isLoadingBlogs } = this.props;
 
     return (
       <Layout pathname={'/blog'} navigationMenus={<NavMenus />}>
         <Grid container spacing={24}>
           <Grid item md={8} sm={12} xs={12}>
             <div style={{ height: '10px' }} />
-            {news.map((oneNews, newsIdx) => (
-              <div
-                key={`news-${oneNews.id}-${newsIdx}`}
-                style={{
-                  marginBottom: '20px',
-                }}
-              >
-                <NewsCard key={`news-${oneNews.id}-${newsIdx}`} {...oneNews} />
-              </div>
-            ))}
+            {isLoadingBlogs && (
+              <span className={classes.progressContainer}>
+                <CircularProgress className={classes.progress} />
+              </span>
+            )}
+            {!isLoadingBlogs &&
+              blogs.map((blog, newsIdx) => (
+                <div
+                  key={`news-${blog.id}-${newsIdx}`}
+                  style={{ marginBottom: '20px' }}
+                >
+                  <NewsCard
+                    key={`news-${blog.id}-${newsIdx}`}
+                    showSumUp={false}
+                    {...blog}
+                  />
+                </div>
+              ))}
           </Grid>
           <Grid item md={4} sm={12} xs={12}>
             {[1, 2, 3, 4, 5, 6, 7].map((_, newsIdx) => (
@@ -172,7 +176,10 @@ const GetBlogsQueryOptions = {
   options: () => ({ errorPolicy: 'ignore' }),
   props: ({ ownProps, data: { loading, getBlogs /* , refetch*/ } }) => {
     // no need to return data (avoid no use re-renders)
-    return { isLoadingBlogs: loading, blogs: getBlogs };
+    if (!loading) {
+      return { isLoadingBlogs: loading, blogs: getBlogs };
+    }
+    return { isLoadingBlogs: loading };
   },
   /* eslint-enable no-unused-vars */
 };
