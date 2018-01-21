@@ -9,6 +9,14 @@ const twitterClient = require('../lib/twitterClient');
 const config = require('../config');
 // #endregion
 
+// #region utils
+const CURSOR_SECRET = config.get('graphqlCursorSecret');
+const btoa = str => Buffer.from(str).toString('base64');
+const atob = str => Buffer.from(str, 'base64').toString('utf-8');
+const indexToCursor = index => btoa(`${CURSOR_SECRET}${index}`);
+const cursorToIndex = cursor => Number(atob(cursor).replace(CURSOR_SECRET, ''));
+// #endregoin
+
 const resolvers = {
   DateTime: GraphQLDateTime,
 
