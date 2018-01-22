@@ -7,28 +7,30 @@ const db = require('../db');
 const { GraphQLDateTime } = require('graphql-iso-date');
 const twitterClient = require('../lib/twitterClient');
 const config = require('../config');
+const { cursorToIndex, indexToCursor } = require('../lib/indexToCursor');
 // #endregion
-
-// #region utils
-const CURSOR_SECRET = config.get('graphqlCursorSecret');
-const btoa = str => Buffer.from(str).toString('base64');
-const atob = str => Buffer.from(str, 'base64').toString('utf-8');
-const indexToCursor = index => btoa(`${CURSOR_SECRET}${index}`);
-const cursorToIndex = cursor => Number(atob(cursor).replace(CURSOR_SECRET, ''));
-// #endregoin
 
 const resolvers = {
   DateTime: GraphQLDateTime,
 
   Query: {
-    async getBlogs() {
+    async getBlogs(root, { first, after }) {
+      const afterIndex = after ? cursorToIndex(after) : -1;
+      const firstIndex = afterIndex + 1;
+      const lastIndex = afterIndex + first;
+
       try {
         const { rows: blogs } = await db.query(
           `SELECT blogs.*, authors.nickname author
           FROM blogs INNER JOIN authors ON blogs.author = authors.id
+          WHERE id >= $1::INTEGER AND id <= $2::INTEGER
           ORDER BY blogs.date_publication DESC`,
+          [firstIndex, lastIndex],
         );
-        return blogs;
+        return {
+          lastCursor: indexToCursor(lastIndex),
+          nodes: blogs,
+        };
       } catch (error) {
         const code = error.code ? error.code : '-1';
         const message = error.message ? error.message : '-1';

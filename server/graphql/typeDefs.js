@@ -11,7 +11,7 @@ const typeDefs = /* GraphQL */ `
   type Query {
     # GET all blogs
     #
-    getBlogs: [Blog]!
+    getBlogs(first: Int!, after: String): BlogsPaginated!
 
     # GET N last blogs
     #
@@ -31,6 +31,11 @@ const typeDefs = /* GraphQL */ `
     # GET all ui page home
     #
     getUIPageHome: [UIPageHome]!
+  }
+
+  type BlogsPaginated {
+    lastCursor: String!
+    nodes: [Blog]!
   }
 
   type Blog {
