@@ -9,7 +9,6 @@ import marked from 'marked';
 type Props = {
   // parent:
   text: string,
-
   ...any,
 };
 

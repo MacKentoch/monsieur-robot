@@ -9,7 +9,6 @@ const styles = theme => ({
     height: '100%',
     zIndex: 1,
     overflow: 'hidden',
-    // backgroundColor: theme.palette.primary[600],
   },
   appFrame: {
     position: 'relative',
@@ -76,24 +75,6 @@ const styles = theme => ({
   hide: {
     opacity: 0,
   },
-  // searchFabButton: {
-  //   position: 'absolute',
-  //   right: '20px',
-  //   top: 56 + 48 - 25,
-  //   [theme.breakpoints.up('md')]: {
-  //     top: 64 + 48 - 25,
-  //   },
-  //   zIndex: 10000
-  // },
-  // searchFabButtonFixed: {
-  //   position: 'fixed',
-  //   right: '20px',
-  //   top: 56 + 48 - 25,
-  //   [theme.breakpoints.up('md')]: {
-  //     top: 64 + 48 - 25,
-  //   },
-  //   zIndex: 1000
-  // },
   drawerHeader: {
     ...theme.mixins.toolbar,
     backgroundColor: theme.palette.primary[600], // '#111',
